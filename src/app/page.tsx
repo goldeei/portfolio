@@ -17,8 +17,8 @@ export default function Home() {
 				<Button variant="link">Experiences</Button>
 				<Button variant="link">Projects</Button>
 				<Button icon={<DownloadSolid />}>Resume</Button>
-				<Button icon={<MoonSolid />} />
-				<Button icon={<LayersThreeSolid />} />
+				<Button icon={<MoonSolid />} size="icon" />
+				<Button icon={<LayersThreeSolid />} size="icon" />
 			</nav>
 			<main className="flex-1 place-content-center text-center flex flex-col items-center justify-center">
 				<div className="text-primary">Test Theme Primary</div>
