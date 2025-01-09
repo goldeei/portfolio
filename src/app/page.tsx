@@ -14,45 +14,45 @@ import { degToRad } from "three/src/math/MathUtils.js";
 const raleway = Raleway({ subsets: ["latin"] });
 
 export default function Home() {
-	const [cubeColor, setCubeColor] = useState(hslVarToHex("--primary"));
-	const cubeRef = useRef<Mesh>(null);
-	useEffect(() => {
-		setCubeColor(hslVarToHex("--primary"));
-	}, []);
+  const [cubeColor, setCubeColor] = useState(hslVarToHex("--primary"));
+  const cubeRef = useRef<Mesh>(null);
+  useEffect(() => {
+    setCubeColor(hslVarToHex("--primary"));
+  }, []);
 
-	return (
-		<div className={cx("flex flex-col h-dvh px-36 py-8", raleway.className)}>
-			<nav className="flex gap-3 justify-end">
-				<Button variant="link">Tech I Use</Button>
-				<Button variant="link">Experiences</Button>
-				<Button variant="link">Projects</Button>
-				<Button icon={<DownloadSolid />}>Resume</Button>
-				{/* <Switch icon={<MoonSolid />} icon2={<SunSolid />} /> */}
-				<Switch icon={<Ar />} defaultIsChecked />
-			</nav>
-			<main className="flex-1 place-content-center text-center flex flex-col items-center justify-center">
-				<div className="text-primary">Test Theme Primary</div>
-				<div className="text-secondary">Test Theme Secondary</div>
-				<Canvas className="h-14 w-14">
-					<Environment preset="studio" />
-					<RoundedBox
-						ref={cubeRef}
-						args={[1, 1, 1]} // Width, height, depth. Default is [1, 1, 1]
-						radius={0.05} // Radius of the rounded corners. Default is 0.05
-						smoothness={4} // The number of curve segments. Default is 4
-						bevelSegments={4} // The number of bevel segments. Default is 4, setting it to 0 removes the bevel, as a result the texture is applied to the whole geometry.
-						creaseAngle={0.4} // All THREE.Mesh props are valid
-						rotation={[degToRad(11.25), degToRad(45), 0]}
-					>
-						<meshStandardMaterial
-							color={cubeColor}
-							roughness={0.5}
-							metalness={0.5}
-						/>
-					</RoundedBox>
-					{/* <OrbitControls  /> */}
-				</Canvas>
-			</main>
-		</div>
-	);
+  return (
+    <div className={cx("flex h-dvh flex-col px-36 py-8", raleway.className)}>
+      <nav className="flex justify-end gap-3">
+        <Button variant="link">Tech I Use</Button>
+        <Button variant="link">Experiences</Button>
+        <Button variant="link">Projects</Button>
+        <Button icon={<DownloadSolid />}>Resume</Button>
+        {/* <Switch icon={<MoonSolid />} icon2={<SunSolid />} /> */}
+        <Switch icon={<Ar />} defaultIsChecked />
+      </nav>
+      <main className="flex flex-1 flex-col place-content-center items-center justify-center text-center">
+        <div className="text-primary">Test Theme Primary</div>
+        <div className="text-secondary">Test Theme Secondary</div>
+        <Canvas className="size-14">
+          <Environment preset="studio" />
+          <RoundedBox
+            ref={cubeRef}
+            args={[1, 1, 1]} // Width, height, depth. Default is [1, 1, 1]
+            radius={0.05} // Radius of the rounded corners. Default is 0.05
+            smoothness={4} // The number of curve segments. Default is 4
+            bevelSegments={4} // The number of bevel segments. Default is 4, setting it to 0 removes the bevel, as a result the texture is applied to the whole geometry.
+            creaseAngle={0.4} // All THREE.Mesh props are valid
+            rotation={[degToRad(11.25), degToRad(45), 0]}
+          >
+            <meshStandardMaterial
+              color={cubeColor}
+              roughness={0.5}
+              metalness={0.5}
+            />
+          </RoundedBox>
+          {/* <OrbitControls  /> */}
+        </Canvas>
+      </main>
+    </div>
+  );
 }
