@@ -1,11 +1,8 @@
 "use client";
 import { Button } from "@/components/button";
+import { Switch } from "@/components/switch";
 import { hslVarToHex } from "@/lib/utils";
-import {
-	DownloadSolid,
-	LayersThreeSolid,
-	MoonSolid,
-} from "@mynaui/icons-react";
+import { Ar, DownloadSolid } from "@mynaui/icons-react";
 import { Environment, RoundedBox } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { cx } from "class-variance-authority";
@@ -30,8 +27,8 @@ export default function Home() {
 				<Button variant="link">Experiences</Button>
 				<Button variant="link">Projects</Button>
 				<Button icon={<DownloadSolid />}>Resume</Button>
-				<Button icon={<MoonSolid />} size="icon" />
-				<Button icon={<LayersThreeSolid />} size="icon" />
+				{/* <Switch icon={<MoonSolid />} icon2={<SunSolid />} /> */}
+				<Switch icon={<Ar />} defaultIsChecked />
 			</nav>
 			<main className="flex-1 place-content-center text-center flex flex-col items-center justify-center">
 				<div className="text-primary">Test Theme Primary</div>
