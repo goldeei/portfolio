@@ -30,5 +30,5 @@ export function hslVarToHex(colorVariableName: string): string {
 		.map((v) => Number(v)) as HSL;
 
 	// Convert and return the HSL array to a hex color string
-	return convert.hsl.hex(hslValueArray);
+	return `#${convert.hsl.hex(hslValueArray)}`;
 }
