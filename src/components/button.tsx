@@ -12,12 +12,10 @@ type ButtonProps = SButtonProps & {
 	disablePressStyle?: boolean;
 };
 export const Button = ({ ...props }: ButtonProps) => {
-	const { children, variant = "outline", className, icon } = props;
+	const { children, variant = "outline", className, icon, size } = props;
 
 	return (
-		<SButton
-			className={buttonVariants({ variant: variant, className: className })}
-		>
+		<SButton className={buttonVariants({ variant, className, size })}>
 			{icon}
 			{children}
 		</SButton>
