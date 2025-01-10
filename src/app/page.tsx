@@ -1,4 +1,5 @@
 "use client";
+import CubeIcon from "@/assets/svg/cube.svg";
 import { Button } from "@/components/button";
 import { Switch } from "@/components/switch";
 import { hslVarToHex } from "@/lib/utils";
@@ -7,6 +8,7 @@ import { Environment, RoundedBox } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { cx } from "class-variance-authority";
 import { Raleway } from "next/font/google";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { Mesh } from "three";
 import { degToRad } from "three/src/math/MathUtils.js";
@@ -28,7 +30,7 @@ export default function Home() {
         <Button variant="link">Projects</Button>
         <Button icon={<DownloadSolid />}>Resume</Button>
         {/* <Switch icon={<MoonSolid />} icon2={<SunSolid />} /> */}
-        <Switch icon={<Ar />} defaultIsChecked hasOnOffLabel />
+        <Switch icon={<CubeIcon />} defaultIsChecked hasOnOffLabel />
       </nav>
       <main className="flex flex-1 flex-col place-content-center items-center justify-center text-center">
         <div className="text-primary">Test Theme Primary</div>
