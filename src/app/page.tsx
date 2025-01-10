@@ -1,5 +1,5 @@
 "use client";
-import { CubeIcon, DownloadSolid } from "@/assets/icons";
+import { CubeIcon, DownloadSolid, Logo } from "@/assets/icons";
 import { Button } from "@/components/button";
 import { Switch } from "@/components/switch";
 import { hslVarToHex } from "@/lib/utils";
@@ -22,13 +22,16 @@ export default function Home() {
 
   return (
     <div className={cx("flex h-dvh flex-col px-36 py-8", raleway.className)}>
-      <nav className="flex justify-end gap-3">
-        <Button variant="link">Tech I Use</Button>
-        <Button variant="link">Experiences</Button>
-        <Button variant="link">Projects</Button>
-        <Button icon={<DownloadSolid />}>Resume</Button>
-        {/* <Switch icon={<MoonSolid />} icon2={<SunSolid />} /> */}
-        <Switch icon={<CubeIcon />} defaultIsChecked hasOnOffLabel />
+      <nav className="flex items-center justify-between">
+        <Logo />
+        <div className="flex gap-3">
+          <Button variant="link">Tech I Use</Button>
+          <Button variant="link">Experiences</Button>
+          <Button variant="link">Projects</Button>
+          <Button icon={<DownloadSolid />}>Resume</Button>
+          {/* <Switch icon={<MoonSolid />} icon2={<SunSolid />} /> */}
+          <Switch icon={<CubeIcon />} defaultIsChecked hasOnOffLabel />
+        </div>
       </nav>
       <main className="flex flex-1 flex-col place-content-center items-center justify-center text-center">
         <div className="text-primary">Test Theme Primary</div>

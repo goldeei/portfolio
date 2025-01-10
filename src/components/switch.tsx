@@ -54,7 +54,7 @@ export const Switch = ({ ...props }: SwitchProps) => {
       })}
       label={hasOnOffLabel ? <StatusText isChecked={isChecked} /> : undefined}
     >
-      <div className={"flex size-full items-center justify-center"}>
+      <div className={"size-full place-content-center place-items-center"}>
         {isChecked && icon2 ? icon2 : icon}
       </div>
     </SSwitch>
