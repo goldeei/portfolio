@@ -1,14 +1,12 @@
 "use client";
-import CubeIcon from "@/assets/svg/cube.svg";
+import { CubeIcon, DownloadSolid } from "@/assets/icons";
 import { Button } from "@/components/button";
 import { Switch } from "@/components/switch";
 import { hslVarToHex } from "@/lib/utils";
-import { Ar, DownloadSolid } from "@mynaui/icons-react";
 import { Environment, RoundedBox } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { cx } from "class-variance-authority";
 import { Raleway } from "next/font/google";
-import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { Mesh } from "three";
 import { degToRad } from "three/src/math/MathUtils.js";
