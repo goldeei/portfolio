@@ -26,9 +26,15 @@ type SwitchProps = {
   icon: JSX.Element;
   icon2?: JSX.Element;
   defaultIsChecked?: boolean;
+  hasOnOffLabel?: boolean;
 };
 export const Switch = ({ ...props }: SwitchProps) => {
-  const { icon, icon2, defaultIsChecked = false } = props;
+  const {
+    icon,
+    icon2,
+    defaultIsChecked = false,
+    hasOnOffLabel = false,
+  } = props;
 
   const [isChecked, setIsChecked] = useState(defaultIsChecked);
 
@@ -36,10 +42,6 @@ export const Switch = ({ ...props }: SwitchProps) => {
     const target = e.target as HTMLInputElement;
     setIsChecked(target.checked);
   };
-
-  useEffect(() => {
-    console.log(isChecked);
-  }, [isChecked]);
 
   return (
     <SSwitch
@@ -50,7 +52,7 @@ export const Switch = ({ ...props }: SwitchProps) => {
         "border-white/50 bg-secondary text-secondary": isChecked,
         "border-primary text-background [&>span]:bg-primary": !isChecked,
       })}
-      textElement={<StatusText isChecked={isChecked} />}
+      label={hasOnOffLabel ? <StatusText isChecked={isChecked} /> : undefined}
     >
       <div className={"flex size-full items-center justify-center"}>
         {isChecked && icon2 ? icon2 : icon}

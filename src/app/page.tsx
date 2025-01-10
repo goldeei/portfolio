@@ -28,7 +28,7 @@ export default function Home() {
         <Button variant="link">Projects</Button>
         <Button icon={<DownloadSolid />}>Resume</Button>
         {/* <Switch icon={<MoonSolid />} icon2={<SunSolid />} /> */}
-        <Switch icon={<Ar />} defaultIsChecked />
+        <Switch icon={<Ar />} defaultIsChecked hasOnOffLabel />
       </nav>
       <main className="flex flex-1 flex-col place-content-center items-center justify-center text-center">
         <div className="text-primary">Test Theme Primary</div>
