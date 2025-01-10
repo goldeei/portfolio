@@ -23,7 +23,14 @@ export default function Home() {
   return (
     <div className={cx("flex h-dvh flex-col px-36 py-8", raleway.className)}>
       <nav className="flex items-center justify-between">
-        <Logo />
+        <div className="relative flex size-fit items-center justify-center">
+          <Button
+            variant="link"
+            className="h-16 border-none p-0 shadow-inner transition-transform hover:-translate-y-0.5 [&_svg]:size-full"
+          >
+            <Logo />
+          </Button>
+        </div>
         <div className="flex gap-3">
           <Button variant="link">Tech I Use</Button>
           <Button variant="link">Experiences</Button>
