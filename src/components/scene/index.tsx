@@ -12,6 +12,8 @@ import { useEffect, useRef, useState } from "react";
 import { Mesh, PointLight, PointLightHelper } from "three";
 import { degToRad } from "three/src/math/MathUtils.js";
 
+import { jump } from "./animations";
+
 export const Scene = () => {
   const [cubeColor, setCubeColor] = useState(hslVarToHex("--primary"));
   const pointLightRef = useRef<PointLight>(null!);
@@ -28,20 +30,22 @@ export const Scene = () => {
     position: [0, 0, 0],
   }));
 
-  const jump = () => {
-    api.start({
-      to: async (next) => {
-        await next({
-          position: [0, 1.5, 0],
-          config: { duration: 300, easing: easings.easeOutQuad },
-        });
-        await next({
-          position: [0, 0, 0],
-          config: { duration: 200, easing: easings.easeInQuad },
-        });
-      },
-    });
-  };
+  // const jump = () => {
+  //   api.start({
+  //     to: async (next) => {
+  //       await next({
+  //         position: [0, 1.5, 0],
+  //         config: { duration: 300, easing: easings.easeOutQuad },
+  //       });
+  //       await next({
+  //         position: [0, 0, 0],
+  //         config: { duration: 200, easing: easings.easeInQuad },
+  //       });
+  //     },
+  //   });
+  // };
+
+  const handleJump = () => jump(api, 1.5);
 
   return (
     <>
@@ -58,7 +62,7 @@ export const Scene = () => {
       <group rotation={[degToRad(15), degToRad(45), 0]} position={[0, 0, 0]}>
         <animated.mesh
           position={spring.position.to((x, y) => [x, y, 0])}
-          onClick={jump}
+          onClick={handleJump}
         >
           <RoundedBox
             ref={cubeRef}
@@ -68,7 +72,6 @@ export const Scene = () => {
             bevelSegments={2}
             creaseAngle={0.25}
             castShadow
-            onClick={jump}
           >
             <meshStandardMaterial
               color={cubeColor}
