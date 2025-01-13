@@ -27,6 +27,7 @@ type SwitchProps = {
   icon2?: JSX.Element;
   defaultIsChecked?: boolean;
   hasOnOffLabel?: boolean;
+  onToggle?: (isChecked: boolean) => void;
 };
 export const Switch = ({ ...props }: SwitchProps) => {
   const {
@@ -34,6 +35,7 @@ export const Switch = ({ ...props }: SwitchProps) => {
     icon2,
     defaultIsChecked = false,
     hasOnOffLabel = false,
+    onToggle,
   } = props;
 
   const [isChecked, setIsChecked] = useState(defaultIsChecked);
@@ -43,9 +45,15 @@ export const Switch = ({ ...props }: SwitchProps) => {
     setIsChecked(target.checked);
   };
 
+  useEffect(() => {
+    if (onToggle) {
+      onToggle(isChecked);
+    }
+  }, [isChecked]);
+
   return (
     <SSwitch
-      onPointerDown={() => setIsChecked(!isChecked)}
+      onClick={() => setIsChecked(!isChecked)}
       checked={isChecked}
       onChange={handleSwitchChange}
       className={clsx("relative border-2", {

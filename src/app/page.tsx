@@ -1,28 +1,41 @@
 "use client";
 import { CubeIcon, DownloadSolid, Logo } from "@/assets/icons";
 import { Button } from "@/components/button";
+import { Scene } from "@/components/scene";
 import { Switch } from "@/components/switch";
 import { hslVarToHex } from "@/lib/utils";
-import { Environment, RoundedBox } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
+import { Environment, OrbitControls, RoundedBox } from "@react-three/drei";
+import { Canvas, useFrame } from "@react-three/fiber";
 import { cx } from "class-variance-authority";
+import clsx from "clsx";
 import { Raleway } from "next/font/google";
 import { useEffect, useRef, useState } from "react";
-import { Mesh } from "three";
+import { Mesh, PerspectiveCamera } from "three";
 import { degToRad } from "three/src/math/MathUtils.js";
 
 const raleway = Raleway({ subsets: ["latin"] });
 
 export default function Home() {
-  const [cubeColor, setCubeColor] = useState(hslVarToHex("--primary"));
-  const cubeRef = useRef<Mesh>(null);
-  useEffect(() => {
-    setCubeColor(hslVarToHex("--primary"));
-  }, []);
+  const [is3dOnTop, setIs3dOnTop] = useState(false);
 
   return (
-    <div className={cx("flex h-dvh flex-col px-36 py-8", raleway.className)}>
-      <nav className="flex items-center justify-between">
+    <div
+      className={cx(
+        "relative flex h-screen flex-col px-36 py-8",
+        raleway.className,
+      )}
+    >
+      <div
+        className={clsx(
+          "absolute inset-0 h-screen w-full",
+          is3dOnTop ? "z-10" : "-z-10",
+        )}
+      >
+        <Canvas shadows>
+          <Scene />
+        </Canvas>
+      </div>
+      <nav className="z-50 flex items-center justify-between">
         <div className="relative flex size-fit items-center justify-center">
           <Button
             variant="link"
@@ -37,31 +50,17 @@ export default function Home() {
           <Button variant="link">Projects</Button>
           <Button icon={<DownloadSolid />}>Resume</Button>
           {/* <Switch icon={<MoonSolid />} icon2={<SunSolid />} /> */}
-          <Switch icon={<CubeIcon />} defaultIsChecked hasOnOffLabel />
+          <Switch
+            icon={<CubeIcon />}
+            onToggle={(isToggled: boolean) => setIs3dOnTop(isToggled)}
+            defaultIsChecked
+            hasOnOffLabel
+          />
         </div>
       </nav>
       <main className="flex flex-1 flex-col place-content-center items-center justify-center text-center">
         <div className="text-primary">Test Theme Primary</div>
         <div className="text-secondary">Test Theme Secondary</div>
-        <Canvas className="size-14">
-          <Environment preset="studio" />
-          <RoundedBox
-            ref={cubeRef}
-            args={[1, 1, 1]} // Width, height, depth. Default is [1, 1, 1]
-            radius={0.05} // Radius of the rounded corners. Default is 0.05
-            smoothness={4} // The number of curve segments. Default is 4
-            bevelSegments={4} // The number of bevel segments. Default is 4, setting it to 0 removes the bevel, as a result the texture is applied to the whole geometry.
-            creaseAngle={0.4} // All THREE.Mesh props are valid
-            rotation={[degToRad(11.25), degToRad(45), 0]}
-          >
-            <meshStandardMaterial
-              color={cubeColor}
-              roughness={0.5}
-              metalness={0.5}
-            />
-          </RoundedBox>
-          {/* <OrbitControls  /> */}
-        </Canvas>
       </main>
     </div>
   );
