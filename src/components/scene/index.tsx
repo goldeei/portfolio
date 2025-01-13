@@ -1,11 +1,10 @@
 import { hslVarToHex } from "@/lib/utils";
-import { animated, useSpring } from "@react-spring/three";
+import { animated, easings, useSpring } from "@react-spring/three";
 import {
   Box,
   Environment,
   GizmoHelper,
   GizmoViewport,
-  OrbitControls,
   RoundedBox,
   useHelper,
 } from "@react-three/drei";
@@ -23,18 +22,23 @@ export const Scene = () => {
     setCubeColor(hslVarToHex("--primary"));
   }, []);
 
-  const cubeSize = [1, 1, 1];
+  const cubeSize: [number, number, number] = [1, 1, 1];
 
   const [spring, api] = useSpring(() => ({
     position: [0, 0, 0],
-    config: { tension: 500, friction: 50 },
   }));
 
   const jump = () => {
     api.start({
       to: async (next) => {
-        await next({ position: [0, 1.5, 0] });
-        await next({ position: [0, 0, 0] });
+        await next({
+          position: [0, 1.5, 0],
+          config: { duration: 300, easing: easings.easeOutQuad },
+        });
+        await next({
+          position: [0, 0, 0],
+          config: { duration: 200, easing: easings.easeInQuad },
+        });
       },
     });
   };
@@ -63,7 +67,6 @@ export const Scene = () => {
             smoothness={3}
             bevelSegments={2}
             creaseAngle={0.25}
-            // position={spring.position.to((x, y) => [x, y, 0])}
             castShadow
             onClick={jump}
           >
@@ -86,7 +89,6 @@ export const Scene = () => {
           />
         </Box>
       </group>
-      {/* <OrbitControls /> */}
       <GizmoHelper
         alignment="bottom-right" // widget alignment within scene
         margin={[80, 80]} // widget margins (X, Y)
@@ -95,7 +97,6 @@ export const Scene = () => {
           axisColors={["red", "green", "blue"]}
           labelColor="black"
         />
-        {/* alternative: <GizmoViewcube /> */}
       </GizmoHelper>
     </>
   );
