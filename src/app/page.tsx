@@ -31,7 +31,11 @@ export default function Home() {
           is3dOnTop ? "z-10" : "-z-10",
         )}
       >
-        <Canvas shadows>
+        <Canvas
+          orthographic
+          camera={{ zoom: 50, position: [0, 20, 100] }}
+          shadows
+        >
           <Scene />
         </Canvas>
       </div>
