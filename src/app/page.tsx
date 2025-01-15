@@ -31,13 +31,7 @@ export default function Home() {
           is3dOnTop ? "z-10" : "-z-10",
         )}
       >
-        <Canvas
-          orthographic
-          camera={{ zoom: 50, position: [0, 20, 100] }}
-          shadows
-        >
-          <Scene />
-        </Canvas>
+        <Scene />
       </div>
       <nav className="z-50 flex items-center justify-between">
         <div className="relative flex size-fit items-center justify-center">
