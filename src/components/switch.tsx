@@ -23,8 +23,8 @@ const StatusText = ({ isChecked }: StatusTextProps) => {
 };
 
 type SwitchProps = {
-  icon: JSX.Element;
-  icon2?: JSX.Element;
+  icon: JSX.Element | string;
+  icon2?: JSX.Element | string;
   defaultIsChecked?: boolean;
   hasOnOffLabel?: boolean;
   onToggle?: (isChecked: boolean) => void;
@@ -62,7 +62,11 @@ export const Switch = ({ ...props }: SwitchProps) => {
       })}
       label={hasOnOffLabel ? <StatusText isChecked={isChecked} /> : undefined}
     >
-      <div className={"size-full place-content-center place-items-center"}>
+      <div
+        className={
+          "size-full place-content-center place-items-center text-xs font-bold"
+        }
+      >
         {isChecked && icon2 ? icon2 : icon}
       </div>
     </SSwitch>
