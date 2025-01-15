@@ -1,8 +1,8 @@
+import { getRoundedBoxFloorY } from "@/lib/3d-utils";
 import { hslVarToHex } from "@/lib/utils";
 import { Box } from "@react-three/drei";
 
 import { DEFAULT_CUBE_PROPS } from "./constants";
-import { getRoundedBoxFloorY } from "./utils/getRoundedBoxFloorY";
 
 const thickness = 0.15;
 const y = getRoundedBoxFloorY(thickness, DEFAULT_CUBE_PROPS.size[1]);

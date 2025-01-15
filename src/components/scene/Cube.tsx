@@ -4,7 +4,7 @@ import { RoundedBox } from "@react-three/drei";
 import { useEffect, useRef, useState } from "react";
 import { Mesh } from "three";
 
-import { jump } from "./animations";
+import { jump } from "../../animations/r3f";
 import { DEFAULT_CUBE_PROPS } from "./constants";
 
 export const Cube = () => {
