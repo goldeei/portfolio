@@ -54,6 +54,12 @@ export default function Home() {
             defaultIsChecked
             hasOnOffLabel
           />
+          <Switch
+            icon={"OC"}
+            onToggle={(isToggled: boolean) => setIs3dOnTop(isToggled)}
+            defaultIsChecked
+            hasOnOffLabel
+          />
         </div>
       </nav>
       <main className="flex flex-1 flex-col place-content-center items-center justify-center text-center">
