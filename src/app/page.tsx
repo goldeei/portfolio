@@ -3,15 +3,10 @@ import { CubeIcon, DownloadSolid, Logo } from "@/assets/icons";
 import { Button } from "@/components/button";
 import { Scene } from "@/components/scene";
 import { Switch } from "@/components/switch";
-import { hslVarToHex } from "@/lib/utils";
-import { Environment, OrbitControls, RoundedBox } from "@react-three/drei";
-import { Canvas, useFrame } from "@react-three/fiber";
 import { cx } from "class-variance-authority";
 import clsx from "clsx";
 import { Raleway } from "next/font/google";
-import { useEffect, useRef, useState } from "react";
-import { Mesh, PerspectiveCamera } from "three";
-import { degToRad } from "three/src/math/MathUtils.js";
+import { useState } from "react";
 
 const raleway = Raleway({ subsets: ["latin"] });
 
