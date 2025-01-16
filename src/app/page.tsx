@@ -7,7 +7,6 @@ import { R3fState, useR3fState } from '@/context/r3fProvider';
 import { cx } from 'class-variance-authority';
 import clsx from 'clsx';
 import { Raleway } from 'next/font/google';
-import { useEffect } from 'react';
 
 const raleway = Raleway({ subsets: ['latin'] });
 

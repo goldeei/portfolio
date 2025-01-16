@@ -1,8 +1,8 @@
-import { cx } from "class-variance-authority";
-import clsx from "clsx";
-import React, { JSX, useEffect, useState } from "react";
+import { cx } from 'class-variance-authority';
+import clsx from 'clsx';
+import React, { JSX, useEffect, useState } from 'react';
 
-import { Switch as SSwitch } from "./ui/switch";
+import { Switch as SSwitch } from './ui/switch';
 
 interface StatusTextProps {
   isChecked: boolean;
@@ -11,13 +11,13 @@ const StatusText = ({ isChecked }: StatusTextProps) => {
   return (
     <div
       className={cx(
-        "absolute w-full text-xs font-semibold",
+        'absolute w-full text-xs font-semibold',
         isChecked
-          ? "ps-1.5 text-start text-accent"
-          : "pe-1.5 text-end text-primary",
+          ? 'ps-1.5 text-start text-accent'
+          : 'pe-1.5 text-end text-primary',
       )}
     >
-      {isChecked ? "on" : "off"}
+      {isChecked ? 'on' : 'off'}
     </div>
   );
 };
@@ -49,22 +49,22 @@ export const Switch = ({ ...props }: SwitchProps) => {
     if (onToggle) {
       onToggle(isChecked);
     }
-  }, [isChecked]);
+  }, [isChecked, onToggle]);
 
   return (
     <SSwitch
       onClick={() => setIsChecked(!isChecked)}
       checked={isChecked}
       onChange={handleSwitchChange}
-      className={clsx("relative border-2", {
-        "border-white/50 bg-secondary text-secondary": isChecked,
-        "border-primary text-background [&>span]:bg-primary": !isChecked,
+      className={clsx('relative border-2', {
+        'border-white/50 bg-secondary text-secondary': isChecked,
+        'border-primary text-background [&>span]:bg-primary': !isChecked,
       })}
       label={hasOnOffLabel ? <StatusText isChecked={isChecked} /> : undefined}
     >
       <div
         className={
-          "size-full place-content-center place-items-center text-xs font-bold"
+          'size-full place-content-center place-items-center text-xs font-bold'
         }
       >
         {isChecked && icon2 ? icon2 : icon}
