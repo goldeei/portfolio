@@ -1,6 +1,6 @@
 import { cx } from "class-variance-authority";
 import clsx from "clsx";
-import React, { JSX, useState } from "react";
+import React, { JSX, useEffect, useState } from "react";
 
 import { Switch as SSwitch } from "./ui/switch";
 
@@ -25,8 +25,8 @@ const StatusText = ({ isChecked }: StatusTextProps) => {
 type SwitchProps = {
   icon: JSX.Element | string;
   onToggle: (isChecked: boolean) => void;
-  icon2?: JSX.Element | string;
   defaultIsChecked?: boolean;
+  icon2?: JSX.Element | string;
   hasOnOffLabel?: boolean;
 };
 export const Switch = ({ ...props }: SwitchProps) => {
@@ -44,6 +44,10 @@ export const Switch = ({ ...props }: SwitchProps) => {
     setIsChecked(!isChecked);
     onToggle(!isChecked);
   };
+
+  useEffect(() => {
+    setIsChecked(defaultIsChecked);
+  }, [defaultIsChecked]);
 
   return (
     <SSwitch

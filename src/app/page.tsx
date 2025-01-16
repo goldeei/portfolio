@@ -3,21 +3,17 @@ import { CubeIcon, DownloadSolid, Logo } from "@/assets/icons";
 import { Button } from "@/components/button";
 import { Scene } from "@/components/scene";
 import { Switch } from "@/components/switch";
-import { R3fState, useR3fState } from "@/context/r3fProvider";
+import { useR3fState } from "@/context/r3fProvider";
 import { cx } from "class-variance-authority";
 import clsx from "clsx";
 import { Raleway } from "next/font/google";
-import { useCallback } from "react";
 
 const raleway = Raleway({ subsets: ['latin'] });
 
 export default function Home() {
-  const [r3fState, setR3fState] = useR3fState();
+  const [r3fState, updateR3fState] = useR3fState();
 
-  const handleR3FStateChange = useCallback(
-    (v: boolean, key: keyof R3fState) => setR3fState({ ...r3fState, [key]: v }),
-    [r3fState, setR3fState],
-  );
+  const { isCanvasOnTop, isOrbitControlEnabled } = r3fState;
 
   return (
     <div
@@ -29,7 +25,7 @@ export default function Home() {
       <div
         className={clsx(
           'absolute inset-0 h-screen w-full',
-          r3fState.isCanvasBehindHTML ? 'z-10' : '-z-10',
+          r3fState.isCanvasOnTop ? 'z-10' : '-z-10',
         )}
       >
         <Scene />
@@ -51,14 +47,14 @@ export default function Home() {
           {/* <Switch icon={<MoonSolid />} icon2={<SunSolid />} /> */}
           <Switch
             icon={<CubeIcon />}
-            onToggle={(v) => handleR3FStateChange(v, 'isCanvasBehindHTML')}
-            defaultIsChecked={r3fState.isCanvasBehindHTML}
+            onToggle={(v) => updateR3fState(v, 'isCanvasOnTop')}
+            defaultIsChecked={isCanvasOnTop}
             hasOnOffLabel
           />
           <Switch
             icon={'OC'}
-            onToggle={(v) => handleR3FStateChange(v, 'isOrbitControlEnabled')}
-            defaultIsChecked={r3fState.isOrbitControlEnabled}
+            onToggle={(v) => updateR3fState(v, 'isOrbitControlEnabled')}
+            defaultIsChecked={isOrbitControlEnabled}
             hasOnOffLabel
           />
         </div>
