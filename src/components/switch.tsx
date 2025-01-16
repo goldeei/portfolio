@@ -1,8 +1,8 @@
-import { cx } from 'class-variance-authority';
-import clsx from 'clsx';
-import React, { JSX, useEffect, useState } from 'react';
+import { cx } from "class-variance-authority";
+import clsx from "clsx";
+import React, { JSX, useState } from "react";
 
-import { Switch as SSwitch } from './ui/switch';
+import { Switch as SSwitch } from "./ui/switch";
 
 interface StatusTextProps {
   isChecked: boolean;
@@ -24,10 +24,10 @@ const StatusText = ({ isChecked }: StatusTextProps) => {
 
 type SwitchProps = {
   icon: JSX.Element | string;
+  onToggle: (isChecked: boolean) => void;
   icon2?: JSX.Element | string;
   defaultIsChecked?: boolean;
   hasOnOffLabel?: boolean;
-  onToggle?: (isChecked: boolean) => void;
 };
 export const Switch = ({ ...props }: SwitchProps) => {
   const {
@@ -40,22 +40,15 @@ export const Switch = ({ ...props }: SwitchProps) => {
 
   const [isChecked, setIsChecked] = useState(defaultIsChecked);
 
-  const handleSwitchChange = (e: React.FormEvent<HTMLButtonElement>) => {
-    const target = e.target as HTMLInputElement;
-    setIsChecked(target.checked);
+  const handleSwitchChange = () => {
+    setIsChecked(!isChecked);
+    onToggle(!isChecked);
   };
-
-  useEffect(() => {
-    if (onToggle) {
-      onToggle(isChecked);
-    }
-  }, [isChecked, onToggle]);
 
   return (
     <SSwitch
-      onClick={() => setIsChecked(!isChecked)}
+      onClick={handleSwitchChange}
       checked={isChecked}
-      onChange={handleSwitchChange}
       className={clsx('relative border-2', {
         'border-white/50 bg-secondary text-secondary': isChecked,
         'border-primary text-background [&>span]:bg-primary': !isChecked,

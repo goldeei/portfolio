@@ -1,20 +1,23 @@
 'use client';
-import { CubeIcon, DownloadSolid, Logo } from '@/assets/icons';
-import { Button } from '@/components/button';
-import { Scene } from '@/components/scene';
-import { Switch } from '@/components/switch';
-import { R3fState, useR3fState } from '@/context/r3fProvider';
-import { cx } from 'class-variance-authority';
-import clsx from 'clsx';
-import { Raleway } from 'next/font/google';
+import { CubeIcon, DownloadSolid, Logo } from "@/assets/icons";
+import { Button } from "@/components/button";
+import { Scene } from "@/components/scene";
+import { Switch } from "@/components/switch";
+import { R3fState, useR3fState } from "@/context/r3fProvider";
+import { cx } from "class-variance-authority";
+import clsx from "clsx";
+import { Raleway } from "next/font/google";
+import { useCallback } from "react";
 
 const raleway = Raleway({ subsets: ['latin'] });
 
 export default function Home() {
   const [r3fState, setR3fState] = useR3fState();
 
-  const handleR3FStateChange = (key: keyof R3fState) =>
-    setR3fState({ ...r3fState, [key]: !r3fState[key] });
+  const handleR3FStateChange = useCallback(
+    (v: boolean, key: keyof R3fState) => setR3fState({ ...r3fState, [key]: v }),
+    [r3fState, setR3fState],
+  );
 
   return (
     <div
@@ -48,13 +51,13 @@ export default function Home() {
           {/* <Switch icon={<MoonSolid />} icon2={<SunSolid />} /> */}
           <Switch
             icon={<CubeIcon />}
-            onToggle={() => handleR3FStateChange('isCanvasBehindHTML')}
+            onToggle={(v) => handleR3FStateChange(v, 'isCanvasBehindHTML')}
             defaultIsChecked
             hasOnOffLabel
           />
           <Switch
             icon={'OC'}
-            onToggle={() => handleR3FStateChange('isOrbitControlEnabled')}
+            onToggle={(v) => handleR3FStateChange(v, 'isOrbitControlEnabled')}
             defaultIsChecked
             hasOnOffLabel
           />
