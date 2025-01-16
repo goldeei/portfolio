@@ -1,29 +1,33 @@
-"use client";
-import { CubeIcon, DownloadSolid, Logo } from "@/assets/icons";
-import { Button } from "@/components/button";
-import { Scene } from "@/components/scene";
-import { Switch } from "@/components/switch";
-import { cx } from "class-variance-authority";
-import clsx from "clsx";
-import { Raleway } from "next/font/google";
-import { useState } from "react";
+'use client';
+import { CubeIcon, DownloadSolid, Logo } from '@/assets/icons';
+import { Button } from '@/components/button';
+import { Scene } from '@/components/scene';
+import { Switch } from '@/components/switch';
+import { R3fState, useR3fState } from '@/context/r3fProvider';
+import { cx } from 'class-variance-authority';
+import clsx from 'clsx';
+import { Raleway } from 'next/font/google';
+import { useEffect } from 'react';
 
-const raleway = Raleway({ subsets: ["latin"] });
+const raleway = Raleway({ subsets: ['latin'] });
 
 export default function Home() {
-  const [is3dOnTop, setIs3dOnTop] = useState(false);
+  const [r3fState, setR3fState] = useR3fState();
+
+  const handleR3FStateChange = (key: keyof R3fState) =>
+    setR3fState({ ...r3fState, [key]: !r3fState[key] });
 
   return (
     <div
       className={cx(
-        "relative flex h-screen flex-col px-36 py-8",
+        'relative flex h-screen flex-col px-36 py-8',
         raleway.className,
       )}
     >
       <div
         className={clsx(
-          "absolute inset-0 h-screen w-full",
-          is3dOnTop ? "z-10" : "-z-10",
+          'absolute inset-0 h-screen w-full',
+          r3fState.isCanvasBehindHTML ? 'z-10' : '-z-10',
         )}
       >
         <Scene />
@@ -45,13 +49,13 @@ export default function Home() {
           {/* <Switch icon={<MoonSolid />} icon2={<SunSolid />} /> */}
           <Switch
             icon={<CubeIcon />}
-            onToggle={(isToggled: boolean) => setIs3dOnTop(isToggled)}
+            onToggle={() => handleR3FStateChange('isCanvasBehindHTML')}
             defaultIsChecked
             hasOnOffLabel
           />
           <Switch
-            icon={"OC"}
-            onToggle={(isToggled: boolean) => setIs3dOnTop(isToggled)}
+            icon={'OC'}
+            onToggle={() => handleR3FStateChange('isOrbitControlEnabled')}
             defaultIsChecked
             hasOnOffLabel
           />
