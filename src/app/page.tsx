@@ -52,13 +52,13 @@ export default function Home() {
           <Switch
             icon={<CubeIcon />}
             onToggle={(v) => handleR3FStateChange(v, 'isCanvasBehindHTML')}
-            defaultIsChecked
+            defaultIsChecked={r3fState.isCanvasBehindHTML}
             hasOnOffLabel
           />
           <Switch
             icon={'OC'}
             onToggle={(v) => handleR3FStateChange(v, 'isOrbitControlEnabled')}
-            defaultIsChecked
+            defaultIsChecked={r3fState.isOrbitControlEnabled}
             hasOnOffLabel
           />
         </div>
