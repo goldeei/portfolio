@@ -11,7 +11,7 @@ const compat = new FlatCompat({
 });
 
 // Load tailwind config using require-style path
-const tailwindConfigPath = join(__dirname, "tailwind.config.js");
+const tailwindConfigPath = join(__dirname, "tailwind.config.ts");
 
 const config = [
   {
@@ -97,6 +97,18 @@ const config = [
       "react/react-in-jsx-scope": "off", // Not needed in Next.js
       "react/prop-types": "off", // Use TypeScript for prop validation
       "react/no-unescaped-entities": "off", // Often triggers false positives
+      'react/no-unknown-property': [
+    'warn',
+    {
+      ignore: [
+        // Add Three.js properties here
+        'rotation', 
+        'position', 
+        'scale',
+        // Add other Three.js properties as needed
+      ],
+    },
+  ],
 
       // Import rules
       "import/prefer-default-export": "off",
