@@ -1,11 +1,11 @@
-import { getRoundedBoxFloorY } from "@/lib/3d-utils";
+import { getRoundedBoxMaxY } from "@/lib/3d-utils";
 import { hslVarToHex } from "@/lib/utils";
 import { Box } from "@react-three/drei";
 
 import { DEFAULT_CUBE_PROPS } from "./constants";
 
 const thickness = 0.15;
-const y = getRoundedBoxFloorY(thickness, DEFAULT_CUBE_PROPS.size[1]);
+const y = getRoundedBoxMaxY(DEFAULT_CUBE_PROPS.size[1], 'bottom', thickness);
 
 export const Floor = () => {
   return (
@@ -13,7 +13,7 @@ export const Floor = () => {
       <meshStandardMaterial
         roughness={1}
         metalness={0}
-        color={hslVarToHex("--accent")}
+        color={hslVarToHex('--accent')}
       />
     </Box>
   );
