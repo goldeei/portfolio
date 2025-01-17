@@ -21,7 +21,7 @@ export const Scene = () => {
   }, [state.isOrbitControlEnabled]);
 
   return (
-    <Canvas orthographic camera={{ zoom: 50, position: [0, 20, 100] }} shadows>
+    <Canvas orthographic camera={{ zoom: 50, position: [0, 0, 100] }} shadows>
       <Environment />
       <group rotation={[degToRad(15), degToRad(45), 0]} position={[0, 0, 0]}>
         <Cube />
