@@ -1,4 +1,5 @@
-import { easings, SpringRef } from "react-spring";
+import { easings, SpringRef } from 'react-spring';
+import { Vector3Tuple } from 'three';
 
 /**
  * Animates a jump motion using a SpringRef.
@@ -13,7 +14,7 @@ import { easings, SpringRef } from "react-spring";
  * @param durationDown - The duration of the downward motion (default is 200ms).
  */
 export const jump = (
-  api: SpringRef<{ position: number[] }>,
+  api: SpringRef<{ position: Vector3Tuple }>,
   jumpHeight: number,
   durationUp: number = 300,
   durationDown: number = 200,
