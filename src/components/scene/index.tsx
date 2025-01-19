@@ -1,13 +1,12 @@
-import { useR3fState } from "@/context/r3fProvider";
-import { GizmoHelper, GizmoViewport, OrbitControls } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
-import { useEffect, useRef } from "react";
-import { OrbitControls as ThreeOrbitControls } from "three/examples/jsm/Addons.js";
-import { degToRad } from "three/src/math/MathUtils.js";
+import { useR3fState } from '@/context/r3fProvider';
+import { GizmoHelper, GizmoViewport, OrbitControls } from '@react-three/drei';
+import { Canvas } from '@react-three/fiber';
+import { useEffect, useRef } from 'react';
+import { OrbitControls as ThreeOrbitControls } from 'three/examples/jsm/Addons.js';
 
-import { Cube } from "./cube";
-import { Environment } from "./environment";
-import { Floor } from "./floor";
+import { Cube } from './cube';
+import { Environment } from './environment';
+import { Floor } from './floor';
 
 export const Scene = () => {
   const [state] = useR3fState();
@@ -23,10 +22,8 @@ export const Scene = () => {
   return (
     <Canvas orthographic camera={{ zoom: 50, position: [0, 0, 100] }} shadows>
       <Environment />
-      <group rotation={[degToRad(15), degToRad(45), 0]} position={[0, 0, 0]}>
-        <Cube />
-        <Floor />
-      </group>
+      <Cube />
+      <Floor />
       {state.isOrbitControlEnabled && <OrbitControls ref={orbitControlsRef} />}
       <GizmoHelper
         alignment="bottom-right" // widget alignment within scene
