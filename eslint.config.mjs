@@ -113,6 +113,7 @@ const config = [
             'wireframe',
             'geometry',
             'args',
+            'transparent',
           ],
         },
       ],
