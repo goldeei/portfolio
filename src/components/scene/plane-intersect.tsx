@@ -1,7 +1,7 @@
-import { ShapeProps } from "@react-three/drei";
-import { useFrame, useThree } from "@react-three/fiber";
-import { useRef } from "react";
-import { Mesh, PlaneGeometry, Raycaster } from "three";
+import { ShapeProps } from '@react-three/drei';
+import { useFrame, useThree } from '@react-three/fiber';
+import { useRef } from 'react';
+import { Mesh, PlaneGeometry, Raycaster } from 'three';
 
 type Size = [number, number, number?, number?];
 
@@ -9,6 +9,7 @@ type PlaneIntersectProps = ShapeProps<PlaneGeometry> & {
   name: string;
   size: Size;
   onIntersectChange: (name: string, isIntersected: boolean) => void;
+  showWireframe?: boolean;
 };
 
 /**
@@ -18,7 +19,8 @@ type PlaneIntersectProps = ShapeProps<PlaneGeometry> & {
  * @returns
  */
 export const PlaneIntersect = ({ ...props }: PlaneIntersectProps) => {
-  const { name, rotation, position, size, onIntersectChange } = props;
+  const { name, rotation, position, size, onIntersectChange, showWireframe } =
+    props;
 
   const ref = useRef<Mesh>(null!);
 
@@ -36,7 +38,12 @@ export const PlaneIntersect = ({ ...props }: PlaneIntersectProps) => {
   return (
     <mesh name={name} position={position} rotation={rotation} ref={ref}>
       <planeGeometry args={size} />
-      <meshBasicMaterial color={'white'} wireframe />
+      <meshBasicMaterial
+        color={'white'}
+        opacity={showWireframe ? 1 : 0}
+        wireframe
+        transparent
+      />
     </mesh>
   );
 };
