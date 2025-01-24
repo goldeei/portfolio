@@ -18,19 +18,19 @@ export const useSvgAsExtrudeGeometry = (
     });
 
     const geo = new ExtrudeGeometry(shapes, {
-      steps: 2,
-      depth: depth,
+      steps: 4,
+      depth: depth * 2,
       bevelEnabled: true,
-      bevelThickness: 0.25,
-      bevelSize: 1,
-      bevelOffset: 0,
-      bevelSegments: 2,
+      // bevelThickness: 0.25,
+      // bevelSize: 1,
+      // bevelOffset: 0,
+      // bevelSegments: 2,
     });
 
     geo.center();
     geo.scale(0.1, 0.1, 0.1);
     return geo;
-  }, [data]);
+  }, [data.paths, depth]);
 
   return geometry;
 };

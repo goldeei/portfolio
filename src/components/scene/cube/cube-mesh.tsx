@@ -35,6 +35,9 @@ export const CubeMesh = ({ ...props }: CubeMeshProps) => {
   const [hoveredFace, setHoveredFace] = useState<Face | 'none'>('none');
 
   const ref = useRef<Mesh>(null);
+  const cubeRef = useRef<Mesh>(null!);
+  const icon12Ref = useRef<Mesh>(null!);
+
   const { rotation } = DEFAULT_CUBE_PROPS;
 
   const [jumpSpring, jumpSpringApi] = useSpring<{
@@ -48,10 +51,12 @@ export const CubeMesh = ({ ...props }: CubeMeshProps) => {
     rotation: EulerTuple;
     lightIntensity: number;
     emissiveIntensity: number;
+    color: string;
   }>(() => ({
     rotation: [0, 0, 0],
     lightIntensity: 0.1,
     emissiveIntensity: 0.1,
+    color: '#000',
   }));
   const handleShowCubeFace = useCallback(() => {
     setHoveredFace(getHoveredFace(intersectedFaces));
@@ -76,29 +81,11 @@ export const CubeMesh = ({ ...props }: CubeMeshProps) => {
   // useHelper(pointLightRef, SpotLightHelper, 1);
 
   const light = showCubeFaceSpring.lightIntensity;
-  useEffect(() => {
-    console.log(light);
-  }, [light]);
 
   const [emissiveIntensity, emissiveIntensityApi] = useSpring(() => ({
     emissiveIntensity: 0,
     lightIntensity: 0,
   }));
-  useEffect(() => {
-    if (hoveredFace === 'right') {
-      emissiveIntensityApi.start({
-        emissiveIntensity: 1,
-        lightIntensity: 25,
-        config: { duration: 500 },
-      });
-    } else {
-      emissiveIntensityApi.start({
-        emissiveIntensity: 0,
-        lightIntensity: 0,
-        config: { duration: 500 },
-      });
-    }
-  }, [emissiveIntensityApi, hoveredFace]);
 
   // useEffect(() => {
   //   if (pointLightRef.current) {
@@ -106,6 +93,37 @@ export const CubeMesh = ({ ...props }: CubeMeshProps) => {
   //     pointLightRef.current.intensity = emissiveIntensity.lightIntensity.get();
   //   }
   // }, [emissiveIntensity.lightIntensity.get()]);
+
+  const opacity = useSpringValue(0, {
+    config: {
+      duration: 500,
+    },
+  });
+
+  useEffect(() => {
+    console.log(opacity.get());
+  }, [opacity.get()]);
+
+  const [springs, api] = useSpring(() => ({
+    scale: 0.1,
+    color: cubeColor.icons,
+    config: (key) => {
+      switch (key) {
+        case 'scale':
+          return {
+            duration: 500,
+          };
+        default:
+          return {};
+      }
+    },
+  }));
+
+  useEffect(() => {
+    if (hoveredFace === 'right') {
+      api.start({ scale: 1.5 });
+    }
+  }, [api, hoveredFace]);
 
   return (
     <animated.mesh
@@ -117,6 +135,7 @@ export const CubeMesh = ({ ...props }: CubeMeshProps) => {
     >
       <group rotation={rotation}>
         <RoundedBox
+          ref={cubeRef}
           smoothness={3}
           bevelSegments={6}
           creaseAngle={0.25}
@@ -129,19 +148,22 @@ export const CubeMesh = ({ ...props }: CubeMeshProps) => {
           />
         </RoundedBox>
         <group position={[0, 0, 0.49]} scale={0.8}>
-          {/* <mesh
+          <animated.mesh
+            ref={icon12Ref}
             geometry={icon1_2}
-            position={[0, 0, 0]}
-            scale={0.1}
+            position={[0, 0, 0.02]}
+            scale={springs.scale}
             rotation={[0, degToRad(180), degToRad(180)]}
           >
-            <meshStandardMaterial
-              depthWrite={false}
-              emissive={'white'}
-              emissiveIntensity={hoveredFace === 'right' ? 5 : 0}
+            <animated.meshStandardMaterial
+              depthWrite={true}
+              color={cubeColor.icons}
+              transparent
+              // emissive={'white'}
+              // emissiveIntensity={hoveredFace === 'right' ? 5 : 0}
             />
-          </mesh> */}
-          <spotLight
+          </animated.mesh>
+          {/* <spotLight
             ref={pointLightRef}
             position={[0, 0, 2]}
             // intensity={emissiveIntensity.lightIntensity.get()}
@@ -150,8 +172,8 @@ export const CubeMesh = ({ ...props }: CubeMeshProps) => {
             angle={degToRad(20)}
             penumbra={1}
             args={['blue', emissiveIntensity.lightIntensity.get()]}
-          />
-          <mesh
+          /> */}
+          {/* <mesh
             geometry={icon1}
             position={[0, 0, 0]}
             scale={0.1}
@@ -167,7 +189,7 @@ export const CubeMesh = ({ ...props }: CubeMeshProps) => {
               emissive={cubeColor.glow}
               emissiveIntensity={emissiveIntensity.emissiveIntensity}
             />
-          </mesh>
+          </mesh> */}
         </group>
       </group>
     </animated.mesh>
