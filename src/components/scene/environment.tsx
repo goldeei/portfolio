@@ -1,6 +1,6 @@
-import { Environment as DreiEnvironment, useHelper } from "@react-three/drei";
-import { useRef } from "react";
-import { PointLight, PointLightHelper } from "three";
+import { Environment as DreiEnvironment, useHelper } from '@react-three/drei';
+import { useRef } from 'react';
+import { PointLight, PointLightHelper } from 'three';
 
 export const Environment = () => {
   const pointLightRef = useRef<PointLight>(null!);
@@ -8,7 +8,7 @@ export const Environment = () => {
 
   return (
     <>
-      <DreiEnvironment preset="sunset" />
+      <DreiEnvironment preset="warehouse" />
       <pointLight
         ref={pointLightRef}
         position={[0, 5, 0]}
