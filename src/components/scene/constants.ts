@@ -8,7 +8,7 @@ type DEFAULT_MESH_PROPS = {
   position: Vector3Tuple;
 };
 export const DEFAULT_SUBJECT_PROPS: Pick<DEFAULT_MESH_PROPS, 'rotation'> = {
-  rotation: [degToRad(15), degToRad(45), 0],
+  rotation: [degToRad(25), degToRad(45), 0],
 };
 
 const cubeSize = Array(3).fill(1) as Vector3Tuple;
