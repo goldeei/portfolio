@@ -1,8 +1,8 @@
-import { cx } from "class-variance-authority";
-import clsx from "clsx";
-import React, { JSX, useEffect, useState } from "react";
+import { cx } from 'class-variance-authority';
+import clsx from 'clsx';
+import React, { JSX, useEffect, useState } from 'react';
 
-import { Switch as SSwitch } from "./ui/switch";
+import { Switch as SSwitch } from './ui/switch';
 
 interface StatusTextProps {
   isChecked: boolean;
