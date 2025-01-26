@@ -1,13 +1,13 @@
 import { EulerTuple } from 'three';
 import { degToRad } from 'three/src/math/MathUtils.js';
 
-import { Face, IntersectedFaces } from './types';
+import { IntersectedFaces, IntersectOption } from './types';
 
 const leftRightAmount = 40;
 
 export const getHoveredFace = (
   intersectedFaces: IntersectedFaces,
-): Face | 'none' => {
+): IntersectOption => {
   if (Object.values(intersectedFaces).every((f) => f === false)) return 'none';
   if (intersectedFaces.top === true) return 'top';
   if (intersectedFaces.right === true) return 'right';
@@ -16,8 +16,8 @@ export const getHoveredFace = (
 
 const rotation: Record<string, EulerTuple> = {
   top: [degToRad(45), 0, 0],
-  left: [0, degToRad(leftRightAmount), 0],
-  right: [0, degToRad(-leftRightAmount), 0],
+  left: [degToRad(-25), degToRad(leftRightAmount), degToRad(25)],
+  right: [degToRad(-25), degToRad(-leftRightAmount), degToRad(-25)],
   none: [0, 0, 0],
 };
 
