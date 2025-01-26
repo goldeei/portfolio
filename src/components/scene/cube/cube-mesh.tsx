@@ -1,16 +1,10 @@
-import { jump, showCubeFace } from '@/animations/r3f';
+import { showCubeFace } from '@/animations/r3f';
 import { useSvgAsExtrudeGeometry } from '@/hooks/useSvgAsExtrudeGeometry';
 import { hslVarToHex } from '@/lib/utils';
 import { animated, useSpring, useSprings } from '@react-spring/three';
 import { RoundedBox, useHelper } from '@react-three/drei';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import {
-  EulerTuple,
-  Mesh,
-  PointLight,
-  SpotLightHelper,
-  Vector3Tuple,
-} from 'three';
+import { EulerTuple, Mesh, PointLight, SpotLightHelper } from 'three';
 import { degToRad } from 'three/src/math/MathUtils.js';
 
 import { DEFAULT_CUBE_PROPS } from '../constants';
@@ -38,12 +32,6 @@ export const CubeMesh = ({ ...props }: CubeMeshProps) => {
   const icon12Ref = useRef<Mesh>(null!);
 
   const { rotation } = DEFAULT_CUBE_PROPS;
-
-  const [jumpSpring, jumpSpringApi] = useSpring<{
-    position: Vector3Tuple;
-  }>(() => ({
-    position: [0, 0, 0],
-  }));
 
   const [showCubeFaceSpring, showCubeFaceSpringApi] = useSpring<{
     rotation: EulerTuple;
@@ -106,7 +94,6 @@ export const CubeMesh = ({ ...props }: CubeMeshProps) => {
   return (
     <animated.mesh
       ref={ref}
-      position={jumpSpring.position.to((x, y) => [x, y, 0])}
       // @ts-expect-error: Spring type is EulerTuple Type (Typescript returns error on rotation)
       rotation={showCubeFaceSpring.rotation.to((x, y, z) => [x, y, z])}
       // onClick={handleJump}

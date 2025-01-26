@@ -1,6 +1,6 @@
 import { useLoader } from '@react-three/fiber';
 import { useMemo } from 'react';
-import { BufferGeometry, ExtrudeGeometry, Shape, ShapeGeometry } from 'three';
+import { ExtrudeGeometry } from 'three';
 import { SVGLoader } from 'three/examples/jsm/Addons.js';
 
 export const useSvgAsExtrudeGeometry = (
