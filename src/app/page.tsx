@@ -1,8 +1,7 @@
 'use client';
-import { CubeIcon, DownloadSolid, Logo } from '@/assets/icons';
-import { Button } from '@/components/button';
+
+import { Nav } from '@/components/nav';
 import { Scene } from '@/components/scene';
-import { Switch } from '@/components/switch';
 import { useR3fState } from '@/context/r3fProvider';
 import { cx } from 'class-variance-authority';
 import clsx from 'clsx';
@@ -11,9 +10,7 @@ import { Raleway } from 'next/font/google';
 const raleway = Raleway({ subsets: ['latin'] });
 
 export default function Home() {
-  const [r3fState, updateR3fState] = useR3fState();
-
-  const { isCanvasOnTop, isOrbitControlEnabled } = r3fState;
+  const [r3fState] = useR3fState();
 
   return (
     <div
@@ -22,35 +19,7 @@ export default function Home() {
         raleway.className,
       )}
     >
-      <nav className="z-50 flex items-center justify-between">
-        <div className="relative flex size-fit items-center justify-center">
-          <Button
-            variant="link"
-            className="h-16 border-none p-0 shadow-inner transition-transform hover:-translate-y-0.5 [&_svg]:size-full"
-          >
-            <Logo />
-          </Button>
-        </div>
-        <div className="flex gap-3">
-          <Button variant="link">Tech I Use</Button>
-          <Button variant="link">Experiences</Button>
-          <Button variant="link">Projects</Button>
-          <Button icon={<DownloadSolid />}>Resume</Button>
-          {/* <Switch icon={<MoonSolid />} icon2={<SunSolid />} /> */}
-          <Switch
-            icon={<CubeIcon />}
-            onToggle={(v) => updateR3fState(v, 'isCanvasOnTop')}
-            defaultIsChecked={isCanvasOnTop}
-            hasOnOffLabel
-          />
-          <Switch
-            icon={'OC'}
-            onToggle={(v) => updateR3fState(v, 'isOrbitControlEnabled')}
-            defaultIsChecked={isOrbitControlEnabled}
-            hasOnOffLabel
-          />
-        </div>
-      </nav>
+      <Nav />
       <main className="pointer-events-none z-10 flex flex-1 flex-col place-content-center items-center justify-center text-center">
         <div className="text-primary">Test Theme Primary</div>
         <div className="text-secondary">Test Theme Secondary</div>
