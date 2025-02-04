@@ -8,7 +8,6 @@ export const metadata: Metadata = {
   title: 'jgoldfarb.dev',
   description:
     'A personal website showcasing projects and blog posts by J. Goldfarb.',
-  viewport: 'width=device-width, initial-scale=1',
   icons: {
     icon: favicons,
   },
