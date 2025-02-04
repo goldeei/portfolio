@@ -7,11 +7,21 @@ type DEFAULT_MESH_PROPS = {
   rotation: EulerTuple;
   position: Vector3Tuple;
 };
+
+export const DEFAULT_SUBJECT_ROTATION = {
+  x: degToRad(25),
+  y: degToRad(45),
+  z: 0,
+};
 export const DEFAULT_SUBJECT_PROPS: Pick<DEFAULT_MESH_PROPS, 'rotation'> = {
-  rotation: [degToRad(25), degToRad(45), 0],
+  rotation: [
+    DEFAULT_SUBJECT_ROTATION.x,
+    DEFAULT_SUBJECT_ROTATION.y,
+    DEFAULT_SUBJECT_ROTATION.z,
+  ],
 };
 
-const cubeSize = Array(3).fill(1) as Vector3Tuple;
+const cubeSize: Vector3Tuple = [1, 1, 1];
 export const DEFAULT_CUBE_PROPS: Omit<DEFAULT_MESH_PROPS, 'position'> & {
   radius: number;
 } = {

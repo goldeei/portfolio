@@ -1,9 +1,10 @@
 import { EulerTuple } from 'three';
 import { degToRad } from 'three/src/math/MathUtils.js';
 
+import { DEFAULT_SUBJECT_ROTATION } from '../constants';
 import { IntersectedFaces, IntersectOption } from './types';
 
-const leftRightAmount = 40;
+const horizontalRotationOffset = 40;
 
 export const getHoveredFace = (
   intersectedFaces: IntersectedFaces,
@@ -15,9 +16,17 @@ export const getHoveredFace = (
 };
 
 const rotation: Record<string, EulerTuple> = {
-  top: [degToRad(45), 0, 0],
-  left: [degToRad(-25), degToRad(leftRightAmount), degToRad(25)],
-  right: [degToRad(-25), degToRad(-leftRightAmount), degToRad(-25)],
+  top: [DEFAULT_SUBJECT_ROTATION.y, 0, 0],
+  left: [
+    -DEFAULT_SUBJECT_ROTATION.x,
+    degToRad(horizontalRotationOffset),
+    DEFAULT_SUBJECT_ROTATION.x,
+  ],
+  right: [
+    -DEFAULT_SUBJECT_ROTATION.x,
+    degToRad(-horizontalRotationOffset),
+    -DEFAULT_SUBJECT_ROTATION.x,
+  ],
   none: [0, 0, 0],
 };
 
