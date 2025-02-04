@@ -3,7 +3,6 @@
 import { Nav } from '@/components/nav';
 import { Scene } from '@/components/scene';
 import { useR3fState } from '@/context/r3fProvider';
-import { cx } from 'class-variance-authority';
 import clsx from 'clsx';
 import { Raleway } from 'next/font/google';
 
@@ -14,7 +13,7 @@ export default function Home() {
 
   return (
     <div
-      className={cx(
+      className={clsx(
         'relative flex h-screen flex-col px-36 py-8',
         raleway.className,
       )}
