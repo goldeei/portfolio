@@ -53,7 +53,7 @@ export const Switch = ({ ...props }: SwitchProps) => {
     <SSwitch
       onClick={handleSwitchChange}
       checked={isChecked}
-      className={clsx('relative border-2', {
+      className={clsx('relative border-2 shadow-inner', {
         'border-white/50 bg-secondary text-secondary': isChecked,
         'border-primary text-background [&>span]:bg-primary': !isChecked,
       })}
