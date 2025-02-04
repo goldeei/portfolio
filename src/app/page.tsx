@@ -1,12 +1,12 @@
 'use client';
-import { CubeIcon, DownloadSolid, Logo } from "@/assets/icons";
-import { Button } from "@/components/button";
-import { Scene } from "@/components/scene";
-import { Switch } from "@/components/switch";
-import { useR3fState } from "@/context/r3fProvider";
-import { cx } from "class-variance-authority";
-import clsx from "clsx";
-import { Raleway } from "next/font/google";
+import { CubeIcon, DownloadSolid, Logo } from '@/assets/icons';
+import { Button } from '@/components/button';
+import { Scene } from '@/components/scene';
+import { Switch } from '@/components/switch';
+import { useR3fState } from '@/context/r3fProvider';
+import { cx } from 'class-variance-authority';
+import clsx from 'clsx';
+import { Raleway } from 'next/font/google';
 
 const raleway = Raleway({ subsets: ['latin'] });
 
@@ -22,14 +22,6 @@ export default function Home() {
         raleway.className,
       )}
     >
-      <div
-        className={clsx(
-          'absolute inset-0 h-screen w-full',
-          r3fState.isCanvasOnTop ? 'z-10' : '-z-10',
-        )}
-      >
-        <Scene />
-      </div>
       <nav className="z-50 flex items-center justify-between">
         <div className="relative flex size-fit items-center justify-center">
           <Button
@@ -59,10 +51,18 @@ export default function Home() {
           />
         </div>
       </nav>
-      <main className="flex flex-1 flex-col place-content-center items-center justify-center text-center">
+      <main className="pointer-events-none z-10 flex flex-1 flex-col place-content-center items-center justify-center text-center">
         <div className="text-primary">Test Theme Primary</div>
         <div className="text-secondary">Test Theme Secondary</div>
       </main>
+      <div
+        className={clsx(
+          'absolute inset-0 h-screen w-full',
+          r3fState.isCanvasOnTop ? 'z-20' : 'z-0',
+        )}
+      >
+        <Scene />
+      </div>
     </div>
   );
 }
