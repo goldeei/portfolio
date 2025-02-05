@@ -1,8 +1,11 @@
+import { LandingSpot } from "@/components/landing-spot";
+
 export const Introduction = () => {
   return (
     <div className="h-full-content flex flex-col justify-center">
       <h1 className="text-4xl font-medium text-primary">Jake Goldfarb</h1>
       <h2 className="text-2xl font-medium text-secondary">UI/UX Engineer</h2>
+      <LandingSpot />
       {/* TODO change this text */}
       <p className="mt-3 w-[500px] text-secondary">
         I’m a{' '}

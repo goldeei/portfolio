@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-import { CubeMesh } from './cube-mesh';
-import { IntersectGroup } from './intersect-group';
-import { IntersectedFaces } from './types';
+import { CubeMesh } from "./cube-mesh";
+import { IntersectGroup } from "./intersect-group";
+import { IntersectedFaces } from "./types";
 
 export const Cube = () => {
   const [intersectedFaces, setIntersectedFaces] = useState<IntersectedFaces>({
@@ -15,7 +15,7 @@ export const Cube = () => {
     setIntersectedFaces(intersectedFaces);
 
   return (
-    <group>
+    <group position={[6, 0.15, 0]}>
       <IntersectGroup
         intersectedFaces={intersectedFaces}
         onFaceIntersect={handleFaceIntersectChange}
