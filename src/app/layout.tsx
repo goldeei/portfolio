@@ -28,7 +28,7 @@ export default function RootLayout({
         <R3fProvider>
           <div
             className={clsx(
-              'relative flex h-screen flex-col px-36 py-8',
+              'relative flex h-screen flex-col p-[var(--page-padding)]',
               raleway.className,
             )}
           >
