@@ -1,13 +1,15 @@
-import { LandingSpot } from "@/components/landing-spot";
+import { LandingSpot } from '@/components/landing-spot';
 
 export const Introduction = () => {
   return (
-    <div className="h-full-content flex flex-col justify-center">
-      <h1 className="text-4xl font-medium text-primary">Jake Goldfarb</h1>
-      <h2 className="text-2xl font-medium text-secondary">UI/UX Engineer</h2>
+    <div className="h-full-content flex flex-col justify-center gap-2">
+      <div>
+        <h1 className="text-4xl font-medium text-primary">Jake Goldfarb</h1>
+        <h2 className="text-2xl font-medium text-secondary">UI/UX Engineer</h2>
+      </div>
       <LandingSpot />
       {/* TODO change this text */}
-      <p className="mt-3 w-[500px] text-secondary">
+      <p className="w-[500px] text-secondary">
         I’m a{' '}
         <span className="font-bold text-primary">
           web application developer with 5+ years
