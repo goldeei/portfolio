@@ -1,15 +1,15 @@
 'use client';
-import React, { createContext, use, useEffect, useReducer } from 'react';
+import React, { createContext, use, useReducer } from 'react';
 
 type Position = { x: number; y: number };
 
 export interface CubeState {
   currentLandingPosition: string;
-  landingPositions: Record<string, Position> | object;
+  landingPositions: Record<string, DOMRect> | object;
 }
 
 const defaultState: CubeState = {
-  currentLandingPosition: 'initial',
+  currentLandingPosition: 'introduction',
   landingPositions: {},
 };
 
@@ -46,10 +46,6 @@ const CubeStateContext = createContext<
 
 export function CubeStateProvider({ children }: { children: React.ReactNode }) {
   const [state, dispatch] = useReducer(cubeStateReducer, defaultState);
-
-  useEffect(() => {
-    console.log(state);
-  }, [state]);
 
   return (
     <CubeStateContext value={[state, dispatch]}>{children}</CubeStateContext>

@@ -19,7 +19,14 @@ export const LandingSpot = ({ ...props }: LandingSpotProps) => {
     const e = diamondRef.current;
     if (e) {
       const handlePositionChange = () => {
-        const { x, y } = e.getBoundingClientRect();
+        const { left, top, width, height } = e.getBoundingClientRect();
+
+        const getCenter = (coord: number, dimension: number) =>
+          coord + dimension / 2;
+
+        const x = getCenter(left, width),
+          y = getCenter(top, height);
+
         dispatch({
           type: 'SET_LANDING_POSITION',
           payload: { name, position: { x, y } },
