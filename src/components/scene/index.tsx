@@ -39,15 +39,11 @@ export const Scene = () => {
   return (
     <div
       className={clsx(
-        'absolute inset-0 h-screen w-full border',
+        'absolute inset-0 h-screen w-full',
         r3fState.isCanvasOnTop ? 'z-20' : 'z-0',
       )}
     >
-      <div
-        ref={containerRef}
-        className="absolute size-32 border"
-        style={position}
-      >
+      <div ref={containerRef} className="absolute size-32" style={position}>
         <Canvas
           orthographic
           camera={{ zoom: 50, position: [0, 0, 20] }}
