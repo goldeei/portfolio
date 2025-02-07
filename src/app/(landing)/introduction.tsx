@@ -7,7 +7,7 @@ export const Introduction = () => {
         <h1 className="text-4xl font-medium text-primary">Jake Goldfarb</h1>
         <h2 className="text-2xl font-medium text-secondary">UI/UX Engineer</h2>
       </div>
-      <LandingSpot />
+      <LandingSpot name="introduction" />
       {/* TODO change this text */}
       <p className="w-[500px] text-secondary">
         I’m a{' '}
