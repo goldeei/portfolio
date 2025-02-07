@@ -78,7 +78,7 @@ export const CubeMesh = ({ ...props }: CubeMeshProps) => {
     const hoveredIdx = [...INTERSECT_OPTION].indexOf(hoveredFace);
     api.start((i) =>
       i === hoveredIdx
-        ? { scale: 0.2, emissive: 1 }
+        ? { scale: 0.2, emissive: 5 }
         : { ...INIT_ANIMATION_PROPS },
     );
   }, [api, hoveredFace]);
@@ -98,7 +98,7 @@ export const CubeMesh = ({ ...props }: CubeMeshProps) => {
       rotation={showCubeFaceSpring.rotation.to((x, y, z) => [x, y, z])}
       // onClick={handleJump}
     >
-      <group rotation={rotation}>
+      <group rotation={rotation} castShadow>
         <RoundedBox
           ref={cubeRef}
           smoothness={3}
@@ -108,10 +108,11 @@ export const CubeMesh = ({ ...props }: CubeMeshProps) => {
           onClick={handleCubeClick}
         >
           <meshStandardMaterial
-            color={hslVarToHex('--primary')}
             roughness={0.5}
-            metalness={0.5}
+            metalness={0.4}
+            color={hslVarToHex('--primary')}
           />
+          {/* <meshDistanceMaterial near={1} far={10} /> */}
         </RoundedBox>
         <animated.mesh
           ref={icon12Ref}
@@ -121,7 +122,8 @@ export const CubeMesh = ({ ...props }: CubeMeshProps) => {
           scale={0.35}
         >
           <animated.meshStandardMaterial
-            roughness={1}
+            roughness={0}
+            metalness={1}
             color={hslVarToHex('--accent')}
             transparent
             emissive={hslVarToHex('--secondary')}

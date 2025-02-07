@@ -120,6 +120,7 @@ const config = [
             'depthWrite',
             'emissive',
             'emissiveIntensity',
+            'blending',
           ],
         },
       ],

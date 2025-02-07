@@ -1,4 +1,8 @@
-import { Environment as DreiEnvironment, useHelper } from '@react-three/drei';
+import {
+  Environment as DreiEnvironment,
+  SoftShadows,
+  useHelper,
+} from '@react-three/drei';
 import { useRef } from 'react';
 import { PointLight, PointLightHelper } from 'three';
 
@@ -8,15 +12,14 @@ export const Environment = () => {
 
   return (
     <>
+      <SoftShadows />
       <DreiEnvironment preset="warehouse" />
-      <pointLight
-        ref={pointLightRef}
-        position={[0, 5, 0]}
-        rotation={[0, 0, 0]}
-        intensity={50}
+      <directionalLight
         castShadow
-        shadow-mapSize-width={1024}
-        shadow-mapSize-height={1024}
+        position={[0, 2, 0]}
+        intensity={0.5}
+        shadow-mapSize-width={2048}
+        shadow-mapSize-height={2048}
       />
     </>
   );
