@@ -1,4 +1,5 @@
 import { useCubeState } from '@/context/cubeStateProvider';
+import { LandingPosition } from '@/types/landingPosition';
 import { useEffect, useRef } from 'react';
 import { degToRad } from 'three/src/math/MathUtils.js';
 
@@ -6,7 +7,7 @@ import { DEFAULT_SUBJECT_ROTATION } from '../scene/constants';
 import { Diamond } from './diamond';
 
 type LandingSpotProps = {
-  name: string;
+  name: LandingPosition;
 };
 export const LandingSpot = ({ ...props }: LandingSpotProps) => {
   const { name } = props;

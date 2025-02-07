@@ -59,15 +59,6 @@ export const Scene = () => {
           {r3fState.isOrbitControlEnabled && (
             <OrbitControls ref={orbitControlsRef} />
           )}
-          {/* <GizmoHelper
-          alignment="bottom-right" // widget alignment within scene
-          margin={[80, 80]} // widget margins (X, Y)
-        >
-          <GizmoViewport
-            axisColors={['red', 'green', 'blue']}
-            labelColor="black"
-          />
-        </GizmoHelper> */}
         </Canvas>
       </div>
     </div>

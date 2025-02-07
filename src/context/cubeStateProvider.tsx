@@ -1,23 +1,24 @@
 'use client';
+import { LandingPosition } from '@/types/landingPosition';
 import React, { createContext, use, useReducer } from 'react';
 
 type Position = { x: number; y: number };
 
 export interface CubeState {
-  currentLandingPosition: string;
-  landingPositions: Record<string, DOMRect> | object;
+  currentLandingPosition: LandingPosition;
+  landingPositions: Record<LandingPosition, DOMRect>;
 }
 
 const defaultState: CubeState = {
-  currentLandingPosition: 'introduction',
-  landingPositions: {},
+  currentLandingPosition: LandingPosition.Introduction,
+  landingPositions: {} as CubeState['landingPositions'],
 };
 
 type CubeStateAction =
-  | { type: 'SET_POSITION'; payload: string }
+  | { type: 'SET_POSITION'; payload: LandingPosition }
   | {
       type: 'SET_LANDING_POSITION';
-      payload: { name: string; position: Position };
+      payload: { name: LandingPosition; position: Position };
     };
 
 const cubeStateReducer = (
