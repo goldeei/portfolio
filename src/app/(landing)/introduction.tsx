@@ -1,4 +1,5 @@
 import { LandingSpot } from '@/components/landing-spot';
+import { LandingPosition } from '@/types/landingPosition';
 
 export const Introduction = () => {
   return (
@@ -7,7 +8,7 @@ export const Introduction = () => {
         <h1 className="text-4xl font-medium text-primary">Jake Goldfarb</h1>
         <h2 className="text-2xl font-medium text-secondary">UI/UX Engineer</h2>
       </div>
-      <LandingSpot name="introduction" />
+      <LandingSpot name={LandingPosition.Introduction} right={92} hasDivider />
       {/* TODO change this text */}
       <p className="w-[500px] text-secondary">
         I’m a{' '}

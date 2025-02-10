@@ -11,6 +11,8 @@ type OffsetValue = number;
 type LandingSpotProps = {
   /** Name for accessing position in cube state */
   name: LandingPosition;
+  position?: 'absolute' | 'relative';
+  className?: string;
   isVisible?: boolean;
   hasDivider?: boolean;
 } & (
@@ -28,6 +30,8 @@ type LandingSpotProps = {
 export const LandingSpot = ({ ...props }: LandingSpotProps) => {
   const {
     name,
+    position = 'relative',
+    className,
     left = undefined,
     right = undefined,
     isVisible = true,
@@ -71,9 +75,11 @@ export const LandingSpot = ({ ...props }: LandingSpotProps) => {
   return (
     <div
       className={clsx(
-        'relative w-full',
+        'w-full',
+        position,
         hasDivider && 'h-1 rounded bg-accent shadow-inner',
         !isVisible && 'opacity-0',
+        className,
       )}
     >
       <div
