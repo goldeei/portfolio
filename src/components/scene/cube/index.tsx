@@ -16,6 +16,7 @@ export const Cube = () => {
   const handleFaceIntersectChange = (intersectedFaces: IntersectedFaces) =>
     setIntersectedFaces(intersectedFaces);
   const { position } = DEFAULT_CUBE_PROPS;
+
   return (
     <group position={position} castShadow>
       <IntersectGroup

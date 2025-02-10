@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 import Landing from './(landing)/page';
 
 export default function Home() {
-  const [_, setCubeState] = useCubeState();
+  const [cubeState, setCubeState] = useCubeState();
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -24,7 +24,7 @@ export default function Home() {
   return (
     <main>
       <Landing />
-      <Scene />
+      {Object.keys(cubeState.landingPositions).length > 0 && <Scene />}
     </main>
   );
 }

@@ -4,6 +4,7 @@ import { OrbitControls } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import clsx from 'clsx';
 import { useEffect, useMemo, useRef } from 'react';
+import { animated, useSpring } from 'react-spring';
 import { OrbitControls as ThreeOrbitControls } from 'three/examples/jsm/Addons.js';
 
 import { Cube } from './cube';
@@ -12,7 +13,7 @@ import { Floor } from './floor';
 
 export const Scene = () => {
   const [r3fState] = useR3fState();
-  const [cubeState] = useCubeState();
+  const [cubeState, setCubeState] = useCubeState();
 
   const containerRef = useRef<HTMLDivElement>(null);
   const orbitControlsRef = useRef(null);
@@ -34,8 +35,20 @@ export const Scene = () => {
         top = getPos(y, height, -0);
 
       return { left, top };
+    } else {
+      return { left: 0, top: 0 };
     }
   }, [cubeState]);
+
+  const { left, top } = useSpring({
+    left: position.left,
+    top: position.top,
+    config: { duration: 3000 },
+    onStart: () =>
+      setCubeState({ type: 'SET_ANIMATION_STATE', payload: 'falling' }),
+    onRest: () =>
+      setCubeState({ type: 'SET_ANIMATION_STATE', payload: 'idle' }),
+  });
 
   return (
     <div
@@ -44,7 +57,11 @@ export const Scene = () => {
         r3fState.isCanvasOnTop ? 'z-20' : 'z-0',
       )}
     >
-      <div ref={containerRef} className="absolute size-64" style={position}>
+      <animated.div
+        ref={containerRef}
+        className="absolute size-64"
+        style={{ left, top }}
+      >
         <Canvas
           orthographic
           camera={{ zoom: 50, position: [0, 0, 20] }}
@@ -57,7 +74,7 @@ export const Scene = () => {
             <OrbitControls ref={orbitControlsRef} />
           )}
         </Canvas>
-      </div>
+      </animated.div>
     </div>
   );
 };
