@@ -10,7 +10,7 @@ export interface CubeState {
 }
 
 const defaultState: CubeState = {
-  currentLandingPosition: LandingPosition.Introduction,
+  currentLandingPosition: LandingPosition.Initial,
   landingPositions: {} as CubeState['landingPositions'],
 };
 
