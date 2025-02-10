@@ -15,6 +15,7 @@ type LandingSpotProps = {
   className?: string;
   isVisible?: boolean;
   hasDivider?: boolean;
+  hasDiamond?: boolean;
 } & (
   | {
       /**  Offset in px */
@@ -36,6 +37,7 @@ export const LandingSpot = ({ ...props }: LandingSpotProps) => {
     right = undefined,
     isVisible = true,
     hasDivider = false,
+    hasDiamond = true,
   } = props;
 
   const diamondRef = useRef<HTMLDivElement>(null);
@@ -88,7 +90,10 @@ export const LandingSpot = ({ ...props }: LandingSpotProps) => {
       >
         <Diamond
           ref={diamondRef}
-          className="size-36 bg-accent shadow-inner"
+          className={clsx(
+            'size-36 bg-accent shadow-inner',
+            !hasDiamond && 'opacity-0',
+          )}
           style={{
             transform: `rotateX(${degToRad(90) - DEFAULT_SUBJECT_ROTATION.x}rad)`,
           }}
