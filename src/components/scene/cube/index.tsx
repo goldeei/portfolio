@@ -6,6 +6,7 @@ import { IntersectGroup } from './intersect-group';
 import { IntersectedFaces } from './types';
 
 export const Cube = () => {
+  // TODO Fix missing "none"
   const [intersectedFaces, setIntersectedFaces] = useState<IntersectedFaces>({
     top: false,
     left: false,
