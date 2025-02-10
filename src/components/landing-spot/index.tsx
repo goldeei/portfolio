@@ -1,16 +1,38 @@
 import { useCubeState } from '@/context/cubeStateProvider';
 import { LandingPosition } from '@/types/landingPosition';
+import clsx from 'clsx';
 import { useEffect, useRef } from 'react';
 import { degToRad } from 'three/src/math/MathUtils.js';
 
 import { DEFAULT_SUBJECT_ROTATION } from '../scene/constants';
 import { Diamond } from './diamond';
 
+type OffsetValue = number;
 type LandingSpotProps = {
+  /** Name for accessing position in cube state */
   name: LandingPosition;
-};
+  isVisible?: boolean;
+  hasDivider?: boolean;
+} & (
+  | {
+      /**  Offset in px */
+      left: OffsetValue;
+      right?: never;
+    }
+  | {
+      /**  Offset in px */
+      right: number;
+      left?: never;
+    }
+);
 export const LandingSpot = ({ ...props }: LandingSpotProps) => {
-  const { name } = props;
+  const {
+    name,
+    left = undefined,
+    right = undefined,
+    isVisible = true,
+    hasDivider = false,
+  } = props;
 
   const diamondRef = useRef<HTMLDivElement>(null);
 
@@ -47,8 +69,17 @@ export const LandingSpot = ({ ...props }: LandingSpotProps) => {
   }, [dispatch, name]);
 
   return (
-    <div className="relative h-1 w-full rounded bg-accent shadow-inner">
-      <div className="absolute right-24 top-1/2 -translate-y-1/2">
+    <div
+      className={clsx(
+        'relative w-full',
+        hasDivider && 'h-1 rounded bg-accent shadow-inner',
+        !isVisible && 'opacity-0',
+      )}
+    >
+      <div
+        className="absolute top-1/2 -translate-y-1/2"
+        style={{ left: `${left}px`, right: `${right}px` }}
+      >
         <Diamond
           ref={diamondRef}
           className="size-36 bg-accent shadow-inner"
