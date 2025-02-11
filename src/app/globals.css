@@ -38,6 +38,7 @@ body {
     /* sizes */
     --navbar-height: 4rem;
     --page-padding: 2rem;
+    --canvas-size: 256px;
   }
   .dark {
     --background: 0 0% 3.9%;

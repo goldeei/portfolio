@@ -9,7 +9,7 @@ export const getElementCenterPosition = (
   offsetY?: number,
 ) => {
   return {
-    left: getPos(x, width, offsetX),
-    top: getPos(y, height, offsetY),
+    x: getPos(x, width, offsetX),
+    y: getPos(y, height, offsetY),
   };
 };

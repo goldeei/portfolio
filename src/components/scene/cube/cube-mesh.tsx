@@ -1,6 +1,6 @@
 import { showCubeFace } from '@/animations/r3f';
 import { useSvgAsExtrudeGeometry } from '@/hooks/useSvgAsExtrudeGeometry';
-import { hslVarToHex } from '@/lib/utils';
+import { hslVarToHex } from '@/lib/style-utils';
 import { animated, useSpring, useSprings } from '@react-spring/three';
 import { RoundedBox, useHelper } from '@react-three/drei';
 import { useCallback, useEffect, useRef, useState } from 'react';

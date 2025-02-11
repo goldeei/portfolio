@@ -1,12 +1,10 @@
+import { useCubeState } from '@/context/cubeStateProvider';
 import { useR3fState } from '@/context/r3fProvider';
-import { useLandingPositions } from '@/hooks/useLandingPositions';
-import { getElementCenterPosition } from '@/lib/getElementCenterPosition';
-import { LandingPosition } from '@/types/landingPosition';
 import { OrbitControls } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import clsx from 'clsx';
 import { motion } from 'motion/react';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { OrbitControls as ThreeOrbitControls } from 'three/examples/jsm/Addons.js';
 
 import { Cube } from './cube';
@@ -15,9 +13,10 @@ import { Floor } from './floor';
 
 export const Scene = () => {
   const [r3fState] = useR3fState();
+  const [cubeState] = useCubeState();
 
-  const [containerElement, setContainerElement] =
-    useState<HTMLDivElement | null>(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+
   const orbitControlsRef = useRef(null);
 
   useEffect(() => {
@@ -25,33 +24,6 @@ export const Scene = () => {
       (orbitControlsRef.current as ThreeOrbitControls).reset();
     }
   }, [r3fState.isOrbitControlEnabled]);
-
-  const [isCanvasCreated, setIsCanvasCreated] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const initialPositionRef = useRef<{
-    left: number;
-    top: number;
-  } | null>(null);
-  const landingPositions = useLandingPositions(containerElement, [
-    { name: LandingPosition.Initial },
-    { name: LandingPosition.Introduction1 },
-    { name: LandingPosition.Introduction2 },
-  ]);
-
-  useEffect(() => {
-    if (!initialPositionRef.current && landingPositions[0] && isCanvasCreated) {
-      initialPositionRef.current = landingPositions[0];
-      setIsLoaded(true);
-    }
-  }, [isCanvasCreated, landingPositions]);
-  const initialPosition = useMemo(() => {
-    if (!landingPositions[0]) return { left: 0, top: 0 };
-    return getElementCenterPosition(
-      { x: landingPositions[0].left, y: landingPositions[0].top },
-      0,
-      0,
-    );
-  }, [landingPositions]);
 
   return (
     <div
@@ -61,9 +33,8 @@ export const Scene = () => {
       )}
     >
       <motion.div
-        ref={setContainerElement}
-        className="absolute size-64 border"
-        style={{ x: initialPosition.left, y: initialPosition.top }}
+        style={cubeState.cubePositions.initial}
+        className="absolute size-[var(--canvas-size)] border"
       >
         {!isLoaded && (
           <div className="center-absolute text-secondary">Loading...</div>
@@ -72,7 +43,7 @@ export const Scene = () => {
           orthographic
           camera={{ zoom: 50, position: [0, 0, 20] }}
           shadows
-          onCreated={() => setIsCanvasCreated(true)}
+          onCreated={() => setIsLoaded(true)}
         >
           <Environment />
           <Floor />
