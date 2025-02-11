@@ -12,6 +12,14 @@ export const Introduction = () => {
         <h2 className="text-2xl font-medium text-secondary">UI/UX Engineer</h2>
       </div>
       <LandingSpot
+        name={LandingPosition.IntroductionBounce}
+        right={500}
+        hasDiamond={
+          cubeState.currentLandingPosition === LandingPosition.Introduction
+        }
+        hasDivider
+      />
+      <LandingSpot
         name={LandingPosition.Introduction}
         right={92}
         hasDiamond={
