@@ -2,6 +2,12 @@ import { useCubeState } from '@/context/cubeStateProvider';
 import { LandingPosition } from '@/types/landingPosition';
 import { useMemo } from 'react';
 
+type PositionToGet = {
+  name: LandingPosition;
+  offsetX?: number;
+  offsetY?: number;
+};
+
 const getPos = (coord: number, dimension: number, offset: number = 0) =>
   coord - dimension / 2 + offset;
 
@@ -35,11 +41,7 @@ const getCenter = (
  */
 export const useLandingPositions = (
   containerElement: HTMLDivElement | null,
-  positionsToGet: {
-    name: LandingPosition;
-    offsetX?: number;
-    offsetY?: number;
-  }[],
+  positionsToGet: PositionToGet[],
 ) => {
   const [cubeState] = useCubeState();
 
