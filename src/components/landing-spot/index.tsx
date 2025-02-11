@@ -16,6 +16,7 @@ type LandingSpotProps = {
   isVisible?: boolean;
   hasDivider?: boolean;
   hasDiamond?: boolean;
+  debug?: boolean;
 } & (
   | {
       /**  Offset in px */
@@ -38,6 +39,7 @@ export const LandingSpot = ({ ...props }: LandingSpotProps) => {
     isVisible = true,
     hasDivider = false,
     hasDiamond = true,
+    debug = false,
   } = props;
 
   const diamondRef = useRef<HTMLDivElement>(null);
@@ -80,24 +82,29 @@ export const LandingSpot = ({ ...props }: LandingSpotProps) => {
         'w-full',
         position,
         hasDivider && 'h-1 rounded bg-accent shadow-inner',
+        !hasDivider && 'h-0',
         !isVisible && 'opacity-0',
         className,
       )}
     >
       <div
-        className="absolute top-1/2 -translate-y-1/2"
+        className={clsx('absolute top-1/2 -translate-y-1/2')}
         style={{ left: `${left}px`, right: `${right}px` }}
       >
         <Diamond
           ref={diamondRef}
-          className={clsx(
-            'size-36 bg-accent shadow-inner',
-            !hasDiamond && 'opacity-0',
-          )}
+          className={clsx('size-36', hasDiamond && 'bg-accent shadow-inner')}
           style={{
             transform: `rotateX(${degToRad(90) - DEFAULT_SUBJECT_ROTATION.x}rad)`,
           }}
         />
+        {debug && (
+          <div className="absolute left-1/2 top-1/2 size-6 -translate-x-1/2 -translate-y-1/2 rounded-full border bg-secondary/50">
+            <div className="absolute left-1/2 top-full -translate-x-1/2 text-center text-xs font-bold text-secondary">
+              {name}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -1,32 +1,27 @@
 import { LandingSpot } from '@/components/landing-spot';
-import { useCubeState } from '@/context/cubeStateProvider';
 import { LandingPosition } from '@/types/landingPosition';
 
 export const Introduction = () => {
-  const [cubeState] = useCubeState();
-
   return (
     <div className="h-full-content flex flex-col justify-center gap-2">
       <div>
         <h1 className="text-4xl font-medium text-primary">Jake Goldfarb</h1>
         <h2 className="text-2xl font-medium text-secondary">UI/UX Engineer</h2>
       </div>
-      <LandingSpot
-        name={LandingPosition.Initial}
-        right={500}
-        hasDiamond={
-          cubeState.currentLandingPosition === LandingPosition.Introduction
-        }
-        hasDivider
-      />
-      <LandingSpot
-        name={LandingPosition.Introduction}
-        right={92}
-        hasDiamond={
-          cubeState.currentLandingPosition === LandingPosition.Introduction
-        }
-        hasDivider
-      />
+      <div>
+        <LandingSpot
+          name={LandingPosition.Introduction1}
+          right={500}
+          hasDiamond={false}
+          debug
+        />
+        <LandingSpot
+          name={LandingPosition.Introduction2}
+          right={92}
+          hasDivider
+          debug
+        />
+      </div>
       {/* TODO change this text */}
       <p className="w-[500px] text-secondary">
         I’m a{' '}

@@ -1,4 +1,5 @@
 export enum LandingPosition {
   Initial = 'initial',
-  Introduction = 'introduction',
+  Introduction1 = 'introduction1',
+  Introduction2 = 'introduction2',
 }

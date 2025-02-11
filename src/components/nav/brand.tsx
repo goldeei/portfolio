@@ -15,6 +15,7 @@ export const Brand = () => {
         position="absolute"
         name={LandingPosition.Initial}
         left={-40}
+        debug
         isVisible={cubeState.currentLandingPosition === LandingPosition.Initial}
       />
       <Button
