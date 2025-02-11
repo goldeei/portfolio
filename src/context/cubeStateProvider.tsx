@@ -57,9 +57,7 @@ const CubeStateContext = createContext<
 
 export function CubeStateProvider({ children }: { children: React.ReactNode }) {
   const [state, dispatch] = useReducer(cubeStateReducer, defaultState);
-  useEffect(() => {
-    console.log(state.animationState);
-  }, [state.animationState]);
+  useEffect(() => {}, [state.animationState]);
   return (
     <CubeStateContext value={[state, dispatch]}>{children}</CubeStateContext>
   );

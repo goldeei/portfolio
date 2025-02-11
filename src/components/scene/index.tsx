@@ -4,8 +4,7 @@ import { OrbitControls } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import clsx from 'clsx';
 import { motion } from 'motion/react';
-import { Suspense, useEffect, useMemo, useRef, useState } from 'react';
-import { animated, useSpring } from 'react-spring';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { OrbitControls as ThreeOrbitControls } from 'three/examples/jsm/Addons.js';
 
 import { Cube } from './cube';
@@ -14,7 +13,7 @@ import { Floor } from './floor';
 
 export const Scene = () => {
   const [r3fState] = useR3fState();
-  const [cubeState, setCubeState] = useCubeState();
+  const [cubeState] = useCubeState();
 
   const containerRef = useRef<HTMLDivElement>(null);
   const orbitControlsRef = useRef(null);
