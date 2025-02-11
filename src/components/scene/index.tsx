@@ -33,8 +33,8 @@ export const Scene = () => {
       )}
     >
       <motion.div
-        style={cubeState.cubePositions.initial}
-        className="absolute size-[var(--canvas-size)] border"
+        style={cubeState.cubePositions.introduction}
+        className="absolute size-[var(--canvas-size)]"
       >
         {!isLoaded && (
           <div className="center-absolute text-secondary">Loading...</div>
