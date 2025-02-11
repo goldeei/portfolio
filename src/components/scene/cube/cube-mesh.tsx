@@ -5,6 +5,8 @@ import { hslVarToHex } from '@/lib/utils';
 import { animated, useSpring, useSprings } from '@react-spring/three';
 import { RoundedBox, useHelper } from '@react-three/drei';
 import { useFrame, useThree } from '@react-three/fiber';
+import { motion as motion3d } from 'framer-motion-3d';
+import { motion, useMotionValue, useTransform } from 'motion/react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { EulerTuple, Mesh, PointLight, SpotLightHelper } from 'three';
 import { degToRad } from 'three/src/math/MathUtils.js';
@@ -139,16 +141,18 @@ export const CubeMesh = ({ ...props }: CubeMeshProps) => {
       console.log(ref.current.rotation.x);
     }
   });
-
+  const x = useMotionValue(0);
+  const scaleZ = useTransform(x, (v) => v / 100);
   return (
-    <animated.mesh
-      ref={ref}
-      // @ts-expect-error: Spring type is EulerTuple Type (Typescript returns error on rotation)
-      rotation={showCubeFaceSpring.rotation.to((x, y, z) => [x, y, z])}
-      // rotation={springStates.rotation}
-      // onClick={handleJump}
+    <motion.mesh
+    // ref={ref}
+    // @ts-expect-error: Spring type is EulerTuple Type (Typescript returns error on rotation)
+
+    // scale={[1, 1, scaleZ]}
+    // rotation={springStates.rotation}
+    // onClick={handleJump}
     >
-      <group rotation={rotation} castShadow>
+      <motion.group rotation={rotation} castShadow>
         <RoundedBox
           ref={cubeRef}
           smoothness={3}
@@ -164,40 +168,40 @@ export const CubeMesh = ({ ...props }: CubeMeshProps) => {
           />
           {/* <meshDistanceMaterial near={1} far={10} /> */}
         </RoundedBox>
-        <animated.mesh
+        <motion.mesh
           ref={icon12Ref}
           geometry={icon1_2}
           position={[0, 0.5, 0]}
           rotation={[degToRad(90), 0, degToRad(45)]}
           scale={0.35}
         >
-          <animated.meshStandardMaterial
+          <motion.meshStandardMaterial
             roughness={0}
             metalness={1}
             color={hslVarToHex('--accent')}
             transparent
             emissive={hslVarToHex('--secondary')}
-            emissiveIntensity={springs[0].emissive}
+            // emissiveIntensity={springs[0].emissive}
             opacity={0.75}
           />
-        </animated.mesh>
-        <animated.mesh
+        </motion.mesh>
+        <motion.mesh
           ref={icon12Ref}
           geometry={icon1}
           position={[-0.5, 0, 0]}
           rotation={[0, degToRad(90), degToRad(-180)]}
           scale={0.35}
         >
-          <animated.meshStandardMaterial
+          <motion.meshStandardMaterial
             roughness={1}
             color={hslVarToHex('--accent')}
             transparent
             emissive={hslVarToHex('--secondary')}
-            emissiveIntensity={springs[1].emissive}
+            // emissiveIntensity={springs[1].emissive}
             opacity={0.75}
           />
-        </animated.mesh>
-      </group>
-    </animated.mesh>
+        </motion.mesh>
+      </motion.group>
+    </motion.mesh>
   );
 };

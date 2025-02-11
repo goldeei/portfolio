@@ -3,7 +3,8 @@ import { useR3fState } from '@/context/r3fProvider';
 import { OrbitControls } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import clsx from 'clsx';
-import { useEffect, useMemo, useRef } from 'react';
+import { motion } from 'motion/react';
+import { Suspense, useEffect, useMemo, useRef, useState } from 'react';
 import { animated, useSpring } from 'react-spring';
 import { OrbitControls as ThreeOrbitControls } from 'three/examples/jsm/Addons.js';
 
@@ -39,17 +40,17 @@ export const Scene = () => {
       return { left: 0, top: 0 };
     }
   }, [cubeState]);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const animate = isLoaded
+    ? {
+        x: 300, // Move to the right position
+        y: [100, 0, 100], // Bounce up to y=-100, then return to 0
+      }
+    : { x: 100, y: 0 };
 
-  const { left, top } = useSpring({
-    left: position.left,
-    top: position.top,
-    config: { duration: 3000 },
-    onStart: () =>
-      setCubeState({ type: 'SET_ANIMATION_STATE', payload: 'falling' }),
-    onRest: () =>
-      setCubeState({ type: 'SET_ANIMATION_STATE', payload: 'idle' }),
-  });
-
+  useEffect(() => {
+    console.log(isLoaded);
+  }, [isLoaded]);
   return (
     <div
       className={clsx(
@@ -57,15 +58,20 @@ export const Scene = () => {
         r3fState.isCanvasOnTop ? 'z-20' : 'z-0',
       )}
     >
-      <animated.div
+      <motion.div
+        initial={{ x: 100, y: 0 }}
+        animate={animate}
+        transition={{
+          duration: 1, // You can adjust the duration of the bounce
+        }}
         ref={containerRef}
-        className="absolute size-64"
-        style={{ left, top }}
+        className="size-32 border"
       >
         <Canvas
           orthographic
           camera={{ zoom: 50, position: [0, 0, 20] }}
           shadows
+          onCreated={() => setIsLoaded(true)}
         >
           <Environment />
           <Floor />
@@ -74,7 +80,7 @@ export const Scene = () => {
             <OrbitControls ref={orbitControlsRef} />
           )}
         </Canvas>
-      </animated.div>
+      </motion.div>
     </div>
   );
 };
