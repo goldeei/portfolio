@@ -1,7 +1,7 @@
-import { ClassValue, clsx } from "clsx";
-import convert from "color-convert";
-import { HSL } from "color-convert/conversions";
-import { twMerge } from "tailwind-merge";
+import { ClassValue, clsx } from 'clsx';
+import convert from 'color-convert';
+import { HSL } from 'color-convert/conversions';
+import { twMerge } from 'tailwind-merge';
 
 /**
  * Utility function to merge class names using clsx and tailwind-merge.
@@ -15,6 +15,11 @@ export function cn(...inputs: ClassValue[]): string {
   return twMerge(clsx(inputs));
 }
 
+export const getCSSVar = (varName: string) =>
+  getComputedStyle(document.documentElement)
+    .getPropertyValue(varName)
+    .trimEnd();
+
 /**
  * Converts the stored shadcn theme CSS color variables to a hex value.
  *
@@ -25,14 +30,12 @@ export function cn(...inputs: ClassValue[]): string {
  */
 export function hslVarToHex(colorVariableName: string): string {
   // Get the raw HSL value from the CSS variable
-  const rawHSL = getComputedStyle(document.documentElement)
-    .getPropertyValue(colorVariableName)
-    .trim();
+  const rawHSL = getCSSVar(colorVariableName);
 
   // Convert the raw HSL string to an array of numbers
   const hslValueArray = rawHSL
-    .replaceAll("%", "")
-    .split(" ")
+    .replaceAll('%', '')
+    .split(' ')
     .map((v) => Number(v)) as HSL;
 
   // Convert and return the HSL array to a hex color string
