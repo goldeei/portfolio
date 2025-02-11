@@ -1,4 +1,5 @@
 import { useCubeState } from '@/context/cubeStateProvider';
+import { getElementCenterPosition } from '@/lib/getElementCenterPosition';
 import { LandingPosition } from '@/types/landingPosition';
 import { useMemo } from 'react';
 
@@ -6,22 +7,6 @@ type PositionToGet = {
   name: LandingPosition;
   offsetX?: number;
   offsetY?: number;
-};
-
-const getPos = (coord: number, dimension: number, offset: number = 0) =>
-  coord - dimension / 2 + offset;
-
-const getCenter = (
-  { x, y }: { x: number; y: number },
-  width: number,
-  height: number,
-  offsetX?: number,
-  offsetY?: number,
-) => {
-  return {
-    left: getPos(x, width, offsetX),
-    top: getPos(y, height, offsetY),
-  };
 };
 
 /**
@@ -55,7 +40,13 @@ export const useLandingPositions = (
         const { name, offsetX, offsetY } = p;
 
         return landingPositions[name]
-          ? getCenter(landingPositions[name], width, height, offsetX, offsetY)
+          ? getElementCenterPosition(
+              landingPositions[name],
+              width,
+              height,
+              offsetX,
+              offsetY,
+            )
           : null;
       })
       .filter(Boolean);
