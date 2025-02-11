@@ -1,10 +1,9 @@
-import { useCubeState } from '@/context/cubeStateProvider';
 import { useR3fState } from '@/context/r3fProvider';
 import { OrbitControls } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import clsx from 'clsx';
 import { motion } from 'motion/react';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { OrbitControls as ThreeOrbitControls } from 'three/examples/jsm/Addons.js';
 
 import { Cube } from './cube';
@@ -13,9 +12,8 @@ import { Floor } from './floor';
 
 export const Scene = () => {
   const [r3fState] = useR3fState();
-  const [cubeState] = useCubeState();
 
-  const containerRef = useRef<HTMLDivElement>(null);
+  const [_, setContainerRef] = useState<HTMLDivElement | null>(null);
   const orbitControlsRef = useRef(null);
 
   useEffect(() => {
@@ -24,21 +22,6 @@ export const Scene = () => {
     }
   }, [r3fState.isOrbitControlEnabled]);
 
-  const position = useMemo(() => {
-    const { landingPositions, currentLandingPosition } = cubeState;
-    if (containerRef.current && landingPositions[currentLandingPosition]) {
-      const { x, y } = landingPositions[currentLandingPosition];
-      const { width, height } = containerRef.current.getBoundingClientRect();
-      const getPos = (coord: number, dimension: number, offset: number = 0) =>
-        coord - dimension / 2 + offset;
-      const left = getPos(x, width),
-        top = getPos(y, height, -0);
-
-      return { left, top };
-    } else {
-      return { left: 0, top: 0 };
-    }
-  }, [cubeState]);
   const [isLoaded, setIsLoaded] = useState(false);
   const animate = isLoaded
     ? {
@@ -47,9 +30,6 @@ export const Scene = () => {
       }
     : { x: 100, y: 0 };
 
-  useEffect(() => {
-    console.log(isLoaded);
-  }, [isLoaded]);
   return (
     <div
       className={clsx(
@@ -63,7 +43,7 @@ export const Scene = () => {
         transition={{
           duration: 1, // You can adjust the duration of the bounce
         }}
-        ref={containerRef}
+        ref={setContainerRef}
         className="size-32 border"
       >
         <Canvas
