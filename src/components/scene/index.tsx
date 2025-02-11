@@ -25,7 +25,7 @@ export const Scene = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const animate = isLoaded
     ? {
-        x: 300, // Move to the right position
+        x: [300, 600], // Move to the right position
         y: [100, 0, 100], // Bounce up to y=-100, then return to 0
       }
     : { x: 100, y: 0 };
@@ -44,8 +44,9 @@ export const Scene = () => {
           duration: 1, // You can adjust the duration of the bounce
         }}
         ref={setContainerRef}
-        className="size-32 border"
+        className="size-64 border"
       >
+        {!isLoaded && <div className="text-secondary">Loading...</div>}
         <Canvas
           orthographic
           camera={{ zoom: 50, position: [0, 0, 20] }}
