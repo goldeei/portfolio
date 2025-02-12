@@ -13,7 +13,7 @@ export const Nav = () => {
   const { isCanvasOnTop, isOrbitControlEnabled } = r3fState;
 
   return (
-    <nav className="flex h-[var(--navbar-height)] items-center justify-between">
+    <nav className="z-10 flex h-[var(--navbar-height)] items-center justify-between">
       <Brand />
       <div className="flex gap-3">
         <Button variant="link">Tech I Use</Button>
