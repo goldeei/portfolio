@@ -4,7 +4,7 @@ import { degToRad } from 'three/src/math/MathUtils.js';
 
 import { DEFAULT_CUBE_PROPS } from '../constants';
 import { PlaneIntersect } from '../plane-intersect';
-import { Face, IntersectedFaces } from './types';
+import { IntersectedFaces, IntersectOption } from './types';
 
 interface IntersectGroupProps {
   intersectedFaces: IntersectedFaces;
@@ -21,8 +21,8 @@ export const IntersectGroup = ({ ...props }: IntersectGroupProps) => {
   );
 
   const handleIntersect = useCallback(
-    (name: string, isIntersected: boolean) => {
-      const face = name as Face;
+    (name: IntersectOption, isIntersected: boolean) => {
+      const face = name;
       if (intersectedFaces[face] !== isIntersected) {
         return onFaceIntersect({
           ...intersectedFaces,

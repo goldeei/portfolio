@@ -11,6 +11,7 @@ export const Cube = () => {
     top: false,
     left: false,
     right: false,
+    none: true,
   });
 
   const handleFaceIntersectChange = (intersectedFaces: IntersectedFaces) =>

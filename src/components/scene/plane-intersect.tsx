@@ -3,12 +3,14 @@ import { useFrame, useThree } from '@react-three/fiber';
 import { useRef } from 'react';
 import { Mesh, PlaneGeometry, Raycaster } from 'three';
 
+import { IntersectOption } from './cube/types';
+
 type Size = [number, number, number?, number?];
 
 type PlaneIntersectProps = ShapeProps<PlaneGeometry> & {
-  name: string;
+  name: IntersectOption;
   size: Size;
-  onIntersectChange: (name: string, isIntersected: boolean) => void;
+  onIntersectChange: (name: IntersectOption, isIntersected: boolean) => void;
   showWireframe?: boolean;
 };
 

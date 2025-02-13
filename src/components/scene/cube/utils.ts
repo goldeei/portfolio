@@ -9,10 +9,10 @@ const horizontalRotationOffset = 40;
 export const getHoveredFace = (
   intersectedFaces: IntersectedFaces,
 ): IntersectOption => {
-  if (Object.values(intersectedFaces).every((f) => f === false)) return 'none';
   if (intersectedFaces.top === true) return 'top';
   if (intersectedFaces.right === true) return 'right';
-  return 'left';
+  if (intersectedFaces.left === true) return 'left';
+  return 'none';
 };
 
 const rotation: Record<string, EulerTuple> = {
