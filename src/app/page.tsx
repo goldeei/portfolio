@@ -3,7 +3,7 @@
 import { Scene } from '@/components/scene';
 import { useCubeState } from '@/context/cubeStateProvider';
 
-import Landing from './(landing)/page';
+import Landing from './landing/page';
 
 export default function Home() {
   const [cubeState] = useCubeState();

@@ -1,3 +1,5 @@
+'use client';
+
 import { useCubeState } from '@/context/cubeStateProvider';
 import { LandingPosition } from '@/types/landingPosition';
 import clsx from 'clsx';
