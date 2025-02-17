@@ -1,8 +1,6 @@
 import { LandingSpot } from "@/components/landing-spot";
 import { LandingPosition } from "@/types/landingPosition";
 
-import { TabContent, TabList, Tabs, TabSelector } from "../tabs";
-
 export const Introduction = () => {
   return (
     <div className="h-full-content flex flex-col justify-center gap-2">
@@ -21,16 +19,6 @@ export const Introduction = () => {
         and managing complex data. I like exploring unique ways to make data
         digestible and experimenting with new web design methods.
       </p>
-      <Tabs defaultValue={'tab1'}>
-        <TabList>
-          <TabSelector value="tab1" />
-          <TabSelector value="tab2" />
-          <TabSelector value="tab3" />
-        </TabList>
-        <TabContent value="tab1" />
-        <TabContent value="tab2" />
-        <TabContent value="tab3" />
-      </Tabs>
     </div>
   );
 };
