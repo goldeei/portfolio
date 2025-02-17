@@ -9,10 +9,12 @@ interface TabGroupProps {
     | ReactElement<typeof TabList>
     | ReactElement<typeof TabContent>
     | ReactElement<typeof TabContent>[];
+
+  defaultValue: string;
 }
 
 export const Tabs = ({ ...props }: TabGroupProps) => {
-  const { children } = props;
+  const { children, defaultValue } = props;
 
-  return <STabs>{children}</STabs>;
+  return <STabs defaultValue={defaultValue}>{children}</STabs>;
 };
