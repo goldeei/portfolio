@@ -14,7 +14,9 @@ interface TabGroupProps {
 }
 
 const gridClasses = (tabCount: number) =>
-  `grid-rows-[repeat(${tabCount}, auto)] grid items-center py-2 gap-3`;
+  `grid-rows-[repeat(${tabCount}, auto)] grid items-center py-2 gap-3 h-full`;
+
+const radioClasses = 'h-full min-h-8 cursor-pointer transition-all';
 
 export const Tabs = ({ ...props }: TabGroupProps) => {
   const { tabs, defaultValue, onValueChange } = props;
@@ -32,15 +34,15 @@ export const Tabs = ({ ...props }: TabGroupProps) => {
   );
 
   return (
-    <div className="flex h-64 gap-12 py-4">
+    <div className="flex h-96 gap-12 py-4">
       <RadioGroup
-        className="flex gap-0"
+        className="flex h-full gap-0"
         onValueChange={handleChange}
         value={selectedTab}
       >
         <div
           className={cn(
-            'gap-4 rounded-full bg-accent px-1.5 shadow-inner',
+            'rounded-full bg-accent px-1.5 shadow-inner',
             gridClasses(tabs.length),
           )}
         >
@@ -49,7 +51,13 @@ export const Tabs = ({ ...props }: TabGroupProps) => {
               key={value}
               value={value}
               id={value}
-              className="h-full w-3 border border-secondary/5 bg-secondary/25 shadow-inner transition-all hover:bg-secondary/50 data-[state=checked]:bg-secondary data-[state=checked]:shadow-sm [&_svg]:hidden"
+              className={cn(
+                'w-2 border border-secondary/5 bg-secondary/25 shadow-inner outline-none ring-0 [&_svg]:hidden',
+                radioClasses,
+                value === selectedTab
+                  ? 'bg-secondary shadow-sm'
+                  : 'hover:bg-secondary/50',
+              )}
             />
           ))}
         </div>
@@ -59,8 +67,11 @@ export const Tabs = ({ ...props }: TabGroupProps) => {
               key={value}
               htmlFor={value}
               className={cn(
-                'cursor-pointer px-2 py-1 text-secondary/50 hover:text-secondary/75',
-                value === selectedTab && 'text-secondary',
+                'place-content-center ps-1 text-secondary/50',
+                radioClasses,
+                value === selectedTab
+                  ? 'text-secondary'
+                  : 'hover:text-secondary/75',
               )}
             >
               {label}
