@@ -1,5 +1,6 @@
-import { LandingSpot } from "@/components/landing-spot";
-import { LandingPosition } from "@/types/landingPosition";
+import { LandingSpot } from '@/components/landing-spot';
+import { LandingPosition } from '@/types/landingPosition';
+import { Tabs } from '../tabs';
 
 export const Introduction = () => {
   return (
@@ -19,6 +20,17 @@ export const Introduction = () => {
         and managing complex data. I like exploring unique ways to make data
         digestible and experimenting with new web design methods.
       </p>
+      <Tabs
+        defaultValue="tab-1"
+        tabs={[
+          { label: 'Tab 1', value: 'tab-1', content: <div>Tab 1 Content</div> },
+          { label: 'Tab 2', value: 'tab-2', content: <div>Tab 2 Content</div> },
+          { label: 'Tab 3', value: 'tab-3', content: <div>Tab 3 Content</div> },
+          { label: 'Tab 4', value: 'tab-4', content: <div>Tab 4 Content</div> },
+          { label: 'Tab 5', value: 'tab-5', content: <div>Tab 5 Content</div> },
+          { label: 'Tab 6', value: 'tab-6', content: <div>Tab 6 Content</div> },
+        ]}
+      />
     </div>
   );
 };
