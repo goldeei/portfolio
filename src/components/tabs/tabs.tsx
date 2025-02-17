@@ -41,7 +41,10 @@ export const Tabs = ({ ...props }: TabGroupProps) => {
         value={selectedTab}
       >
         {tabs.map(({ value, label }) => (
-          <div key={value} className="flex items-center justify-between gap-4">
+          <div
+            key={value}
+            className="flex items-center justify-between gap-4 py-4"
+          >
             <Label
               key={`${value}-label`}
               className={cn(
@@ -67,7 +70,7 @@ export const Tabs = ({ ...props }: TabGroupProps) => {
             />
           </div>
         ))}
-        <div className="absolute right-2 -z-50 h-full w-1.5 bg-accent" />
+        <div className="absolute right-2 -z-50 h-full w-1.5 rounded bg-accent" />
       </RadioGroup>
       <div>{content}</div>
     </div>
