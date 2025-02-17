@@ -23,12 +23,13 @@ export const Introduction = () => {
       <Tabs
         defaultValue="tab-1"
         tabs={[
-          { label: 'Tab 1', value: 'tab-1', content: <div>Tab 1 Content</div> },
+          {
+            label: 'Tab1sdsad',
+            value: 'tab-1',
+            content: <div>Tab 1 Content</div>,
+          },
           { label: 'Tab 2', value: 'tab-2', content: <div>Tab 2 Content</div> },
           { label: 'Tab 3', value: 'tab-3', content: <div>Tab 3 Content</div> },
-          { label: 'Tab 4', value: 'tab-4', content: <div>Tab 4 Content</div> },
-          { label: 'Tab 5', value: 'tab-5', content: <div>Tab 5 Content</div> },
-          { label: 'Tab 6', value: 'tab-6', content: <div>Tab 6 Content</div> },
         ]}
       />
     </div>

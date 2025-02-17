@@ -34,41 +34,19 @@ export const Tabs = ({ ...props }: TabGroupProps) => {
   );
 
   return (
-    <div className="flex h-96 gap-12 py-4">
+    <div className="flex h-96 gap-12">
       <RadioGroup
-        className="flex h-full gap-0"
+        className="relative flex h-full w-fit flex-col justify-between gap-0"
         onValueChange={handleChange}
         value={selectedTab}
       >
-        <div
-          className={cn(
-            'rounded-full bg-accent px-1.5 shadow-inner',
-            gridClasses(tabs.length),
-          )}
-        >
-          {tabs.map(({ value }) => (
-            <RadioGroupItem
-              key={value}
-              value={value}
-              id={value}
-              className={cn(
-                'w-2 border border-secondary/5 bg-secondary/25 shadow-inner outline-none ring-0 [&_svg]:hidden',
-                radioClasses,
-                value === selectedTab
-                  ? 'bg-secondary shadow-sm'
-                  : 'hover:bg-secondary/50',
-              )}
-            />
-          ))}
-        </div>
-        <div className={gridClasses(tabs.length)}>
-          {tabs.map(({ label, value }) => (
+        {tabs.map(({ value, label }) => (
+          <div key={value} className="flex items-center justify-between gap-4">
             <Label
-              key={value}
-              htmlFor={value}
+              key={`${value}-label`}
               className={cn(
-                'place-content-center ps-1 text-secondary/50',
-                radioClasses,
+                'ps-1 text-secondary/50',
+
                 value === selectedTab
                   ? 'text-secondary'
                   : 'hover:text-secondary/75',
@@ -76,10 +54,70 @@ export const Tabs = ({ ...props }: TabGroupProps) => {
             >
               {label}
             </Label>
-          ))}
-        </div>
+            <RadioGroupItem
+              value={value}
+              id={value}
+              className={cn(
+                'size-5 border-none bg-accent shadow-inner outline-none ring-0 [&_svg]:hidden',
+
+                value === selectedTab
+                  ? 'bg-secondary shadow-sm'
+                  : 'hover:bg-secondary/50',
+              )}
+            />
+          </div>
+        ))}
+        <div className="absolute right-2 -z-50 h-full w-1.5 bg-accent" />
       </RadioGroup>
       <div>{content}</div>
     </div>
   );
 };
+
+//  <div className="flex h-96 gap-12 py-4">
+//    <RadioGroup
+//      className="flex h-full gap-0"
+//      onValueChange={handleChange}
+//      value={selectedTab}
+//    >
+//      <div
+//        className={cn(
+//          'rounded-full bg-accent px-1.5 shadow-inner',
+//          gridClasses(tabs.length),
+//        )}
+//      >
+//        {tabs.map(({ value }) => (
+//          <RadioGroupItem
+//            key={value}
+//            value={value}
+//            id={value}
+//            className={cn(
+//              'w-2 border border-secondary/5 bg-secondary/25 shadow-inner outline-none ring-0 [&_svg]:hidden',
+//              radioClasses,
+//              value === selectedTab
+//                ? 'bg-secondary shadow-sm'
+//                : 'hover:bg-secondary/50',
+//            )}
+//          />
+//        ))}
+//      </div>
+//      <div className={gridClasses(tabs.length)}>
+//        {tabs.map(({ label, value }) => (
+//          <Label
+//            key={value}
+//            htmlFor={value}
+//            className={cn(
+//              'place-content-center ps-1 text-secondary/50',
+//              radioClasses,
+//              value === selectedTab
+//                ? 'text-secondary'
+//                : 'hover:text-secondary/75',
+//            )}
+//          >
+//            {label}
+//          </Label>
+//        ))}
+//      </div>
+//    </RadioGroup>
+//    <div>{content}</div>
+//  </div>;
