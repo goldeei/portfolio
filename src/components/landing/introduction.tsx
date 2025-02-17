@@ -21,15 +21,15 @@ export const Introduction = () => {
         and managing complex data. I like exploring unique ways to make data
         digestible and experimenting with new web design methods.
       </p>
-      <Tabs>
+      <Tabs defaultValue={'tab1'}>
         <TabList>
-          <TabSelector />
-          <TabSelector />
-          <TabSelector />
+          <TabSelector value="tab1" />
+          <TabSelector value="tab2" />
+          <TabSelector value="tab3" />
         </TabList>
-        <TabContent />
-        <TabContent />
-        <TabContent />
+        <TabContent value="tab1" />
+        <TabContent value="tab2" />
+        <TabContent value="tab3" />
       </Tabs>
     </div>
   );
