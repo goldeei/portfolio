@@ -1,20 +1,41 @@
-import { ReactElement } from "react";
-
-import { Tabs as STabs } from "../ui/tabs";
-import { TabContent } from "./tab-content";
-import { TabList } from "./tab-list";
+import { Label } from '../ui/label';
+import { RadioGroup, RadioGroupItem } from '../ui/radio-group';
 
 interface TabGroupProps {
-  children:
-    | ReactElement<typeof TabList>
-    | ReactElement<typeof TabContent>
-    | ReactElement<typeof TabContent>[];
-
-  defaultValue: string;
+  tabs: {
+    label: string;
+    value: string;
+    content: React.ReactNode;
+  }[];
+  defaultValue?: string;
 }
 
 export const Tabs = ({ ...props }: TabGroupProps) => {
-  const { children, defaultValue } = props;
+  const { tabs } = props;
 
-  return <STabs defaultValue={defaultValue}>{children}</STabs>;
+  return (
+    <div className="flex gap-12">
+      <RadioGroup>
+        <div>
+          {tabs.map(({ label, value }) => (
+            <RadioGroupItem key={value} value={value}>
+              {label}
+            </RadioGroupItem>
+          ))}
+        </div>
+        <div>
+          {tabs.map(({ label, value }) => (
+            <Label key={value} value={value}>
+              {label}
+            </Label>
+          ))}
+        </div>
+      </RadioGroup>
+      <div>
+        {tabs.map(({ value, content }) => (
+          <div key={value}>{content}</div>
+        ))}
+      </div>
+    </div>
+  );
 };
