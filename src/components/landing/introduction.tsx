@@ -1,5 +1,7 @@
-import { LandingSpot } from '@/components/landing-spot';
-import { LandingPosition } from '@/types/landingPosition';
+import { LandingSpot } from "@/components/landing-spot";
+import { LandingPosition } from "@/types/landingPosition";
+
+import { TabContent, TabList, Tabs, TabSelector } from "../tabs";
 
 export const Introduction = () => {
   return (
@@ -19,6 +21,16 @@ export const Introduction = () => {
         and managing complex data. I like exploring unique ways to make data
         digestible and experimenting with new web design methods.
       </p>
+      <Tabs>
+        <TabList>
+          <TabSelector />
+          <TabSelector />
+          <TabSelector />
+        </TabList>
+        <TabContent />
+        <TabContent />
+        <TabContent />
+      </Tabs>
     </div>
   );
 };
