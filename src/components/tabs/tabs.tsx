@@ -1,4 +1,4 @@
-import { cn } from '@/lib/style-utils';
+import { cn, hslVarToHex } from '@/lib/style-utils';
 import { motion } from 'motion/react';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Label } from '../ui/label';
@@ -97,25 +97,34 @@ export const Tabs = ({ ...props }: TabGroupProps) => {
                 {value === selectedTab && (
                   <motion.div
                     ref={indicatorRef}
-                    className={cn(
-                      'size-6 border-2 border-accent bg-secondary shadow-inner',
-                    )}
-                    style={{ clipPath: 'inset(0 0 0 0)' }}
                     layoutId="active-indicator"
                     id="active-indicator"
-                    animate={{
-                      clipPath: [
-                        'inset(0 0 0 0)',
-                        indicatorClip,
-                        indicatorClip,
-                        'inset(0 0 0 0)',
-                      ],
-                    }}
                     transition={{
-                      duration: 0.3,
-                      times: [0, 0.15, 0.85, 1],
+                      duration: 0.75,
+                      ease: 'anticipate', // Easing function
                     }}
-                  />
+                  >
+                    <motion.svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width={'100%'}
+                      height={'100%'}
+                      viewBox="0 0 100 100"
+                      fill={hslVarToHex('--secondary')}
+                    >
+                      <motion.ellipse
+                        cx="50"
+                        cy="50"
+                        ry="40"
+                        animate={{
+                          rx: [40, 15, 40], // Keyframes for rx
+                        }}
+                        transition={{
+                          duration: 0.75, // Duration of the animation
+                          ease: 'anticipate', // Easing function
+                        }}
+                      />
+                    </motion.svg>
+                  </motion.div>
                 )}
               </div>
             </motion.li>
