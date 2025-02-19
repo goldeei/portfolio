@@ -1,6 +1,5 @@
-import { cn } from '@/lib/style-utils';
 import { motion } from 'motion/react';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useMemo, useState } from 'react';
 
 import { ActiveIndicator } from './active-indicator';
 
