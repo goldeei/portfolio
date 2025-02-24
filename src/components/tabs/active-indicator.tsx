@@ -1,21 +1,19 @@
 import { hslVarToHex } from '@/lib/style-utils';
-import { motion, Transition } from 'motion/react';
+import { motion } from 'motion/react';
+import { indicatorSize, trackWidthOffset, transitionProps } from './constants';
 
 interface ActiveIndicatorProps {
-  width: number;
-  trackWidthOffset: number;
   value: string;
   isActive: boolean;
-  transitionProps: Transition;
 }
 
 export const ActiveIndicator = ({ ...props }: ActiveIndicatorProps) => {
-  const { width, trackWidthOffset, isActive, value, transitionProps } = props;
+  const { isActive, value } = props;
 
   return (
     <div
       className="rounded-full bg-accent shadow-inner transition-colors"
-      style={{ width, height: width }}
+      style={{ width: indicatorSize, height: indicatorSize }}
     >
       {isActive && (
         <motion.div

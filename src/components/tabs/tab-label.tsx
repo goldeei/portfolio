@@ -1,0 +1,29 @@
+import { hslVarToHex } from '@/lib/style-utils';
+import { motion } from 'motion/react';
+import { transitionProps } from './constants';
+
+interface TabLabelProps {
+  label: string;
+  isActive: boolean;
+}
+
+export const TabLabel = ({ ...props }: TabLabelProps) => {
+  const { isActive, label } = props;
+
+  return (
+    <motion.div
+      initial={false}
+      className="text-sm font-bold uppercase"
+      whileHover={{
+        textDecoration: 'underline',
+        textUnderlineOffset: '4px',
+      }}
+      animate={{
+        color: isActive ? hslVarToHex('--secondary') : hslVarToHex('--primary'),
+      }}
+      transition={transitionProps}
+    >
+      {label}
+    </motion.div>
+  );
+};

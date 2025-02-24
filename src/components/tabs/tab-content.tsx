@@ -1,13 +1,13 @@
-import { AnimatePresence, motion, Transition } from 'motion/react';
+import { AnimatePresence, motion } from 'motion/react';
+import { transitionProps } from './constants';
 
 interface TabContentProps {
   value: string;
   header: string;
   children: string | React.ReactNode;
-  transitionProps: Transition;
 }
 export const TabContent = ({ ...props }: TabContentProps) => {
-  const { value, header, children, transitionProps } = props;
+  const { value, header, children } = props;
 
   return (
     <AnimatePresence mode="wait">
