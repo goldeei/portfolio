@@ -20,7 +20,7 @@ export const Tabs = ({ ...props }: TabGroupProps) => {
   const [selectedTab, setSelectedTab] = useState(defaultTab || 0);
 
   return (
-    <div className="flex h-96 gap-12">
+    <div className="flex gap-12">
       <div className="rounded">
         <nav className="relative h-full">
           <ul className="flex h-full flex-col justify-between">
