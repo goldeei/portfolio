@@ -20,8 +20,8 @@ export const Tabs = ({ ...props }: TabGroupProps) => {
   const [selectedTab, setSelectedTab] = useState(defaultTab || 0);
 
   return (
-    <div className="flex gap-8">
-      <div className="rounded bg-accent p-4">
+    <div className="flex gap-8 border-2 border-accent">
+      <div className="rounded bg-accent p-4 shadow-lg">
         <nav className="relative h-full">
           <ul className="flex h-full flex-col justify-between">
             {tabs.map(({ value, label }, idx) => (
