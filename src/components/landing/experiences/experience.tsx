@@ -1,12 +1,18 @@
 import { ExperienceProps } from './types';
 
+const dateOptions: Intl.DateTimeFormatOptions = {
+  year: 'numeric',
+  month: '2-digit',
+};
+
 export const Experience = ({ ...props }: ExperienceProps) => {
   const { startDate, endDate, summary, achievements, projects } = props;
 
   return (
     <div className="flex max-h-full flex-col gap-4">
       <div className="text-sm text-secondary/80">
-        {startDate.toLocaleDateString()} - {endDate.toLocaleString()}
+        {startDate.toLocaleDateString(undefined, dateOptions)} -{' '}
+        {endDate.toLocaleString(undefined, dateOptions)}
       </div>
       <div className="">{summary}</div>
 
