@@ -20,8 +20,8 @@ export const Tabs = ({ ...props }: TabGroupProps) => {
   const [selectedTab, setSelectedTab] = useState(defaultTab || 0);
 
   return (
-    <div className="flex gap-12">
-      <div className="rounded">
+    <div className="flex gap-8">
+      <div className="rounded bg-accent p-4">
         <nav className="relative h-full">
           <ul className="flex h-full flex-col justify-between">
             {tabs.map(({ value, label }, idx) => (
@@ -36,7 +36,7 @@ export const Tabs = ({ ...props }: TabGroupProps) => {
             ))}
           </ul>
           <div
-            className="absolute h-full rounded-full bg-accent"
+            className="absolute h-full rounded-full bg-background"
             style={{
               width: trackWidth,
               left: (indicatorSize - trackWidth) / 2,

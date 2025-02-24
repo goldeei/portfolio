@@ -12,7 +12,7 @@ export const ActiveIndicator = ({ ...props }: ActiveIndicatorProps) => {
 
   return (
     <div
-      className="rounded-full bg-accent shadow-inner transition-colors"
+      className="rounded-full bg-background shadow-inner transition-colors"
       style={{ width: indicatorSize, height: indicatorSize }}
     >
       {isActive && (
