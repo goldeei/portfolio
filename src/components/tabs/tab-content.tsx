@@ -16,7 +16,7 @@ export const TabContent = ({ ...props }: TabContentProps) => {
         initial={{ y: 10, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: -10, opacity: 0 }}
-        className="relative overflow-auto py-4 text-secondary"
+        className="relative overflow-auto py-8 text-secondary"
         transition={transitionProps}
       >
         <h3 className="sticky inset-0 bg-background pb-1 text-2xl font-medium">
