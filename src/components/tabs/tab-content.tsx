@@ -16,10 +16,12 @@ export const TabContent = ({ ...props }: TabContentProps) => {
         initial={{ y: 10, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: -10, opacity: 0 }}
-        className="text-secondary"
+        className="relative overflow-auto text-secondary"
         transition={transitionProps}
       >
-        <div className="mb-4 text-lg font-medium">{header}</div>
+        <h3 className="sticky inset-0 bg-background pb-1 text-2xl font-medium">
+          {header}
+        </h3>
         <div>{children}</div>
       </motion.div>
     </AnimatePresence>
