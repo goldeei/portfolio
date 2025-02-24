@@ -14,10 +14,6 @@ export const TabLabel = ({ ...props }: TabLabelProps) => {
     <motion.div
       initial={false}
       className="text-sm font-bold uppercase"
-      whileHover={{
-        textDecoration: 'underline',
-        textUnderlineOffset: '4px',
-      }}
       animate={{
         color: isActive ? hslVarToHex('--secondary') : hslVarToHex('--primary'),
       }}
