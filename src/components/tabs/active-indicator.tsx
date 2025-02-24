@@ -5,10 +5,12 @@ interface ActiveIndicatorProps {
   trackWidthOffset: number;
   value: string;
   selectedTab: string;
+  transitionProps: { duration: number; easing: string };
 }
 
 export const ActiveIndicator = ({ ...props }: ActiveIndicatorProps) => {
-  const { width, trackWidthOffset, value, selectedTab } = props;
+  const { width, trackWidthOffset, value, selectedTab, transitionProps } =
+    props;
 
   return (
     <div
@@ -19,10 +21,7 @@ export const ActiveIndicator = ({ ...props }: ActiveIndicatorProps) => {
         <motion.div
           layoutId="active-indicator"
           id="active-indicator"
-          transition={{
-            duration: 0.5,
-            ease: 'easeInOut', // Easing function
-          }}
+          transition={transitionProps}
         >
           <motion.svg
             xmlns="http://www.w3.org/2000/svg"
@@ -40,8 +39,7 @@ export const ActiveIndicator = ({ ...props }: ActiveIndicatorProps) => {
                 ry: [40, 60 * trackWidthOffset, 60 * trackWidthOffset, 40],
               }}
               transition={{
-                duration: 0.5,
-                ease: 'easeInOut',
+                ...transitionProps,
                 times: [0, 0.2, 0.8, 1],
               }}
             />

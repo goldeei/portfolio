@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { useMemo, useState } from 'react';
 
+import { hslVarToHex } from '@/lib/style-utils';
 import { ActiveIndicator } from './active-indicator';
 
 interface TabGroupProps {
@@ -14,18 +15,13 @@ interface TabGroupProps {
 }
 
 const indicatorWidth = 24;
-const trackWidthOffset = 0.3;
+const trackWidthOffset = 0.2;
 const trackWidth = indicatorWidth * trackWidthOffset;
+const transitionProps = { duration: 0.4, easing: 'easeInOut' };
 
 export const Tabs = ({ ...props }: TabGroupProps) => {
-  const { tabs, defaultValue, onValueChange } = props;
+  const { tabs, defaultValue } = props;
   const [selectedTab, setSelectedTab] = useState(defaultValue);
-  const handleChange = (v: string) => {
-    setSelectedTab(v);
-    if (onValueChange) {
-      onValueChange(v);
-    }
-  };
 
   const content = useMemo(
     () => tabs.find((tab) => tab.value === selectedTab)?.content,
@@ -34,44 +30,53 @@ export const Tabs = ({ ...props }: TabGroupProps) => {
 
   return (
     <div className="flex h-96 gap-12">
-      <nav>
-        <ul className="relative flex h-full w-fit flex-col justify-between gap-0">
-          {tabs.map(({ value, label }) => (
-            <motion.li
-              key={value}
-              initial={false}
-              className="flex cursor-pointer items-center justify-between gap-4 py-4"
-              onClick={() => setSelectedTab(value)}
-              whileHover={{ color: '#fff' }}
-            >
-              <motion.div
+      <div className="rounded">
+        <nav className="relative h-full">
+          <ul className="flex h-full flex-col justify-between">
+            {tabs.map(({ value, label }) => (
+              <motion.li
+                key={value}
                 initial={false}
-                animate={{
-                  color:
-                    value === selectedTab
-                      ? 'text-secondary'
-                      : 'text-secondary/50',
-                }}
+                className="z-10 flex cursor-pointer items-center gap-4 py-2"
+                onClick={() => setSelectedTab(value)}
               >
-                {label}
-              </motion.div>
-              <ActiveIndicator
-                width={indicatorWidth}
-                trackWidthOffset={trackWidthOffset}
-                value={value}
-                selectedTab={selectedTab}
-              />
-            </motion.li>
-          ))}
+                <ActiveIndicator
+                  width={indicatorWidth}
+                  trackWidthOffset={trackWidthOffset}
+                  value={value}
+                  selectedTab={selectedTab}
+                  transitionProps={transitionProps}
+                />
+                <motion.div
+                  initial={false}
+                  className="text-sm font-bold uppercase"
+                  whileHover={{
+                    textDecoration: 'underline',
+                    textUnderlineOffset: '4px',
+                  }}
+                  animate={{
+                    color:
+                      value === selectedTab
+                        ? hslVarToHex('--secondary')
+                        : hslVarToHex('--primary'),
+                  }}
+                  transition={transitionProps}
+                >
+                  {label}
+                </motion.div>
+              </motion.li>
+            ))}
+          </ul>
           <div
-            className="absolute -z-50 h-full rounded-full bg-accent"
+            className="absolute h-full rounded-full bg-accent"
             style={{
               width: trackWidth,
-              right: (indicatorWidth - trackWidth) / 2,
+              left: (indicatorWidth - trackWidth) / 2,
+              top: 0,
             }}
           />
-        </ul>
-      </nav>
+        </nav>
+      </div>
       <div>{content}</div>
     </div>
   );
