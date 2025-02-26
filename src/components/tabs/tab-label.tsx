@@ -3,25 +3,31 @@ import { motion } from 'motion/react';
 import { transitionProps } from './constants';
 
 interface TabLabelProps {
-  label: string;
   isActive: boolean;
+  label: string;
+  subLabel?: string;
 }
 
 export const TabLabel = ({ ...props }: TabLabelProps) => {
-  const { isActive, label } = props;
+  const { isActive, label, subLabel } = props;
 
   return (
     <motion.div
       initial={false}
-      className="text-sm font-bold uppercase"
       animate={{
         color: isActive
-          ? hslVarToHex('--color-secondary')
-          : hslVarToHex('--color-primary'),
+          ? 'var(--color-secondary)'
+          : 'var(--color-secondary-80)',
+        scale: isActive ? 1.025 : 1,
       }}
       transition={transitionProps}
     >
-      {label}
+      <div className="font-medium uppercase">{label}</div>
+      {subLabel && (
+        <div className="text-xs leading-2 font-light whitespace-nowrap">
+          {subLabel}
+        </div>
+      )}
     </motion.div>
   );
 };

@@ -8,6 +8,7 @@ import { TabLabel } from './tab-label';
 export interface TabGroupProps {
   tabs: {
     label: string;
+    subLabel?: string;
     value: string;
     content: { header: string; body: string | React.ReactNode };
   }[];
@@ -33,7 +34,7 @@ export const Tabs = ({ ...props }: TabGroupProps) => {
       <div className="rounded p-4">
         <nav className="relative h-full">
           <ul className="flex h-full flex-col justify-between">
-            {tabs.map(({ value, label }, idx) => (
+            {tabs.map(({ value, label, subLabel }, idx) => (
               <li
                 key={value}
                 className="flex cursor-pointer items-center gap-4 py-2"
@@ -43,7 +44,11 @@ export const Tabs = ({ ...props }: TabGroupProps) => {
                   value={value}
                   isActive={idx === currentTabIdx}
                 />
-                <TabLabel label={label} isActive={idx === currentTabIdx} />
+                <TabLabel
+                  label={label}
+                  subLabel={subLabel}
+                  isActive={idx === currentTabIdx}
+                />
               </li>
             ))}
           </ul>
