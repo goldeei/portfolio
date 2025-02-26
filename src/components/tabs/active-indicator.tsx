@@ -12,7 +12,7 @@ export const ActiveIndicator = ({ ...props }: ActiveIndicatorProps) => {
 
   return (
     <div
-      className="bg-background rounded-full inset-shadow-sm transition-colors"
+      className="bg-accent flex items-center justify-center rounded-full inset-shadow-sm transition-colors"
       style={{ width: indicatorSize, height: indicatorSize }}
     >
       {isActive && (
@@ -20,30 +20,26 @@ export const ActiveIndicator = ({ ...props }: ActiveIndicatorProps) => {
           key={value}
           layoutId="active-indicator"
           id="active-indicator"
-          transition={transitionProps}
-        >
-          <motion.svg
-            xmlns="http://www.w3.org/2000/svg"
-            width={'100%'}
-            height={'100%'}
-            viewBox={`0 0 100 100`}
-            fill={hslVarToHex('--color-secondary')}
-          >
-            <motion.ellipse
-              cx="50"
-              cy="50"
-              ry="40"
-              animate={{
-                rx: [40, 60 * trackWidthOffset, 60 * trackWidthOffset, 40],
-                ry: [40, 60 * trackWidthOffset, 60 * trackWidthOffset, 40],
-              }}
-              transition={{
-                ...transitionProps,
-                times: [0, 0.2, 0.8, 1],
-              }}
-            />
-          </motion.svg>
-        </motion.div>
+          className="bg-secondary outline-secondary/50 z-50 size-full rounded-full shadow outline-1"
+          animate={{
+            width: [
+              '90%',
+              `${100 * trackWidthOffset}%`,
+              `${100 * trackWidthOffset}%`,
+              '90%',
+            ],
+            height: [
+              '90%',
+              `${100 * trackWidthOffset}%`,
+              `${100 * trackWidthOffset}%`,
+              '90%',
+            ],
+          }}
+          transition={{
+            ...transitionProps,
+            times: [0, 0.2, 0.8, 1],
+          }}
+        />
       )}
     </div>
   );
