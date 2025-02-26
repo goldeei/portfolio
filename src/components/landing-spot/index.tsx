@@ -83,7 +83,7 @@ export const LandingSpot = ({ ...props }: LandingSpotProps) => {
       className={clsx(
         'w-full',
         position,
-        hasDivider && 'h-1 rounded bg-accent shadow-inner',
+        hasDivider && 'bg-accent h-1 rounded inset-shadow-sm',
         !hasDivider && 'h-0',
         !isVisible && 'opacity-0',
         className,
@@ -95,14 +95,14 @@ export const LandingSpot = ({ ...props }: LandingSpotProps) => {
       >
         <Diamond
           ref={diamondRef}
-          className={clsx('size-36', hasDiamond && 'bg-accent shadow-inner')}
+          className={clsx('size-36', hasDiamond && 'bg-accent inset-shadow-sm')}
           style={{
             transform: `rotateX(${degToRad(90) - DEFAULT_SUBJECT_ROTATION.x}rad)`,
           }}
         />
         {debug && (
-          <div className="absolute left-1/2 top-1/2 size-6 -translate-x-1/2 -translate-y-1/2 rounded-full border bg-secondary/50">
-            <div className="absolute left-1/2 top-full -translate-x-1/2 text-center text-xs font-bold text-secondary">
+          <div className="bg-secondary/50 absolute top-1/2 left-1/2 size-6 -translate-x-1/2 -translate-y-1/2 rounded-full border">
+            <div className="text-secondary absolute top-full left-1/2 -translate-x-1/2 text-center text-xs font-bold">
               {name}
             </div>
           </div>

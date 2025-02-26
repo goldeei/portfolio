@@ -7,7 +7,7 @@ export const Brand = () => {
     <div className="relative flex size-fit items-center justify-center">
       <Button
         variant="link"
-        className="z-10 size-16 border-none p-0 shadow-inner transition-transform hover:-translate-y-0.5 [&_svg]:size-full"
+        className="z-10 size-16 border-none p-0 inset-shadow-sm transition-transform hover:-translate-y-0.5 [&_svg]:size-full"
       >
         <Logo />
       </Button>
