@@ -111,7 +111,7 @@ export const CubeMesh = ({ ...props }: CubeMeshProps) => {
           <meshStandardMaterial
             roughness={0.5}
             metalness={0.4}
-            color={hslVarToHex('--primary')}
+            color={hslVarToHex('--color-primary')}
           />
           {/* <meshDistanceMaterial near={1} far={10} /> */}
         </RoundedBox>
@@ -125,9 +125,9 @@ export const CubeMesh = ({ ...props }: CubeMeshProps) => {
           <animated.meshStandardMaterial
             roughness={0}
             metalness={1}
-            color={hslVarToHex('--accent')}
+            color={hslVarToHex('--color-accent')}
             transparent
-            emissive={hslVarToHex('--secondary')}
+            emissive={hslVarToHex('--color-secondary')}
             emissiveIntensity={springs[0].emissive}
             opacity={0.75}
           />
@@ -141,9 +141,9 @@ export const CubeMesh = ({ ...props }: CubeMeshProps) => {
         >
           <animated.meshStandardMaterial
             roughness={1}
-            color={hslVarToHex('--accent')}
+            color={hslVarToHex('--color-accent')}
             transparent
-            emissive={hslVarToHex('--secondary')}
+            emissive={hslVarToHex('--color-secondary')}
             emissiveIntensity={springs[1].emissive}
             opacity={0.75}
           />

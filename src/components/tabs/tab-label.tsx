@@ -15,7 +15,9 @@ export const TabLabel = ({ ...props }: TabLabelProps) => {
       initial={false}
       className="text-sm font-bold uppercase"
       animate={{
-        color: isActive ? hslVarToHex('--secondary') : hslVarToHex('--primary'),
+        color: isActive
+          ? hslVarToHex('--color-secondary')
+          : hslVarToHex('--color-primary'),
       }}
       transition={transitionProps}
     >

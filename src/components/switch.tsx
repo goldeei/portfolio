@@ -13,8 +13,8 @@ const StatusText = ({ isChecked }: StatusTextProps) => {
       className={cx(
         'absolute w-full text-xs font-semibold',
         isChecked
-          ? 'ps-1.5 text-start text-accent'
-          : 'pe-1.5 text-end text-primary',
+          ? 'text-accent ps-1.5 text-start'
+          : 'text-primary pe-1.5 text-end',
       )}
     >
       {isChecked ? 'on' : 'off'}
@@ -53,8 +53,8 @@ export const Switch = ({ ...props }: SwitchProps) => {
     <SSwitch
       onClick={handleSwitchChange}
       checked={isChecked}
-      className={clsx('relative border-2 shadow-inner', {
-        'border-white/50 bg-secondary text-secondary': isChecked,
+      className={clsx('relative border-2 inset-shadow-xs', {
+        'bg-secondary text-secondary border-white/50': isChecked,
         'border-primary text-background [&>span]:bg-primary': !isChecked,
       })}
       label={hasOnOffLabel ? <StatusText isChecked={isChecked} /> : undefined}

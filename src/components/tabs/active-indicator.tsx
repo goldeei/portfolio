@@ -12,7 +12,7 @@ export const ActiveIndicator = ({ ...props }: ActiveIndicatorProps) => {
 
   return (
     <div
-      className="rounded-full bg-background shadow-inner transition-colors"
+      className="bg-background rounded-full shadow-inner transition-colors"
       style={{ width: indicatorSize, height: indicatorSize }}
     >
       {isActive && (
@@ -27,7 +27,7 @@ export const ActiveIndicator = ({ ...props }: ActiveIndicatorProps) => {
             width={'100%'}
             height={'100%'}
             viewBox={`0 0 100 100`}
-            fill={hslVarToHex('--secondary')}
+            fill={hslVarToHex('--color-secondary')}
           >
             <motion.ellipse
               cx="50"

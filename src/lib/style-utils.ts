@@ -28,13 +28,16 @@ export const getCSSVar = (varName: string) =>
  * @param colorVariableName - The name of the CSS variable containing the HSL value.
  * @returns The hex color string.
  */
-export function hslVarToHex(colorVariableName: string): string {
+export function hslVarToHex(
+  colorVariableName: string,
+  isHslValue: boolean = true,
+): string {
   // Get the raw HSL value from the CSS variable
   const rawHSL = getCSSVar(colorVariableName);
 
   // Convert the raw HSL string to an array of numbers
   const hslValueArray = rawHSL
-    .replaceAll('%', '')
+    .replace(/[^\d\s]/g, '')
     .split(' ')
     .map((v) => Number(v)) as HSL;
 
