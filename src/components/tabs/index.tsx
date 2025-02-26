@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { ActiveIndicator } from './active-indicator';
 import { indicatorSize, trackWidth } from './constants';
@@ -17,7 +17,16 @@ export interface TabGroupProps {
 
 export const Tabs = ({ ...props }: TabGroupProps) => {
   const { tabs, defaultTab } = props;
-  const [selectedTab, setSelectedTab] = useState(defaultTab || 0);
+
+  const [currentTabIdx, setCurrentTabIdx] = useState(defaultTab || 0);
+  const [direction, setDirection] = useState(0);
+
+  const handleTabChange = (selectedTabIdx: number) => {
+    if (selectedTabIdx === currentTabIdx) return;
+
+    selectedTabIdx < currentTabIdx ? setDirection(-1) : setDirection(1);
+    setCurrentTabIdx(selectedTabIdx);
+  };
 
   return (
     <div className="flex gap-8">
@@ -27,16 +36,19 @@ export const Tabs = ({ ...props }: TabGroupProps) => {
             {tabs.map(({ value, label }, idx) => (
               <li
                 key={value}
-                className="z-10 flex cursor-pointer items-center gap-4 py-2"
-                onClick={() => setSelectedTab(idx)}
+                className="flex cursor-pointer items-center gap-4 py-2"
+                onClick={() => handleTabChange(idx)}
               >
-                <ActiveIndicator value={value} isActive={idx === selectedTab} />
-                <TabLabel label={label} isActive={idx === selectedTab} />
+                <ActiveIndicator
+                  value={value}
+                  isActive={idx === currentTabIdx}
+                />
+                <TabLabel label={label} isActive={idx === currentTabIdx} />
               </li>
             ))}
           </ul>
           <div
-            className="bg-accent absolute h-full rounded-full"
+            className="bg-accent absolute h-full rounded-full inset-shadow-sm"
             style={{
               width: trackWidth,
               left: (indicatorSize - trackWidth) / 2,
@@ -46,10 +58,10 @@ export const Tabs = ({ ...props }: TabGroupProps) => {
         </nav>
       </div>
       <TabContent
-        value={tabs[selectedTab].value}
-        header={tabs[selectedTab].content.header}
+        value={tabs[currentTabIdx].value}
+        header={tabs[currentTabIdx].content.header}
       >
-        {tabs[selectedTab].content.body}
+        {tabs[currentTabIdx].content.body}
       </TabContent>
     </div>
   );
