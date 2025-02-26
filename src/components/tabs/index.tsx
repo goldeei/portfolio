@@ -30,7 +30,7 @@ export const Tabs = ({ ...props }: TabGroupProps) => {
   };
 
   return (
-    <div className="flex gap-8">
+    <div className="flex h-full gap-8">
       <div className="rounded p-4">
         <nav className="relative h-full">
           <ul className="flex h-full flex-col justify-between">
