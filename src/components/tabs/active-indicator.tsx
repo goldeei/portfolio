@@ -12,7 +12,7 @@ export const ActiveIndicator = ({ ...props }: ActiveIndicatorProps) => {
 
   return (
     <div
-      className="bg-accent flex items-center justify-center rounded-full inset-shadow-sm transition-colors"
+      className="bg-accent z-10 flex items-center justify-center rounded-full inset-shadow-sm transition-colors"
       style={{ width: indicatorSize, height: indicatorSize }}
     >
       {isActive && (
@@ -20,7 +20,7 @@ export const ActiveIndicator = ({ ...props }: ActiveIndicatorProps) => {
           key={value}
           layoutId="active-indicator"
           id="active-indicator"
-          className="bg-secondary outline-secondary/50 z-50 size-full rounded-full shadow outline-1"
+          className="border-secondary bg-secondary/80 size-full rounded-full border-2 shadow outline-2"
           animate={{
             width: [
               '90%',
