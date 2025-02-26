@@ -1,6 +1,5 @@
 export interface ExperienceProps {
-  startDate: Date;
-  endDate: Date | 'Present';
+  date: string;
   summary: string;
   achievements: string[];
   projects: string[];

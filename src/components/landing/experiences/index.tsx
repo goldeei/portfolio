@@ -5,31 +5,34 @@ import { Experience } from './experience';
 export const Experiences = () => {
   return (
     <div className="flex h-screen flex-col justify-center gap-6">
-      <h1 className="text-4xl font-medium text-primary">Experiences</h1>
+      <h1 className="text-primary text-4xl font-medium">Experiences</h1>
       <Tabs
         defaultTab={0}
         tabs={[
           {
             label: 'composecure',
+            subLabel: composecure.date,
             value: 'composecure',
             content: {
-              header: 'Composecure',
+              header: 'UI/UX Engineer',
               body: <Experience {...composecure} />,
             },
           },
           {
             label: 'Rutgers - dcs',
+            subLabel: dcs.date,
             value: 'dcs',
             content: {
-              header: 'Rutgers - Digital Classroom Services',
+              header: 'Special Project Manager/Web Developer',
               body: <Experience {...dcs} />,
             },
           },
           {
             label: 'Rutgers - OIT',
+            subLabel: oit.date,
             value: 'oit',
             content: {
-              header: 'Rutgers - Office of Information Technology',
+              header: 'Multimedia Specialist',
               body: <Experience {...oit} />,
             },
           },
