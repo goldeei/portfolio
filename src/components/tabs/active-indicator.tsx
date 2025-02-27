@@ -1,46 +1,42 @@
-import { hslVarToHex } from '@/lib/style-utils';
-import { motion } from 'motion/react';
-import { indicatorSize, trackWidthOffset, transitionProps } from './constants';
-
+import { cn } from '@/lib/style-utils';
+import { AnimatePresence, motion } from 'motion/react';
 interface ActiveIndicatorProps {
   value: string;
   isActive: boolean;
+  orientation: 'vertical' | 'horizontal';
 }
 
 export const ActiveIndicator = ({ ...props }: ActiveIndicatorProps) => {
-  const { isActive, value } = props;
+  const { isActive, value, orientation } = props;
 
   return (
     <div
-      className="bg-accent z-10 flex items-center justify-center rounded-full inset-shadow-sm transition-colors"
-      style={{ width: indicatorSize, height: indicatorSize }}
-    >
-      {isActive && (
-        <motion.div
-          key={value}
-          layoutId="active-indicator"
-          id="active-indicator"
-          className="border-secondary bg-secondary/80 size-full rounded-full border-2 shadow outline-2"
-          animate={{
-            width: [
-              '90%',
-              `${100 * trackWidthOffset}%`,
-              `${100 * trackWidthOffset}%`,
-              '90%',
-            ],
-            height: [
-              '90%',
-              `${100 * trackWidthOffset}%`,
-              `${100 * trackWidthOffset}%`,
-              '90%',
-            ],
-          }}
-          transition={{
-            ...transitionProps,
-            times: [0, 0.2, 0.8, 1],
-          }}
-        />
+      className={cn(
+        'bg-accent relative flex items-center justify-center rounded-full inset-shadow-sm transition-colors [&>div]:absolute [&>div]:rounded-full',
+        orientation === 'vertical'
+          ? 'h-11 w-5 [&>div]:h-9 [&>div]:w-3'
+          : 'h-3 w-10 [&>div]:h-3 [&>div]:w-9',
       )}
+    >
+      <div
+        className={cn(
+          'to-secondary/95 from-secondary/30 outline-secondary/50 h-14 bg-linear-to-t from-90% via-100% to-117% shadow inset-shadow-sm outline',
+        )}
+      />
+      <AnimatePresence mode="wait">
+        {isActive && (
+          <motion.div
+            key={value}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 100 }}
+            exit={{ opacity: 0 }}
+            transition={{
+              ease: 'backIn',
+            }}
+            className="bg-secondary/95 shadow-secondary shadow"
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 };

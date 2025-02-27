@@ -1,6 +1,4 @@
-import { hslVarToHex } from '@/lib/style-utils';
 import { motion } from 'motion/react';
-import { transitionProps } from './constants';
 
 interface TabLabelProps {
   isActive: boolean;
@@ -17,10 +15,12 @@ export const TabLabel = ({ ...props }: TabLabelProps) => {
       animate={{
         color: isActive
           ? 'var(--color-secondary)'
-          : 'var(--color-secondary-80)',
+          : 'var(--color-secondary-60)',
         scale: isActive ? 1.025 : 1,
       }}
-      transition={transitionProps}
+      transition={{
+        ease: 'backIn',
+      }}
     >
       <div className="font-medium uppercase">{label}</div>
       {subLabel && (
