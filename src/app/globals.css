@@ -16,7 +16,8 @@ body {
   --color-primary: hsl(360 100% 70%);
   --color-primary-foreground: hsl(0 0% 98%);
   --color-secondary: hsl(219 100% 87%);
-  --color-secondary-80: hsla(219, 100%, 87%, 0.399);
+  --color-secondary-60: hsla(219, 100%, 87%, 0.6);
+  --color-secondary-75: hsla(219, 100%, 87%, 0.75);
   --color-secondary-foreground: hsl(0 0% 9%);
   --color-muted: hsl(0 0% 96.1%);
   --color-muted-foreground: hsl(0 0% 45.1%);
