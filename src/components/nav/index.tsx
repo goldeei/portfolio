@@ -3,7 +3,7 @@
 import { Button } from '@/components/button';
 import { MenuSolid, X } from '@mynaui/icons-react';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useWindowSize } from 'usehooks-ts';
 import { Brand } from './brand';
 import { useNavItems } from './nav-items';
@@ -11,7 +11,12 @@ import { useNavItems } from './nav-items';
 export const Nav = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const { width } = useWindowSize();
+  const { width } = useWindowSize({ debounceDelay: 50 });
+  useEffect(() => {
+    if (width > 768 && isMobileMenuOpen) {
+      setIsMobileMenuOpen(false);
+    }
+  }, [width]);
 
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
 
