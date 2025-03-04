@@ -4,8 +4,9 @@ import { CubeIcon } from '@/assets/icons';
 import { Button } from '@/components/button';
 import { Switch } from '@/components/switch';
 import { useR3fState } from '@/context/r3fProvider';
-import { DownloadSolid, MenuSolid } from '@mynaui/icons-react';
+import { DownloadSolid, MenuSolid, X } from '@mynaui/icons-react';
 
+import { cn } from '@/lib/style-utils';
 import { useEffect, useState } from 'react';
 import { useWindowSize } from 'usehooks-ts';
 import { Brand } from './brand';
@@ -29,9 +30,9 @@ export const Nav = () => {
 
   return (
     <nav className="relative z-50 flex h-[var(--navbar-height)] items-center justify-between">
-      <Brand />
+      <Brand className={'size-11 md:size-16'} />
       <Button
-        icon={<MenuSolid />}
+        icon={isMobileMenuOpen ? <X /> : <MenuSolid />}
         className="md:hidden"
         onClick={toggleMobileMenu}
       />
@@ -41,16 +42,16 @@ export const Nav = () => {
         ))}
       </div>
       {isMobileMenuOpen && (
-        <div className="bg-accent/80 absolute top-full w-full rounded p-4 shadow-lg backdrop-blur-lg md:hidden">
+        <div className="bg-accent/80 border-secondary/10 absolute top-full w-full rounded border px-4 shadow-lg backdrop-blur-lg md:hidden">
           {navLinks.map((link) => (
             <div
               key={link.key}
-              className="border-secondary/20 border-b py-2 [&_*]:w-full"
+              className="border-secondary/10 border-b py-2 [&_*]:w-full"
             >
               {link.component}
             </div>
           ))}
-          <div className="mt-4 flex flex-wrap justify-around gap-2">
+          <div className="my-4 flex flex-wrap justify-around gap-4">
             {controls.map((control) => (
               <div key={control.key}>{control.component}</div>
             ))}
