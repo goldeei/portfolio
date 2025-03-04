@@ -30,7 +30,7 @@ export const Nav = () => {
 
   return (
     <nav className="relative z-50 flex h-[var(--navbar-height)] items-center justify-between">
-      <Brand className={'size-11 md:size-16'} />
+      <Brand className={'size-11 min-w-11 md:size-16'} />
       <Button
         icon={isMobileMenuOpen ? <X /> : <MenuSolid />}
         className="md:hidden"
