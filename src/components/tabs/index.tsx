@@ -32,8 +32,8 @@ export const Tabs = ({ ...props }: TabGroupProps) => {
   return (
     <div className="flex h-full gap-8">
       <nav className="relative">
-        <ul className="relative flex flex-col justify-between gap-12">
-          <div className="absolute inset-0 -z-10 flex w-5 justify-center">
+        <ul className="relative flex h-full flex-col justify-center gap-12">
+          <div className="absolute inset-0 -z-10 flex h-full w-5 justify-center">
             <div className="bg-accent absolute h-full w-1" />
           </div>
           {tabs.map(({ value, label, subLabel }, idx) => (
