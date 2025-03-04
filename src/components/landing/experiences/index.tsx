@@ -9,6 +9,7 @@ export const Experiences = () => {
       <div className="h-full max-h-3/5">
         <Tabs
           defaultTab={0}
+          orientation="horizontal"
           tabs={[
             {
               label: 'composecure',

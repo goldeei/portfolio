@@ -21,12 +21,11 @@ export const TabLabel = ({ ...props }: TabLabelProps) => {
       transition={{
         ease: 'backIn',
       }}
+      className="whitespace-nowrap"
     >
       <div className="font-medium uppercase">{label}</div>
       {subLabel && (
-        <div className="text-xs leading-2 font-light whitespace-nowrap">
-          {subLabel}
-        </div>
+        <div className="text-xs leading-2 font-light">{subLabel}</div>
       )}
     </motion.div>
   );
