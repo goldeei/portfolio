@@ -1,21 +1,14 @@
 'use client';
 
-import { CubeIcon } from '@/assets/icons';
 import { Button } from '@/components/button';
-import { Switch } from '@/components/switch';
-import { useR3fState } from '@/context/r3fProvider';
-import { DownloadSolid, MenuSolid, X } from '@mynaui/icons-react';
+import { MenuSolid, X } from '@mynaui/icons-react';
 
-import { cn } from '@/lib/style-utils';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useWindowSize } from 'usehooks-ts';
 import { Brand } from './brand';
 import { useNavItems } from './nav-items';
 
 export const Nav = () => {
-  const [r3fState, updateR3fState] = useR3fState();
-  const { isCanvasOnTop, isOrbitControlEnabled } = r3fState;
-
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const { width } = useWindowSize();
@@ -23,10 +16,6 @@ export const Nav = () => {
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
 
   const { navLinks, controls, allItems } = useNavItems();
-
-  useEffect(() => {
-    console.log(isMobileMenuOpen);
-  }, [isMobileMenuOpen]);
 
   return (
     <nav className="relative z-50 flex h-[var(--navbar-height)] items-center justify-between">
