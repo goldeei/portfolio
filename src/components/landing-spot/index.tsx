@@ -8,6 +8,7 @@ import { degToRad } from 'three/src/math/MathUtils.js';
 
 import { DEFAULT_SUBJECT_ROTATION } from '../scene/constants';
 import { Diamond } from './diamond';
+import { getLandingPosition } from './getLandingPosition';
 
 type OffsetValue = number;
 type LandingSpotProps = {
@@ -50,49 +51,28 @@ export const LandingSpot = ({ ...props }: LandingSpotProps) => {
 
   useEffect(() => {
     const element = diamondRef.current;
-    if (element) {
-      const handlePositionChange = () => {
-        const { left, top, width, height } = element.getBoundingClientRect();
-        const scrollLeft =
-          window.scrollX || document.documentElement.scrollLeft;
-        const scrollTop = window.scrollY || document.documentElement.scrollTop;
 
-        const getCenter = (coord: number, dimension: number) =>
-          coord + dimension / 2;
+    const updateLandingPosition = () => {
+      if (!element) return;
 
-        const x = getCenter(left, width) + scrollLeft,
-          y = getCenter(top, height) + scrollTop;
+      dispatch({
+        type: 'SET_LANDING_POSITION',
+        payload: {
+          name,
+          position: getLandingPosition(element.getBoundingClientRect()),
+        },
+      });
+    };
 
-        console.log(x, y);
+    updateLandingPosition();
 
-        dispatch({
-          type: 'SET_LANDING_POSITION',
-          payload: { name, position: { x, y } },
-        });
-      };
+    window.addEventListener('resize', updateLandingPosition);
+    window.addEventListener('scroll', updateLandingPosition);
 
-      handlePositionChange();
-
-      console.log('SCROLLING');
-
-      const handleResize = () => {
-        console.log('resize detected');
-        handlePositionChange();
-      };
-
-      const handleScroll = () => {
-        console.log('Scroll detected');
-        handlePositionChange();
-      };
-
-      window.addEventListener('resize', handleResize);
-      window.addEventListener('scroll', handleScroll);
-
-      return () => {
-        window.removeEventListener('resize', handleResize);
-        window.removeEventListener('scroll', handleScroll);
-      };
-    }
+    return () => {
+      window.removeEventListener('resize', updateLandingPosition);
+      window.removeEventListener('scroll', updateLandingPosition);
+    };
   }, [dispatch, name]);
 
   return (
