@@ -24,11 +24,7 @@ export const ActiveIndicator = ({ ...props }: ActiveIndicatorProps) => {
             : 'h-11 w-5 [&>div]:h-9 [&>div]:w-3',
         )}
       >
-        <div
-          className={cn(
-            'to-secondary/95 from-secondary/30 outline-secondary/50 h-14 bg-linear-to-t from-90% via-100% to-117% shadow inset-shadow-sm outline',
-          )}
-        />
+        <div className="glass h-14 shadow" />
         <AnimatePresence mode="wait">
           {isActive && (
             <motion.div
@@ -39,7 +35,7 @@ export const ActiveIndicator = ({ ...props }: ActiveIndicatorProps) => {
               transition={{
                 ease: 'backIn',
               }}
-              className="bg-secondary/95 shadow-secondary shadow"
+              className="glass glass-active"
             />
           )}
         </AnimatePresence>

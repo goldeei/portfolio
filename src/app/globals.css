@@ -74,10 +74,74 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+@layer components {
+  :root {
+    --glass-color: var(--color-secondary);
+    --glass-from-opacity: 30%;
+    --glass-to-opacity: 50%;
+    --glass-hover-from-opacity: 40%;
+    --glass-hover-to-opacity: 60%;
+
+    --glass-gradient: linear-gradient(
+      to top,
+      color-mix(
+          in srgb,
+          var(--glass-color) var(--glass-from-opacity),
+          transparent
+        )
+        90%,
+      color-mix(
+          in srgb,
+          var(--glass-color) var(--glass-to-opacity),
+          transparent
+        )
+        100%
+    );
+    --glass-hover-gradient: linear-gradient(
+      to top,
+      color-mix(
+          in srgb,
+          var(--glass-color) var(--glass-hover-from-opacity),
+          transparent
+        )
+        90%,
+      color-mix(
+          in srgb,
+          var(--glass-color) var(--glass-hover-to-opacity),
+          transparent
+        )
+        100%
+    );
+  }
+
   .h-full-content {
     @apply h-[calc(100vh-var(--navbar-height)-(var(--page-padding)*2))];
   }
   .center-absolute {
     @apply absolute inset-0 flex items-center justify-center;
+  }
+  .glass {
+    @apply outline-secondary/50 inset-shadow-sm outline;
+    background: var(--glass-gradient);
+  }
+
+  .glass.glass-active {
+    @apply bg-secondary/95 shadow-secondary shadow;
+  }
+}
+
+@layer utilities {
+  .scrollbar::-webkit-scrollbar {
+    @apply h-1 w-1;
+  }
+  .scrollbar::-webkit-scrollbar-track {
+    @apply bg-accent inset-shadow-accent rounded-md inset-shadow-sm;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    @apply rounded-full shadow;
+    background: var(--glass-hover-gradient);
   }
 }
