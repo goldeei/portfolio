@@ -3,27 +3,25 @@ import { AnimatePresence, motion } from 'motion/react';
 interface ActiveIndicatorProps {
   value: string;
   isActive: boolean;
-  orientation: 'vertical' | 'horizontal';
+  isVertical: boolean;
 }
 
 export const ActiveIndicator = ({ ...props }: ActiveIndicatorProps) => {
-  const { isActive, value, orientation } = props;
+  const { isActive, value, isVertical } = props;
 
   return (
     <div
       className={cn(
         'flex',
-        orientation === 'horizontal'
-          ? 'h-5 items-center justify-center'
-          : 'w-5 justify-center',
+        isVertical ? 'h-5 items-center justify-center' : 'w-5 justify-center',
       )}
     >
       <div
         className={cn(
           'bg-accent relative flex items-center justify-center rounded-full inset-shadow-sm transition-colors [&>div]:absolute [&>div]:rounded-full',
-          orientation === 'vertical'
-            ? 'h-11 w-5 [&>div]:h-9 [&>div]:w-3'
-            : 'h-3 w-10 [&>div]:h-3 [&>div]:w-9',
+          isVertical
+            ? 'h-3 w-10 [&>div]:h-3 [&>div]:w-9'
+            : 'h-11 w-5 [&>div]:h-9 [&>div]:w-3',
         )}
       >
         <div

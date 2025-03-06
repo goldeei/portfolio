@@ -1,27 +1,58 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
+import { BREAKPOINT } from '@/constants';
 import { cn } from '@/lib/style-utils';
 import { motion } from 'motion/react';
+import { useWindowSize } from 'usehooks-ts';
 import { ActiveIndicator } from './active-indicator';
 import { TabContent } from './tab-content';
 import { TabLabel } from './tab-label';
-export interface TabGroupProps {
+
+type TabGroupProps = {
   tabs: {
     label: string;
     subLabel?: string;
     value: string;
     content: { header: string; body: string | React.ReactNode };
   }[];
-  orientation?: 'vertical' | 'horizontal';
   onValueChange?: (value: string) => void;
   defaultTab?: number;
-}
+} & (
+  | {
+      // Auto orientation mode
+      autoOrientation: true;
+      orientation?: never;
+    }
+  | {
+      // Manual orientation mode
+      autoOrientation: false;
+      orientation: 'vertical' | 'horizontal';
+    }
+  | {
+      // Default case
+      autoOrientation?: undefined;
+      orientation?: 'vertical' | 'horizontal';
+    }
+);
 
-export const Tabs = ({ ...props }: TabGroupProps) => {
-  const { tabs, defaultTab, orientation = 'vertical' } = props;
+export const Tabs = (props: TabGroupProps) => {
+  const {
+    tabs,
+    defaultTab,
+    orientation = 'vertical',
+    autoOrientation = true,
+  } = props;
 
   const [currentTabIdx, setCurrentTabIdx] = useState(defaultTab || 0);
   const [direction, setDirection] = useState(0);
+
+  const { width } = useWindowSize();
+
+  const isVertical = useMemo(() => {
+    if (!autoOrientation) return orientation === 'vertical';
+
+    return width < BREAKPOINT.md;
+  }, [autoOrientation, orientation, width]);
 
   const handleTabChange = (selectedTabIdx: number) => {
     if (selectedTabIdx === currentTabIdx) return;
@@ -31,18 +62,12 @@ export const Tabs = ({ ...props }: TabGroupProps) => {
   };
 
   return (
-    <div
-      className={cn(
-        'flex h-full gap-8',
-        orientation === 'horizontal' && 'flex-col',
-      )}
-    >
+    <div className={cn('flex h-full gap-8', isVertical && 'flex-col')}>
       <nav>
         <ul
           className={cn(
             'relative mb-4 flex h-full flex-col',
-            orientation === 'horizontal' &&
-              'w-full flex-row justify-start overflow-x-auto pb-2',
+            isVertical && 'w-full flex-row justify-start overflow-x-auto pb-2',
           )}
         >
           {tabs.map(({ value, label, subLabel }, idx) => (
@@ -50,8 +75,8 @@ export const Tabs = ({ ...props }: TabGroupProps) => {
               key={value}
               className={cn(
                 'relative flex cursor-pointer',
-                orientation === 'horizontal'
-                  ? 'flex-col-reverse justify-between px-6'
+                isVertical
+                  ? 'flex-1 flex-col-reverse justify-between px-6 text-center'
                   : 'items-center gap-2 py-6',
               )}
               onClick={() => handleTabChange(idx)}
@@ -59,7 +84,7 @@ export const Tabs = ({ ...props }: TabGroupProps) => {
               <ActiveIndicator
                 value={value}
                 isActive={idx === currentTabIdx}
-                orientation={orientation}
+                isVertical={isVertical}
               />
               <TabLabel
                 label={label}
@@ -69,7 +94,7 @@ export const Tabs = ({ ...props }: TabGroupProps) => {
               <div
                 className={cn(
                   'absolute -z-10 box-border flex',
-                  orientation === 'horizontal'
+                  isVertical
                     ? 'right-0 bottom-0 h-5 w-full items-center'
                     : 'top-0 left-0 h-full w-5 justify-center',
                 )}
@@ -77,7 +102,7 @@ export const Tabs = ({ ...props }: TabGroupProps) => {
                 <div
                   className={cn(
                     'bg-accent absolute',
-                    orientation === 'horizontal' ? 'h-1 w-full' : 'h-full w-1',
+                    isVertical ? 'h-1 w-full' : 'h-full w-1',
                   )}
                 />
               </div>
