@@ -44,7 +44,6 @@ export const Tabs = (props: TabGroupProps) => {
   } = props;
 
   const [currentTabIdx, setCurrentTabIdx] = useState(defaultTab || 0);
-  const [direction, setDirection] = useState(0);
 
   const { width } = useWindowSize();
 
@@ -57,7 +56,6 @@ export const Tabs = (props: TabGroupProps) => {
   const handleTabChange = (selectedTabIdx: number) => {
     if (selectedTabIdx === currentTabIdx) return;
 
-    selectedTabIdx < currentTabIdx ? setDirection(-1) : setDirection(1);
     setCurrentTabIdx(selectedTabIdx);
   };
 
