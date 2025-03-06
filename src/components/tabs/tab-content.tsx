@@ -1,16 +1,18 @@
 import { AnimatePresence, motion } from 'motion/react';
+import { CustomScrollContainer } from '../custom-scroll-container';
 
 interface TabContentProps {
   value: string;
   header: string;
   children: string | React.ReactNode;
 }
+const ScrollContainer = motion.create(CustomScrollContainer);
 export const TabContent = ({ ...props }: TabContentProps) => {
   const { value, header, children } = props;
 
   return (
     <AnimatePresence mode="wait">
-      <motion.div
+      <ScrollContainer
         key={value}
         initial={{ y: 10, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -21,7 +23,7 @@ export const TabContent = ({ ...props }: TabContentProps) => {
           {header}
         </h3>
         <div>{children}</div>
-      </motion.div>
+      </ScrollContainer>
     </AnimatePresence>
   );
 };

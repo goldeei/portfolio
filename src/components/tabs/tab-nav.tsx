@@ -1,6 +1,7 @@
 import { cn } from '@/lib/style-utils';
 import { motion } from 'motion/react';
 import { TabItem } from '.';
+import { CustomScrollContainer } from '../custom-scroll-container';
 import { ActiveIndicator } from './active-indicator';
 import { TabLabel } from './tab-label';
 
@@ -16,7 +17,8 @@ export const TabNav = (props: TabNavProps) => {
 
   return (
     <nav>
-      <ul
+      <CustomScrollContainer
+        as="ul"
         className={cn(
           'relative mb-4 flex h-full flex-col',
           isVertical && 'w-full flex-row justify-start overflow-x-auto pb-2',
@@ -60,7 +62,7 @@ export const TabNav = (props: TabNavProps) => {
             </div>
           </motion.li>
         ))}
-      </ul>
+      </CustomScrollContainer>
     </nav>
   );
 };
