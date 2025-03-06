@@ -49,16 +49,21 @@ export const LandingSpot = ({ ...props }: LandingSpotProps) => {
   const [_, dispatch] = useCubeState();
 
   useEffect(() => {
-    const e = diamondRef.current;
-    if (e) {
+    const element = diamondRef.current;
+    if (element) {
       const handlePositionChange = () => {
-        const { left, top, width, height } = e.getBoundingClientRect();
+        const { left, top, width, height } = element.getBoundingClientRect();
+        const scrollLeft =
+          window.scrollX || document.documentElement.scrollLeft;
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
 
         const getCenter = (coord: number, dimension: number) =>
           coord + dimension / 2;
 
-        const x = getCenter(left, width),
-          y = getCenter(top, height);
+        const x = getCenter(left, width) + scrollLeft,
+          y = getCenter(top, height) + scrollTop;
+
+        console.log(x, y);
 
         dispatch({
           type: 'SET_LANDING_POSITION',
@@ -68,12 +73,24 @@ export const LandingSpot = ({ ...props }: LandingSpotProps) => {
 
       handlePositionChange();
 
-      window.addEventListener('resize', handlePositionChange);
-      window.addEventListener('scroll', handlePositionChange);
+      console.log('SCROLLING');
+
+      const handleResize = () => {
+        console.log('resize detected');
+        handlePositionChange();
+      };
+
+      const handleScroll = () => {
+        console.log('Scroll detected');
+        handlePositionChange();
+      };
+
+      window.addEventListener('resize', handleResize);
+      window.addEventListener('scroll', handleScroll);
 
       return () => {
-        window.removeEventListener('resize', handlePositionChange);
-        window.removeEventListener('scroll', handlePositionChange);
+        window.removeEventListener('resize', handleResize);
+        window.removeEventListener('scroll', handleScroll);
       };
     }
   }, [dispatch, name]);
