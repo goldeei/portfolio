@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { ComponentPropsWithoutRef, useMemo, useState } from 'react';
 
 import { BREAKPOINT } from '@/constants';
 import { cn } from '@/lib/style-utils';
@@ -13,27 +13,27 @@ export type TabItem = {
   content: { header: string; body: string | React.ReactNode };
 };
 
-type TabGroupProps = {
+type TabGroupProps = ComponentPropsWithoutRef<'div'> & {
   tabs: TabItem[];
   onValueChange?: (idx: number) => void;
   defaultTab?: number;
 } & (
-  | {
-      // Auto orientation mode
-      autoOrientation: true;
-      orientation?: never;
-    }
-  | {
-      // Manual orientation mode
-      autoOrientation: false;
-      orientation: 'vertical' | 'horizontal';
-    }
-  | {
-      // Default case
-      autoOrientation?: undefined;
-      orientation?: 'vertical' | 'horizontal';
-    }
-);
+    | {
+        // Auto orientation mode
+        autoOrientation: true;
+        orientation?: never;
+      }
+    | {
+        // Manual orientation mode
+        autoOrientation: false;
+        orientation: 'vertical' | 'horizontal';
+      }
+    | {
+        // Default case
+        autoOrientation?: undefined;
+        orientation?: 'vertical' | 'horizontal';
+      }
+  );
 
 export const Tabs = (props: TabGroupProps) => {
   const {
@@ -42,6 +42,8 @@ export const Tabs = (props: TabGroupProps) => {
     orientation = 'vertical',
     autoOrientation = true,
     onValueChange,
+    className,
+    ...rest
   } = props;
 
   const [currentTabIdx, setCurrentTabIdx] = useState(defaultTab || 0);
@@ -64,7 +66,10 @@ export const Tabs = (props: TabGroupProps) => {
   };
 
   return (
-    <div className={cn('flex h-full gap-8', isVertical && 'flex-col')}>
+    <div
+      {...rest}
+      className={cn('flex h-full gap-8', isVertical && 'flex-col', className)}
+    >
       <TabNav
         isVertical={isVertical}
         tabs={tabs}
