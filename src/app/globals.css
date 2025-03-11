@@ -1,9 +1,5 @@
 @import 'tailwindcss';
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 @theme {
@@ -70,9 +66,6 @@ body {
 @layer base {
   * {
     @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
   }
 }
 

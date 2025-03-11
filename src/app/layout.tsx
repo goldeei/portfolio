@@ -1,11 +1,12 @@
-import type { Metadata } from 'next';
-import './globals.css';
-import { R3fProvider } from '@/context/r3fProvider';
 import { Nav } from '@/components/nav';
-import clsx from 'clsx';
-import { Raleway } from 'next/font/google';
 import { CubeStateProvider } from '@/context/cubeStateProvider';
+import { R3fProvider } from '@/context/r3fProvider';
+import clsx from 'clsx';
+import type { Metadata } from 'next';
+import { Raleway } from 'next/font/google';
+import './globals.css';
 
+import { cn } from '@/lib/style-utils';
 import favicons from './favicon';
 
 export const metadata: Metadata = {
@@ -24,14 +25,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body>
+    <html
+      lang="en"
+      className={cn(
+        'bg-background text-foreground flex justify-center',
+        raleway.className,
+      )}
+    >
+      <body className="w-full max-w-7xl overflow-x-hidden">
         <R3fProvider>
           <CubeStateProvider>
             <div
               className={clsx(
                 'relative flex h-screen flex-col p-[var(--page-padding)]',
-                raleway.className,
               )}
             >
               <Nav />
