@@ -1,3 +1,5 @@
+import { LandingSpot } from '@/components/landing-spot';
+import { LandingPosition } from '@/types/landingPosition';
 import { Tabs } from '../../tabs';
 import { composecure, dcs, oit } from './data';
 import { Experience } from './experience';
@@ -6,10 +8,11 @@ export const Experiences = () => {
   return (
     <div className="flex h-screen flex-col justify-center gap-6">
       <h1 className="text-primary text-4xl font-medium">Experiences</h1>
-      <div className="h-full max-h-3/5">
+      <div className="grid h-full max-h-3/5 grid-cols-5 items-center">
         <Tabs
           defaultTab={0}
           orientation="horizontal"
+          className="col-span-4"
           tabs={[
             {
               label: 'composecure',
@@ -39,6 +42,11 @@ export const Experiences = () => {
               },
             },
           ]}
+        />
+        <LandingSpot
+          name={LandingPosition.Experiences}
+          position="relative"
+          right={0}
         />
       </div>
     </div>
