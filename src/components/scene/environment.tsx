@@ -13,11 +13,22 @@ export const Environment = () => {
   return (
     <>
       <SoftShadows />
-      <DreiEnvironment preset="warehouse" />
       <directionalLight
         castShadow
         position={[0, 2, 0]}
-        intensity={0.5}
+        intensity={5}
+        shadow-mapSize-width={2048}
+        shadow-mapSize-height={2048}
+      />
+      <directionalLight
+        position={[-2, 0, 2]}
+        intensity={5}
+        shadow-mapSize-width={2048}
+        shadow-mapSize-height={2048}
+      />
+      <directionalLight
+        position={[2, 0, 2]}
+        intensity={5}
         shadow-mapSize-width={2048}
         shadow-mapSize-height={2048}
       />
