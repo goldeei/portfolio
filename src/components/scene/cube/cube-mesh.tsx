@@ -5,7 +5,6 @@ import { animated, useSpring, useSprings } from '@react-spring/three';
 import { RoundedBox, useHelper } from '@react-three/drei';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { EulerTuple, Mesh, PointLight, SpotLightHelper } from 'three';
-import { degToRad } from 'three/src/math/MathUtils.js';
 
 import { DEFAULT_CUBE_PROPS } from '../constants';
 import {
@@ -15,6 +14,7 @@ import {
   INTERSECT_OPTION,
   SIDES,
 } from './constants';
+import { LogoMesh } from './logo-mesh';
 import { IntersectedFaces, IntersectOption } from './types';
 import { getHoveredFace, rotateFaceTowardsMouse } from './utils';
 
@@ -109,45 +109,11 @@ export const CubeMesh = ({ ...props }: CubeMeshProps) => {
           onClick={handleCubeClick}
         >
           <meshStandardMaterial
-            roughness={0.5}
-            metalness={0.4}
-            color={hslVarToHex('--color-primary')}
-          />
-          {/* <meshDistanceMaterial near={1} far={10} /> */}
-        </RoundedBox>
-        <animated.mesh
-          ref={icon12Ref}
-          geometry={icon1_2}
-          position={[0, 0.5, 0]}
-          rotation={[degToRad(90), 0, degToRad(45)]}
-          scale={0.35}
-        >
-          <animated.meshStandardMaterial
-            roughness={0}
-            metalness={1}
-            color={hslVarToHex('--color-accent')}
-            transparent
-            emissive={hslVarToHex('--color-secondary')}
-            emissiveIntensity={springs[0].emissive}
-            opacity={0.75}
-          />
-        </animated.mesh>
-        <animated.mesh
-          ref={icon12Ref}
-          geometry={icon1}
-          position={[-0.5, 0, 0]}
-          rotation={[0, degToRad(90), degToRad(-180)]}
-          scale={0.35}
-        >
-          <animated.meshStandardMaterial
             roughness={1}
             color={hslVarToHex('--color-accent')}
-            transparent
-            emissive={hslVarToHex('--color-secondary')}
-            emissiveIntensity={springs[1].emissive}
-            opacity={0.75}
           />
-        </animated.mesh>
+        </RoundedBox>
+        <LogoMesh />
       </group>
     </animated.mesh>
   );
