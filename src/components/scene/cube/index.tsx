@@ -16,10 +16,10 @@ export const Cube = () => {
 
   const handleFaceIntersectChange = (intersectedFaces: IntersectedFaces) =>
     setIntersectedFaces(intersectedFaces);
-  const { position } = DEFAULT_CUBE_PROPS;
+  const { position, scale } = DEFAULT_CUBE_PROPS;
 
   return (
-    <group position={position} castShadow>
+    <group position={position} scale={scale} castShadow>
       <IntersectGroup
         intersectedFaces={intersectedFaces}
         onFaceIntersect={handleFaceIntersectChange}

@@ -1,10 +1,12 @@
 import { EulerTuple, Vector2Tuple, Vector3Tuple } from 'three';
 import { degToRad } from 'three/src/math/MathUtils.js';
 
+// TODO This should be cleaned up/improved
 type DEFAULT_MESH_PROPS = {
   args: Vector3Tuple;
   rotation: EulerTuple;
   position: Vector3Tuple;
+  scale?: number;
 };
 
 export const DEFAULT_SUBJECT_ROTATION = {
@@ -27,7 +29,8 @@ export const DEFAULT_CUBE_PROPS: DEFAULT_MESH_PROPS & {
   args: cubeSize,
   radius: 0.05,
   rotation: DEFAULT_SUBJECT_PROPS.rotation,
-  position: [0, 0.5, 0],
+  scale: 0.7,
+  position: [0, 0.325, 0],
 };
 
 export const DEFAULT_FLOOR_PROPS: Omit<DEFAULT_MESH_PROPS, 'args'> & {
