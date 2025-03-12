@@ -1,15 +1,15 @@
-import { useCubeState } from "@/context/cubeStateProvider";
-import { useR3fState } from "@/context/r3fProvider";
-import { OrbitControls } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
-import clsx from "clsx";
-import { motion } from "motion/react";
-import { useEffect, useRef, useState } from "react";
-import { OrbitControls as ThreeOrbitControls } from "three/examples/jsm/Addons.js";
+import { useCubeState } from '@/context/cubeStateProvider';
+import { useR3fState } from '@/context/r3fProvider';
+import { OrbitControls } from '@react-three/drei';
+import { Canvas } from '@react-three/fiber';
+import clsx from 'clsx';
+import { motion } from 'motion/react';
+import { useEffect, useRef, useState } from 'react';
+import { OrbitControls as ThreeOrbitControls } from 'three/examples/jsm/Addons.js';
 
-import { Cube } from "./cube";
-import { Environment } from "./environment";
-import { Floor } from "./floor";
+import { Cube } from './cube';
+import { Environment } from './environment';
+import { Floor } from './floor';
 
 export const Scene = () => {
   const [r3fState] = useR3fState();
@@ -33,7 +33,7 @@ export const Scene = () => {
       )}
     >
       <motion.div
-        style={cubeState.cubePositions.introduction}
+        style={cubeState.cubePositions.brand}
         className="absolute size-[var(--canvas-size)]"
       >
         {!isLoaded && (

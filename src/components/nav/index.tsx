@@ -3,8 +3,11 @@
 import { Button } from '@/components/button';
 import { MenuSolid, X } from '@mynaui/icons-react';
 
+import { BREAKPOINT } from '@/constants';
+import { LandingPosition } from '@/types/landingPosition';
 import { useEffect, useState } from 'react';
 import { useWindowSize } from 'usehooks-ts';
+import { LandingSpot } from '../landing-spot';
 import { Brand } from './brand';
 import { useNavItems } from './nav-items';
 
@@ -13,7 +16,7 @@ export const Nav = () => {
 
   const { width } = useWindowSize({ debounceDelay: 50 });
   useEffect(() => {
-    if (width > 768 && isMobileMenuOpen) {
+    if (width > BREAKPOINT.md && isMobileMenuOpen) {
       setIsMobileMenuOpen(false);
     }
   }, [width]);
@@ -24,7 +27,14 @@ export const Nav = () => {
 
   return (
     <nav className="relative z-50 flex h-[var(--navbar-height)] items-center justify-between">
-      <Brand className={'size-11 min-w-11 md:size-16'} />
+      {/* <Brand className={'size-11 min-w-11 md:size-16'} /> */}
+      <LandingSpot
+        name={LandingPosition.Brand}
+        left={-37}
+        className="translate-y-5"
+        position="relative"
+        hasDiamond={false}
+      />
       <Button
         icon={isMobileMenuOpen ? <X /> : <MenuSolid />}
         className="md:hidden"
