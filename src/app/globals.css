@@ -1,14 +1,14 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
-  --background: #070B15;
-  --foreground: #D1D5DB;
-  --primary: #6366F1;
-  --secondary: #22D3EE;
-  --text-primary: #F9FAFB;
-  --text-secondary: #D1D5DB;
-  --text-muted: #9CA3AF;
-  --gradient-bg: radial-gradient(ellipse 300% 200% at top center, #070B15 0%, #25203b 95%, #25203b 100%);
+  --background: #070b15;
+  --foreground: #d1d5db;
+  --primary: #6366f1;
+  --secondary: #22d3ee;
+  --text-primary: #f9fafb;
+  --text-secondary: #d1d5db;
+  --text-muted: #9ca3af;
+  --gradient-bg: radial-gradient(ellipse 300% 200% at top center, #070b15 0%, #25203b 95%, #25203b 100%);
 }
 
 @theme inline {
