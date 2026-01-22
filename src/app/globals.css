@@ -121,6 +121,6 @@ body {
 
 @layer components {
   .interactive-element {
-    @apply inline-block text-text-muted hover:text-secondary focus:text-secondary transition-colors hover:bg-background-secondary focus:bg-background-secondary rounded-md;
+    @apply inline-block text-text-muted transition-colors hover:bg-background-secondary focus:bg-background-secondary rounded-md p-2 p-1.5;
   }
 }
