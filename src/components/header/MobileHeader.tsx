@@ -46,8 +46,8 @@ export const MobileHeader = ({ className }: { className?: string }) => {
                 {CONTACT_LINKS.map((link) => {
                   const Icon = link.icon;
                   return (
-                    <DropdownMenuItem key={link.label} asChild>
-                      <a href={link.href} className="flex items-center gap-2">
+                    <DropdownMenuItem key={link.label} asChild className="flex-1">
+                      <a href={link.href} className="flex items-center gap-2 justify-center">
                         <Icon className="size-6" />
                       </a>
                     </DropdownMenuItem>
