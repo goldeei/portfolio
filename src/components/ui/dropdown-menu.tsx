@@ -26,7 +26,7 @@ function DropdownMenuTrigger({
   return (
     <DropdownMenuPrimitive.Trigger
       data-slot="dropdown-menu-trigger"
-      className="rounded data-[state=open]:text-secondary"
+      className="interactive-element rounded data-[state=open]:text-secondary"
       {...props}
     />
   )

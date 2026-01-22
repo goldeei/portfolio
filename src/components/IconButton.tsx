@@ -1,6 +1,8 @@
-export const IconButton = ({icon, ...props}: {icon: React.ReactNode} & React.ButtonHTMLAttributes<HTMLButtonElement>) => {
+import { cn } from "@/lib/utils"
+
+export const IconButton = ({className, icon, ...props}: {className?: string, icon: React.ReactNode} & React.ButtonHTMLAttributes<HTMLButtonElement>) => {
     return (
-        <button className="interactive-element size-6" {...props}>
+        <button className={cn("interactive-element p-1.5", className)} {...props}>
             {icon}
         </button>
     )
