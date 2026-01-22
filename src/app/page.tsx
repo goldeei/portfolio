@@ -2,15 +2,15 @@ import { Header } from '@/components';
 
 export default function Home() {
   return (
-    <div className="">
+    <div className="max-w-7xl mx-auto">
       <Header />
 
       <main className="">
         <div>
           <p className="text-primary text-6xl font-medium">
-            Frontend <br /> Engineer
+            Frontend<br />Engineer
           </p>
-          <p className="text-muted text-2xl">
+          <p >
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda quasi temporibus ratione dolores nesciunt
             odit. Quaerat, iste. Dolore, atque. Placeat minus eius molestias quis unde! Suscipit praesentium architecto
             ratione nobis.
