@@ -43,6 +43,9 @@
   --sidebar-accent-foreground: #f9fafb;
   --sidebar-border: #27272A;
   --sidebar-ring: #6366f1;
+
+  /** Magic numbers */
+  --header-height: 106px;
 }
 
 @theme inline {

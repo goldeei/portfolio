@@ -1,21 +1,35 @@
-import { Header } from '@/components';
+import { Header, HomePage } from '@/components';
 
 export default function Home() {
   return (
-    <div className="max-w-7xl mx-auto">
+    <>
       <Header />
-      <main className="">
-        <div>
-          <p className="text-primary text-6xl font-medium">
-            Frontend<br />Engineer
-          </p>
-          <p >
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda quasi temporibus ratione dolores nesciunt
-            odit. Quaerat, iste. Dolore, atque. Placeat minus eius molestias quis unde! Suscipit praesentium architecto
-            ratione nobis.
-          </p>
+      <main>
+        <div className="max-w-7xl mx-auto px-4">
+          <HomePage />
+          <div>
+            Place holder page with stuff and things Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi sit, dolor officia pariatur, nisi eaque praesentium mollitia, dolorum quisquam harum iste quasi! Distinctio cupiditate beatae id provident totam eos excepturi.
+          </div>
+          <div>
+            Place holder page with stuff and things Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi sit, dolor officia pariatur, nisi eaque praesentium mollitia, dolorum quisquam harum iste quasi! Distinctio cupiditate beatae id provident totam eos excepturi.
+          </div>
+          <div>
+            Place holder page with stuff and things Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi sit, dolor officia pariatur, nisi eaque praesentium mollitia, dolorum quisquam harum iste quasi! Distinctio cupiditate beatae id provident totam eos excepturi.
+          </div>
+          <div>
+            Place holder page with stuff and things Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi sit, dolor officia pariatur, nisi eaque praesentium mollitia, dolorum quisquam harum iste quasi! Distinctio cupiditate beatae id provident totam eos excepturi.
+          </div>
+          <div>
+            Place holder page with stuff and things Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi sit, dolor officia pariatur, nisi eaque praesentium mollitia, dolorum quisquam harum iste quasi! Distinctio cupiditate beatae id provident totam eos excepturi.
+          </div>
+          <div>
+            Place holder page with stuff and things Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi sit, dolor officia pariatur, nisi eaque praesentium mollitia, dolorum quisquam harum iste quasi! Distinctio cupiditate beatae id provident totam eos excepturi.
+          </div>
+          <div>
+            Place holder page with stuff and things Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi sit, dolor officia pariatur, nisi eaque praesentium mollitia, dolorum quisquam harum iste quasi! Distinctio cupiditate beatae id provident totam eos excepturi.
+          </div>
         </div>
       </main>
-    </div>
+    </>
   );
 }
