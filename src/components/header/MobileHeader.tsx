@@ -11,7 +11,6 @@ import { motion } from "framer-motion";
 import { Menu } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
-import { IconButton } from "../IconButton";
 
 export const MobileHeader = ({ className }: { className?: string }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,12 +26,12 @@ export const MobileHeader = ({ className }: { className?: string }) => {
       </Link>
       <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
         <DropdownMenuTrigger asChild>
-          <IconButton icon={<Menu className="size-6" />} />
+          <Menu className="size-9" />
         </DropdownMenuTrigger>
         {isOpen && (
           <DropdownMenuContent
             disableAnimation
-            sideOffset={40}
+            sideOffset={30}
             className="w-screen rounded-none border-x-0 sm:hidden"
             asChild
           >
