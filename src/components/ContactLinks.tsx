@@ -30,7 +30,7 @@ export const ContactLinks = () => {
             {CONTACT_LINKS.map((link) => {
                 const Icon = link.icon;
                 return (
-                    <li key={link.label}>
+                    <li key={link.label} className="flex items-center">
                         <IconLink href={link.href} icon={<Icon className="size-6" />} />
                     </li>
                 );
