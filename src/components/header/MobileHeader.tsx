@@ -15,6 +15,7 @@ import { IconButton } from "../IconButton";
 
 export const MobileHeader = ({ className }: { className?: string }) => {
   const [isOpen, setIsOpen] = useState(false);
+  
 
   return (
     <div className={className}>
@@ -31,8 +32,8 @@ export const MobileHeader = ({ className }: { className?: string }) => {
         {isOpen && (
           <DropdownMenuContent
             disableAnimation
-            sideOffset={46}
-            className="w-screen rounded-none border-x-0"
+            sideOffset={40}
+            className="w-screen rounded-none border-x-0 sm:hidden"
             asChild
           >
             <motion.div
@@ -40,7 +41,6 @@ export const MobileHeader = ({ className }: { className?: string }) => {
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.1, ease: "easeOut" }}
-              style={{ overflow: "hidden" }}
             >
               <div className="p-1 flex justify-around">
                 {CONTACT_LINKS.map((link) => {
