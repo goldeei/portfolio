@@ -2,13 +2,14 @@
 
 :root {
   --background: #070b15;
-  --foreground: #d1d5db;
+  --foreground: var(--text-secondary);
   --primary: #6366f1;
   --secondary: #22d3ee;
   --text-primary: #f9fafb;
   --text-secondary: #d1d5db;
   --text-muted: #9ca3af;
-  --gradient-bg: radial-gradient(ellipse 300% 200% at top center, #070b15 0%, #25203b 95%, #25203b 100%);
+  --border: #27272A;
+  --gradient-bg: radial-gradient(ellipse 300% 200% at top center, var(--background) 25%, #25203b 90%, #25203b 100%);
 }
 
 @theme inline {
@@ -19,8 +20,13 @@
   --color-text-primary: var(--text-primary);
   --color-text-secondary: var(--text-secondary);
   --color-text-muted: var(--text-muted);
+  --color-border: var(--border);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+}
+
+html {
+  font-size: 20px;
 }
 
 body {
