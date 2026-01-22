@@ -5,6 +5,7 @@
 
 :root {
   --background: #070b15;
+  --background-secondary: #25203b;
   --foreground: #d1d5db;
   --primary: #6366f1;
   --secondary: #22d3ee;
@@ -12,7 +13,7 @@
   --text-secondary: #d1d5db;
   --text-muted: #9ca3af;
   --border: #27272A;
-  --gradient-bg: radial-gradient(ellipse 300% 200% at top center, var(--background) 25%, #25203b 90%, #25203b 100%);
+  --gradient-bg: radial-gradient(ellipse 300% 200% at top center, var(--background) 25%, var(--background-secondary) 90%, var(--background-secondary) 100%);
 
   --radius: 0.625rem;
   --card: #0f1419;
@@ -46,6 +47,7 @@
 
 @theme inline {
   --color-background: var(--background);
+  --color-background-secondary: var(--background-secondary);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
   --color-secondary: var(--secondary);
@@ -114,5 +116,11 @@ body {
   *:focus-visible {
     outline: 2px solid var(--ring);
     outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .interactive-element {
+    @apply inline-block text-text-muted hover:text-secondary focus:text-secondary transition-colors hover:bg-background-secondary focus:bg-background-secondary rounded-md;
   }
 }
