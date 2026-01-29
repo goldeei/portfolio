@@ -1,12 +1,14 @@
+import { SubText } from './sub-text';
+
 export const HeroContent = () => {
   return (
-    <>
-      <h1 className="text-primary text-6xl font-medium mb-6">
-        Frontend<br />Engineer
+    <div>
+      <h1 className="text-primary mb-4 text-6xl font-medium">
+        Frontend
+        <br />
+        Engineer
       </h1>
-      <p className="px-2 text-text-muted text-2xl tracking-[0.15em]">
-        I build tools and systems that make complex work feel simple.
-      </p>
-    </>
+      <SubText>I build tools and systems that make complex work feel simple.</SubText>
+    </div>
   );
 };

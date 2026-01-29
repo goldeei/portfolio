@@ -1,4 +1,6 @@
-import { Header, HomePage } from '@/components';
+import { Experience, Header, MobileHero } from '@/components';
+import { AboutMe } from '@/components/sections/about-me';
+import { LetsConnect } from '@/components/sections/lets-connect';
 import { SideNav } from '@/components/side-nav';
 
 export default function Home() {
@@ -6,34 +8,16 @@ export default function Home() {
     <>
       <Header />
       <main>
-
-        <div className="block sm:flex sm:items-center max-w-7xl mx-auto px-4 sm:pt-(--header-height) gap-8" style={{ height: 'calc(100dvh - var(--header-height))' }}>
-          <aside className='hidden sm:block'>
-            <SideNav />
-          </aside> 
-          <HomePage className='sm:hidden' />
-          <div >
-            <div>
-              Place holder page with stuff and things Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi sit, dolor officia pariatur, nisi eaque praesentium mollitia, dolorum quisquam harum iste quasi! Distinctio cupiditate beatae id provident totam eos excepturi.
-            </div>
-            <div>
-              Place holder page with stuff and things Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi sit, dolor officia pariatur, nisi eaque praesentium mollitia, dolorum quisquam harum iste quasi! Distinctio cupiditate beatae id provident totam eos excepturi.
-            </div>
-            <div>
-              Place holder page with stuff and things Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi sit, dolor officia pariatur, nisi eaque praesentium mollitia, dolorum quisquam harum iste quasi! Distinctio cupiditate beatae id provident totam eos excepturi.
-            </div>
-            <div>
-              Place holder page with stuff and things Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi sit, dolor officia pariatur, nisi eaque praesentium mollitia, dolorum quisquam harum iste quasi! Distinctio cupiditate beatae id provident totam eos excepturi.
-            </div>
-            <div>
-              Place holder page with stuff and things Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi sit, dolor officia pariatur, nisi eaque praesentium mollitia, dolorum quisquam harum iste quasi! Distinctio cupiditate beatae id provident totam eos excepturi.
-            </div>
-            <div>
-              Place holder page with stuff and things Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi sit, dolor officia pariatur, nisi eaque praesentium mollitia, dolorum quisquam harum iste quasi! Distinctio cupiditate beatae id provident totam eos excepturi.
-            </div>
-            <div>
-              Place holder page with stuff and things Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi sit, dolor officia pariatur, nisi eaque praesentium mollitia, dolorum quisquam harum iste quasi! Distinctio cupiditate beatae id provident totam eos excepturi.
-            </div>
+        <div
+          className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-4 sm:mt-(--header-height) sm:grid-cols-[300px_auto] sm:gap-24"
+          style={{ height: 'calc(100dvh - var(--header-height))' }}
+        >
+          <SideNav />
+          <div className="sm:max-h-svh sm:overflow-y-auto">
+            <MobileHero className="sm:hidden" />
+            <AboutMe />
+            <Experience />
+            <LetsConnect />
           </div>
         </div>
       </main>
