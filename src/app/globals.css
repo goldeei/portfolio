@@ -1,5 +1,5 @@
 @import 'tailwindcss';
-@import "tw-animate-css";
+@import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -12,8 +12,13 @@
   --text-primary: #f9fafb;
   --text-secondary: #d1d5db;
   --text-muted: #9ca3af;
-  --border: #27272A;
-  --gradient-bg: radial-gradient(ellipse 300% 200% at top center, var(--background) 25%, var(--background-secondary) 90%, var(--background-secondary) 100%);
+  --border: #27272a;
+  --gradient-bg: radial-gradient(
+    ellipse 300% 200% at top center,
+    var(--background) 25%,
+    var(--background-secondary) 90%,
+    var(--background-secondary) 100%
+  );
 
   --radius: 0.625rem;
   --card: #0f1419;
@@ -28,7 +33,7 @@
   --accent-foreground: #f9fafb;
   --destructive: #ef4444;
   --destructive-foreground: #f9fafb;
-  --input: #27272A;
+  --input: #27272a;
   --ring: var(--border);
   --chart-1: #6366f1;
   --chart-2: #22d3ee;
@@ -41,7 +46,7 @@
   --sidebar-primary-foreground: #f9fafb;
   --sidebar-accent: #1f2937;
   --sidebar-accent-foreground: #f9fafb;
-  --sidebar-border: #27272A;
+  --sidebar-border: #27272a;
   --sidebar-ring: #6366f1;
 
   /** Magic numbers */
@@ -99,7 +104,6 @@
 html {
   font-size: 20px;
 }
-
 body {
   background-color: var(--background);
   color: var(--foreground);
@@ -124,7 +128,10 @@ body {
 
 @layer components {
   .interactive-element {
-    @apply inline-block text-text-muted transition-colors hover:bg-background-secondary focus:bg-background-secondary rounded-md p-2 p-1.5;
+    @apply text-text-muted hover:bg-background-secondary focus:bg-background-secondary inline-block rounded-md p-1.5 p-2 transition-colors;
+  }
+  .stable-scrollbar {
+    scrollbar-gutter: stable;
   }
 }
 
