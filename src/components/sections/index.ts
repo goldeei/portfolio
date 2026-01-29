@@ -1,3 +1,4 @@
 export * from './about-me';
 export * from './experience';
-export * from './mobile-hero';
+export * from './hero';
+export * from './lets-connect';
