@@ -1,10 +1,11 @@
+import { SiteSections } from '@/constants';
 import { BodyText } from '../body-text';
 import { Section } from '../section';
 
 export const AboutMe = () => {
   return (
     <Section
-      id="about-me"
+      id={SiteSections.ABOUT_ME}
       className="text-text-muted flex flex-col gap-2 overflow-visible text-2xl tracking-[0.15em]"
       header="About Me"
     >
