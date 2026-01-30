@@ -14,7 +14,7 @@ export function useIsMobile() {
   }, []);
 
   const isMobile = useMediaQuery(`(max-width: ${mobileBreakpoint})`, {
-    initializeWithValue: false, // Prevents hydration mismatch
+    initializeWithValue: false,
   });
 
   return isMobile;
