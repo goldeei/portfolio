@@ -1,29 +1,31 @@
-"use client";
+'use client';
 
-import { CONTACT_LINKS } from "@/components/ContactLinks";
+import { CONTACT_LINKS } from '@/components/ContactLinks';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { motion } from "framer-motion";
-import { Menu } from "lucide-react";
-import Link from "next/link";
-import { useState } from "react";
+} from '@/components/ui/dropdown-menu';
+import { motion } from 'framer-motion';
+import { Menu } from 'lucide-react';
+import { useState } from 'react';
+import { Nav } from '../nav';
 
-export const MobileHeader = ({ className }: { className?: string }) => {
+export const MobileHeader = ({
+  className,
+  handleBrandClick,
+}: {
+  className?: string;
+  handleBrandClick: (e: React.MouseEvent<HTMLAnchorElement>) => void;
+}) => {
   const [isOpen, setIsOpen] = useState(false);
-  
 
   return (
     <div className={className}>
-      <Link
-        href="/"
-        className="text-text-muted hover:text-secondary transition-colors text-xl"
-      >
+      <a href="#" onClick={handleBrandClick} className="text-text-muted hover:text-secondary text-xl transition-colors">
         JG
-      </Link>
+      </a>
       <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
         <DropdownMenuTrigger asChild>
           <Menu className="size-9" />
@@ -32,21 +34,22 @@ export const MobileHeader = ({ className }: { className?: string }) => {
           <DropdownMenuContent
             disableAnimation
             sideOffset={30}
-            className="w-screen rounded-none border-x-0 sm:hidden"
+            className="w-svw overflow-hidden rounded-none border-x-0 sm:hidden"
             asChild
           >
             <motion.div
               initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
+              animate={{ height: 'auto', opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.1, ease: "easeOut" }}
+              transition={{ duration: 0.1, ease: 'easeOut' }}
             >
-              <div className="p-1 flex justify-around">
+              <Nav />
+              <div className="border-border flex justify-around border-t py-4">
                 {CONTACT_LINKS.map((link) => {
                   const Icon = link.icon;
                   return (
                     <DropdownMenuItem key={link.label} asChild className="flex-1">
-                      <a href={link.href} className="flex items-center gap-2 justify-center">
+                      <a href={link.href} className="flex items-center justify-center gap-2">
                         <Icon className="size-6" />
                       </a>
                     </DropdownMenuItem>
