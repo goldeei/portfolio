@@ -1,35 +1,25 @@
-import { Header, HomePage } from '@/components';
+'use client';
+
+import { Header } from '@/components';
+import { Main } from '@/components/main';
+import { Nav } from '@/components/nav';
+import { Hero } from '@/components/sections';
+import { ActiveSectionProvider } from '@/context';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 export default function Home() {
+  const isMobile = useIsMobile();
   return (
-    <>
+    <ActiveSectionProvider>
       <Header />
-      <main>
-        <div className="max-w-7xl mx-auto px-4">
-          <HomePage />
-          <div>
-            Place holder page with stuff and things Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi sit, dolor officia pariatur, nisi eaque praesentium mollitia, dolorum quisquam harum iste quasi! Distinctio cupiditate beatae id provident totam eos excepturi.
-          </div>
-          <div>
-            Place holder page with stuff and things Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi sit, dolor officia pariatur, nisi eaque praesentium mollitia, dolorum quisquam harum iste quasi! Distinctio cupiditate beatae id provident totam eos excepturi.
-          </div>
-          <div>
-            Place holder page with stuff and things Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi sit, dolor officia pariatur, nisi eaque praesentium mollitia, dolorum quisquam harum iste quasi! Distinctio cupiditate beatae id provident totam eos excepturi.
-          </div>
-          <div>
-            Place holder page with stuff and things Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi sit, dolor officia pariatur, nisi eaque praesentium mollitia, dolorum quisquam harum iste quasi! Distinctio cupiditate beatae id provident totam eos excepturi.
-          </div>
-          <div>
-            Place holder page with stuff and things Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi sit, dolor officia pariatur, nisi eaque praesentium mollitia, dolorum quisquam harum iste quasi! Distinctio cupiditate beatae id provident totam eos excepturi.
-          </div>
-          <div>
-            Place holder page with stuff and things Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi sit, dolor officia pariatur, nisi eaque praesentium mollitia, dolorum quisquam harum iste quasi! Distinctio cupiditate beatae id provident totam eos excepturi.
-          </div>
-          <div>
-            Place holder page with stuff and things Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi sit, dolor officia pariatur, nisi eaque praesentium mollitia, dolorum quisquam harum iste quasi! Distinctio cupiditate beatae id provident totam eos excepturi.
-          </div>
-        </div>
-      </main>
-    </>
+      <div
+        className="mt-(--header-height) grid grid-cols-1 px-4 py-8 sm:grid-cols-[300px_auto] sm:grid-rows-[auto_1fr] sm:gap-x-12 sm:gap-y-12"
+        style={{ height: 'calc(100dvh - var(--header-height))' }}
+      >
+        <Hero />
+        <Main />
+        {!isMobile && <Nav />}
+      </div>
+    </ActiveSectionProvider>
   );
 }
