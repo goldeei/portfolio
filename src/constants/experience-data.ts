@@ -1,5 +1,11 @@
 import { ExperienceItem } from '@/components/experience';
 
+const react = { label: 'React', iconKey: 'react' } as const;
+const typescript = { label: 'TypeScript', iconKey: 'typescript' } as const;
+const tailwind = { label: 'Tailwind CSS', iconKey: 'tailwind' } as const;
+const vite = { label: 'Vite', iconKey: 'vite' } as const;
+const figma = { label: 'Figma', iconKey: 'figma' } as const;
+
 export const EXPERIENCE_ITEMS: ExperienceItem[] = [
   {
     company: 'CompoSecure',
@@ -10,13 +16,7 @@ export const EXPERIENCE_ITEMS: ExperienceItem[] = [
     ],
     startDate: '01/2026',
     endDate: 'Present',
-    skills: [
-      { label: 'React', iconKey: 'react' },
-      { label: 'TypeScript', iconKey: 'typescript' },
-      { label: 'Turborepo', iconKey: 'turborepo' },
-      { label: 'Tailwind CSS', iconKey: 'tailwind' },
-      { label: 'Vite', iconKey: 'vite' },
-    ],
+    skills: [react, typescript, tailwind, vite, figma, { iconKey: 'turborepo', label: 'Turborepo' }],
   },
   {
     company: 'CompoSecure',
@@ -27,20 +27,24 @@ export const EXPERIENCE_ITEMS: ExperienceItem[] = [
     ],
     startDate: '04/2023',
     endDate: '01/2026',
-    skills: [
-      { label: 'React', iconKey: 'react' },
-      { label: 'TypeScript', iconKey: 'typescript' },
-      { label: 'Tailwind CSS', iconKey: 'tailwind' },
-    ],
+    skills: [react, typescript, tailwind, vite, figma, { iconKey: 'storybook', label: 'Storybook' }],
   },
   {
     company: 'Rutgers University',
-    title: 'Web Developer/Special Projects Manager',
+    title: 'Web Developer',
     description: [
       'Developed responsive inventory management and ticketing dashboards with full cross-browser and mobile support. Translated stakeholder requirements into technical specifications and created mockups to secure project approval.',
     ],
     startDate: '09/2021',
     endDate: '04/2023',
-    skills: [],
+    skills: [
+      { iconKey: 'html', label: 'HTML' },
+      { iconKey: 'django', label: 'Django' },
+      { iconKey: 'visio', label: 'Visio' },
+      { iconKey: 'javascript', label: 'JavaScript' },
+      { iconKey: 'python', label: 'Python' },
+      { iconKey: 'adobe', label: 'Adobe' },
+      { iconKey: 'scss', label: 'SCSS' },
+    ],
   },
 ];
