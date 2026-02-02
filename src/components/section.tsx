@@ -9,7 +9,7 @@ type SectionProps = Omit<HTMLAttributes<HTMLElement>, 'id'> & {
 export const Section = ({ id, children, className, header, ...props }: SectionProps) => {
   return (
     <section id={id} className={cn('mb-12 h-fit', className)} {...props}>
-      {header && <h2 className="text-primary mb-2 text-2xl font-bold">{header}</h2>}
+      {header && <h2 className="text-primary mb-4 text-2xl font-bold">{header}</h2>}
       {children}
     </section>
   );

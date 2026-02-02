@@ -1,0 +1,33 @@
+import {
+  AdobeIcon,
+  DjangoIcon,
+  FigmaIcon,
+  HtmlIcon,
+  JavascriptIcon,
+  PythonIcon,
+  ReactIcon,
+  ScssIcon,
+  StorybookIcon,
+  TailwindIcon,
+  TurborepoIcon,
+  TypeScriptIcon,
+  VisioIcon,
+  ViteIcon,
+} from '../icons';
+
+export const SKILL_ICON_MAP = {
+  adobe: AdobeIcon,
+  django: DjangoIcon,
+  figma: FigmaIcon,
+  html: HtmlIcon,
+  javascript: JavascriptIcon,
+  python: PythonIcon,
+  react: ReactIcon,
+  scss: ScssIcon,
+  storybook: StorybookIcon,
+  tailwind: TailwindIcon,
+  turborepo: TurborepoIcon,
+  typescript: TypeScriptIcon,
+  visio: VisioIcon,
+  vite: ViteIcon,
+} satisfies Record<string, React.ComponentType<React.SVGProps<SVGSVGElement>>>;
