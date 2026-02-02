@@ -1,4 +1,5 @@
-import { skillIcon } from '../icons';
+import { SubTitle } from '../sub-title';
+import { ExperienceSkills } from './experience-skills';
 import { ExperienceItem } from './types';
 
 type ExperienceHeaderProps = Omit<ExperienceItem, 'description'>;
@@ -6,27 +7,17 @@ type ExperienceHeaderProps = Omit<ExperienceItem, 'description'>;
 export const ExperienceHeader = ({ company, title, startDate, endDate, skills }: ExperienceHeaderProps) => {
   return (
     <header className="border-border mb-3 flex flex-col gap-2 border-b pb-3">
-      <div className="flex flex-wrap items-center justify-between">
-        <h3 className="text-primary text-3xl font-medium">{title}</h3>
-        <div className="flex gap-2">
-          {skills.map((skill) => {
-            const IconComponent = skillIcon[skill.iconKey] as React.ComponentType<React.SVGProps<SVGSVGElement>>;
-            return (
-              <div
-                key={skill.iconKey}
-                className="border-primary flex size-8 items-center justify-center rounded-full border p-1 shadow-inner"
-              >
-                <IconComponent aria-label={skill.label} role="img" />
-              </div>
-            );
-          })}
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <h3 className="text-primary text-2xl font-medium sm:text-3xl">{title}</h3>
+        <div className="hidden gap-2 sm:flex">
+          <ExperienceSkills skills={skills} />
         </div>
       </div>
-      <div className="flex justify-between">
-        <div className="text-text-muted">{company}</div>
-        <div className="text-text-muted">
+      <div className="flex flex-col gap-1 sm:flex-row sm:justify-between">
+        <SubTitle>{company}</SubTitle>
+        <SubTitle>
           {startDate} - {endDate}
-        </div>
+        </SubTitle>
       </div>
     </header>
   );

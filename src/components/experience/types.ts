@@ -8,7 +8,7 @@ export type Skill = {
 export type ExperienceItem = {
   company: string;
   title: string;
-  description: string;
+  description: string[];
   startDate: string;
   endDate: string;
   skills: Skill[];
