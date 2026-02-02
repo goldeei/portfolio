@@ -133,6 +133,9 @@ body {
   .stable-scrollbar {
     scrollbar-gutter: stable;
   }
+  .bg-overlay {
+    @apply bg-background/95 backdrop-blur-sm;
+  }
 }
 
 /*---break--- */
