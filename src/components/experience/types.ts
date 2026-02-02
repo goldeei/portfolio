@@ -1,4 +1,6 @@
-import { SkillIcon } from '../icons';
+import { SKILL_ICON_MAP } from './skill-icon-map';
+
+export type SkillIcon = keyof typeof SKILL_ICON_MAP;
 
 export type Skill = {
   label: string;

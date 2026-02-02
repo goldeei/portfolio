@@ -1,4 +1,4 @@
-import { skillIcon } from '../icons';
+import { SKILL_ICON_MAP } from './skill-icon-map';
 import { Skill } from './types';
 
 interface ExperienceSkillsProps {
@@ -7,14 +7,14 @@ interface ExperienceSkillsProps {
 
 export const ExperienceSkills = ({ skills }: ExperienceSkillsProps) => {
   return skills.map((skill) => {
-    const IconComponent = skillIcon[skill.iconKey] as React.ComponentType<React.SVGProps<SVGSVGElement>>;
+    const IconComponent = SKILL_ICON_MAP[skill.iconKey];
     return (
       <div
         key={skill.iconKey}
         className="border-primary flex size-8 items-center justify-center rounded-full border p-1 shadow-inner"
         title={skill.label}
       >
-        <IconComponent aria-label={skill.label} role="img" />
+        <IconComponent aria-hidden="true" />
       </div>
     );
   });
