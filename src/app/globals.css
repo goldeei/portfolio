@@ -4,15 +4,22 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
+  /* Background colors */
   --background: #070b15;
   --background-secondary: #25203b;
+
+  /* Foreground colors */
   --foreground: #d1d5db;
+  --foreground-secondary: #d1d5db;
+  --foreground-tertiary: #9ca3af;
+
+  /* Accent colors */
   --primary: #6366f1;
   --secondary: #22d3ee;
-  --text-primary: #f9fafb;
-  --text-secondary: #d1d5db;
-  --text-muted: #9ca3af;
+
   --border: #27272a;
+
+  /* TODO rename to background-gradient */
   --gradient-bg: radial-gradient(
     ellipse 300% 200% at top center,
     var(--background) 25%,
