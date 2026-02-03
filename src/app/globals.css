@@ -9,9 +9,9 @@
   --background-secondary: #25203b;
 
   /* Foreground colors */
-  --foreground: #d1d5db;
-  --foreground-secondary: #d1d5db;
-  --foreground-tertiary: #9ca3af;
+  --foreground: theme(colors.slate.50);
+  --foreground-secondary: theme(colors.slate.300);
+  --foreground-tertiary: theme(colors.slate.400);
 
   /* Accent colors */
   --primary: #6366f1;
@@ -66,6 +66,8 @@
   --color-background: var(--background);
   --color-background-secondary: var(--background-secondary);
   --color-foreground: var(--foreground);
+  --color-foreground-secondary: var(--foreground-secondary);
+  --color-foreground-tertiary: var(--foreground-tertiary);
   --color-primary: var(--primary);
   --color-secondary: var(--secondary);
   --color-text-primary: var(--text-primary);
@@ -160,6 +162,6 @@ html {
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply bg-background text-foreground font-sans antialiased;
   }
 }
