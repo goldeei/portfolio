@@ -1,16 +1,21 @@
 import { cn } from '@/lib/utils';
 import { Section } from '../section';
-import { SubText } from '../sub-text';
+import { Typography } from '../typography';
 
 export const Hero = ({ className }: { className?: string }) => {
   return (
-    <Section id="hero" className={cn('flex h-svh flex-col justify-center sm:h-fit', className)}>
-      <h1 className="text-primary mb-4 text-6xl font-medium">
+    <Section
+      id="hero"
+      className={cn('flex h-svh max-w-[400px] flex-col justify-center gap-2 sm:h-fit sm:max-w-full', className)}
+    >
+      <Typography variant="h1">
         Frontend
         <br />
         Engineer
-      </h1>
-      <SubText>I build tools and systems that make complex work feel simple.</SubText>
+      </Typography>
+      <Typography variant="subtitle" className="text-lg">
+        I build tools and systems that make complex work feel simple.
+      </Typography>
     </Section>
   );
 };
