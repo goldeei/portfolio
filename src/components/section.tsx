@@ -1,5 +1,6 @@
 import { cn } from '@/lib/utils';
 import { HTMLAttributes } from 'react';
+import { Typography } from './typography';
 
 type SectionProps = Omit<HTMLAttributes<HTMLElement>, 'id'> & {
   id: string;
@@ -9,7 +10,11 @@ type SectionProps = Omit<HTMLAttributes<HTMLElement>, 'id'> & {
 export const Section = ({ id, children, className, header, ...props }: SectionProps) => {
   return (
     <section id={id} className={cn('mb-12 h-fit', className)} {...props}>
-      {header && <h2 className="text-primary mb-4 text-2xl font-bold">{header}</h2>}
+      {header && (
+        <Typography variant="h2" className="mb-2">
+          {header}
+        </Typography>
+      )}
       {children}
     </section>
   );
