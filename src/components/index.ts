@@ -1,4 +1,4 @@
-export * from './Background';
+export * from './background';
 export * from './body-text';
 export * from './header';
 export * from './main';

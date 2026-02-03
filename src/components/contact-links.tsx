@@ -1,5 +1,5 @@
 import { CONTACT_LINKS } from '@/constants';
-import { IconLink } from './IconLink';
+import { IconLink } from './icon-link';
 
 export const ContactLinks = () => {
   return (

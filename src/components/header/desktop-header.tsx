@@ -1,6 +1,6 @@
 'use client';
 
-import { ContactLinks } from '../ContactLinks';
+import { ContactLinks } from '../contact-links';
 
 export const DesktopHeader = ({
   className,

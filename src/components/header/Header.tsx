@@ -1,7 +1,7 @@
 import { useActiveSection } from '@/context';
 import { useIsMobile } from '@/hooks';
-import { DesktopHeader } from './DesktopHeader';
-import { MobileHeader } from './MobileHeader';
+import { DesktopHeader } from './desktop-header';
+import { MobileHeader } from './mobile-header';
 
 export const Header = () => {
   const isMobile = useIsMobile();
