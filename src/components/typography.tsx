@@ -6,9 +6,9 @@ const typographyVariants = cva('', {
   variants: {
     variant: {
       h1: 'scroll-m-20 text-5xl font-medium tracking-wide text-primary',
-      h2: 'scroll-m-20 text-3xl font-semibold tracking-tight text-primary',
+      h2: 'scroll-m-20 text-sm font-semibold tracking-widest text-foreground-tertiary uppercase',
       h3: 'scroll-m-20 text-2xl font-semibold tracking-tight text-primary',
-      body: 'leading-7 text-foreground',
+      body: 'text-base leading-6 text-foreground-secondary',
       subtitle: 'text-foreground-tertiary text-sm tracking-wider sm:text-base',
       caption: 'text-sm text-foreground-tertiary',
       muted: 'text-foreground-tertiary',
