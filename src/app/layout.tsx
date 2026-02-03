@@ -25,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistMono.variable} ${figtree.variable} bg-background text-foreground antialiased`}>
+      <body className={`${geistMono.variable} ${figtree.variable}`}>
         <Background />
         {children}
       </body>
