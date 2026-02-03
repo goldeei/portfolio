@@ -1,12 +1,12 @@
 'use client';
 
-import { CONTACT_LINKS } from '@/components/ContactLinks';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { CONTACT_LINKS } from '@/constants';
 import { motion } from 'framer-motion';
 import { Menu } from 'lucide-react';
 import { useState } from 'react';
@@ -49,7 +49,7 @@ export const MobileHeader = ({
                   const Icon = link.icon;
                   return (
                     <DropdownMenuItem key={link.label} asChild className="flex-1">
-                      <a href={link.href} className="flex items-center justify-center gap-2">
+                      <a href={link.href.toString()} className="flex items-center justify-center gap-2">
                         <Icon className="size-6" />
                       </a>
                     </DropdownMenuItem>
