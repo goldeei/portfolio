@@ -153,7 +153,6 @@ html {
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
-    font-family: var(--font-figtree), system-ui, -apple-system, sans-serif;
+    @apply bg-background text-foreground font-sans;
   }
 }
