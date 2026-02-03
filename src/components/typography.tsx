@@ -5,11 +5,11 @@ import { ElementType } from 'react';
 const typographyVariants = cva('', {
   variants: {
     variant: {
-      h1: 'scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl',
-      h2: 'scroll-m-20 text-3xl font-semibold tracking-tight',
-      h3: 'scroll-m-20 text-2xl font-semibold tracking-tight',
+      h1: 'scroll-m-20 text-5xl font-medium tracking-wide text-primary',
+      h2: 'scroll-m-20 text-3xl font-semibold tracking-tight text-primary',
+      h3: 'scroll-m-20 text-2xl font-semibold tracking-tight text-primary',
       body: 'leading-7 text-foreground',
-      subtitle: 'text-foreground-secondary text-sm tracking-wider sm:text-base',
+      subtitle: 'text-foreground-tertiary text-sm tracking-wider sm:text-base',
       caption: 'text-sm text-foreground-tertiary',
       muted: 'text-foreground-tertiary',
     },
