@@ -11,10 +11,10 @@ export default function Home() {
   const isMobile = useIsMobile();
   return (
     <ActiveSectionProvider>
-      <div className="mx-auto max-w-7xl">
+      <div className="site-container">
         <Header />
         <div
-          className="mt-(--header-height) grid grid-cols-1 px-4 py-8 sm:grid-cols-[300px_auto] sm:grid-rows-[auto_1fr] sm:gap-x-12"
+          className="mt-(--header-height) grid grid-cols-1 py-8 sm:grid-cols-[300px_auto] sm:grid-rows-[auto_1fr] sm:gap-x-12"
           style={{ height: 'calc(100dvh - var(--header-height))' }}
         >
           <Hero />

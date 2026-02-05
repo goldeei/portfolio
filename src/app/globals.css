@@ -131,6 +131,9 @@ html {
 }
 
 @layer components {
+  .site-container {
+    @apply mx-auto max-w-6xl px-6 sm:px-8;
+  }
   .interactive-element {
     @apply text-text-muted hover:bg-background-secondary focus:bg-background-secondary inline-block rounded-md p-1.5 p-2 transition-colors;
   }
