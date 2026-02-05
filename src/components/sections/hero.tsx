@@ -13,7 +13,7 @@ export const Hero = ({ className }: { className?: string }) => {
         <br />
         Engineer
       </Typography>
-      <Typography variant="subtitle" className="text-lg">
+      <Typography variant="subtitle" className="text-base md:text-lg">
         I build tools and systems that make complex work feel simple.
       </Typography>
     </Section>

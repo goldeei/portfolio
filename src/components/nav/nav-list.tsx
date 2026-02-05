@@ -4,7 +4,7 @@ import { cva, VariantProps } from 'class-variance-authority';
 const navListVariants = cva('flex flex-col justify-center border-border h-fit', {
   variants: {
     variant: {
-      desktop: 'border-l py-8 gap-8 ms-2',
+      desktop: 'border-l gap-8 ms-2 py-2',
       mobile: 'py-8 gap-8 ms-4',
     },
   },
