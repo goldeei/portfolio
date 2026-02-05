@@ -1,7 +1,7 @@
 'use client';
 
+import { useMediaQuery } from '@mantine/hooks';
 import { useEffect, useState } from 'react';
-import { useMediaQuery } from 'usehooks-ts';
 
 const DEFAULT_MOBILE_BREAKPOINT = '40rem';
 
@@ -13,9 +13,7 @@ export function useIsMobile() {
     setMobileBreakpoint(value || DEFAULT_MOBILE_BREAKPOINT);
   }, []);
 
-  const isMobile = useMediaQuery(`(max-width: ${mobileBreakpoint})`, {
-    initializeWithValue: false,
-  });
+  const isMobile = useMediaQuery(`(max-width: ${mobileBreakpoint})`);
 
   return isMobile;
 }
