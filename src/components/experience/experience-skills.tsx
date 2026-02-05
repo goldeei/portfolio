@@ -11,7 +11,7 @@ export const ExperienceSkills = ({ skills }: ExperienceSkillsProps) => {
     return (
       <div
         key={skill.iconKey}
-        className="border-primary flex size-8 items-center justify-center rounded-full border p-1 shadow-inner"
+        className="border-primary flex size-7 items-center justify-center rounded-full border p-1 shadow-inner"
         title={skill.label}
       >
         <IconComponent aria-hidden="true" />

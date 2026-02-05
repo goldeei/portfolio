@@ -1,20 +1,16 @@
-import { BodyText } from '../body-text';
-import { ExperienceSkills } from './experience-skills';
+import { Typography } from '../typography';
 import { ExperienceItem } from './types';
 
-type ExperienceBodyProps = Pick<ExperienceItem, 'description' | 'skills'>;
+type ExperienceBodyProps = Pick<ExperienceItem, 'description'>;
 
-export const ExperienceBody = ({ description, skills }: ExperienceBodyProps) => {
+export const ExperienceBody = ({ description }: ExperienceBodyProps) => {
   return (
     <>
       {description.map((paragraph, index) => (
-        <BodyText key={index} className={index > 0 ? 'mt-2' : undefined}>
+        <Typography variant="body" key={index} className={index > 0 ? 'mt-2' : undefined}>
           {paragraph}
-        </BodyText>
+        </Typography>
       ))}
-      <div className="mt-4 flex justify-center gap-3 sm:hidden">
-        <ExperienceSkills skills={skills} />
-      </div>
     </>
   );
 };

@@ -3,11 +3,11 @@ import { cva } from 'class-variance-authority';
 import { motion } from 'framer-motion';
 import { NavItemProps } from './types';
 
-const navItemVariants = cva('relative', {
+const navItemVariants = cva('relative uppercase', {
   variants: {
     variant: {
-      desktop: 'text-xl ps-4',
-      mobile: 'text-lg ps-8',
+      desktop: 'text-lg ps-4',
+      mobile: 'ps-8',
     },
   },
 });

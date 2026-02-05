@@ -14,7 +14,7 @@ export default function Home() {
       <div className="mx-auto max-w-7xl">
         <Header />
         <div
-          className="mt-(--header-height) grid grid-cols-1 px-4 py-8 sm:grid-cols-[300px_auto] sm:grid-rows-[auto_1fr] sm:gap-x-12 sm:gap-y-12"
+          className="mt-(--header-height) grid grid-cols-1 px-4 py-8 sm:grid-cols-[300px_auto] sm:grid-rows-[auto_1fr] sm:gap-x-12"
           style={{ height: 'calc(100dvh - var(--header-height))' }}
         >
           <Hero />
