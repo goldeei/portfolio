@@ -1,23 +1,21 @@
-import { SubTitle } from '../sub-title';
-import { ExperienceSkills } from './experience-skills';
+import { Typography } from '../typography';
 import { ExperienceItem } from './types';
 
-type ExperienceHeaderProps = Omit<ExperienceItem, 'description'>;
+type ExperienceHeaderProps = Omit<ExperienceItem, 'description' | 'skills'>;
 
-export const ExperienceHeader = ({ company, title, startDate, endDate, skills }: ExperienceHeaderProps) => {
+export const ExperienceHeader = ({ company, title, startDate, endDate }: ExperienceHeaderProps) => {
   return (
-    <header className="border-border mb-3 flex flex-col gap-2 border-b pb-3">
-      <div className="flex flex-wrap items-center justify-between gap-2">
-        <h3 className="text-primary text-2xl font-medium sm:text-3xl">{title}</h3>
-        <div className="hidden gap-2 sm:flex">
-          <ExperienceSkills skills={skills} />
-        </div>
-      </div>
-      <div className="flex flex-col gap-1 sm:flex-row sm:justify-between">
-        <SubTitle>{company}</SubTitle>
-        <SubTitle>
+    <header className="border-border mb-3 border-b pb-1 sm:pb-2">
+      <Typography variant="h3" className="mb-0.5 sm:mb-1">
+        {title}
+      </Typography>
+      <div className="flex flex-col gap-0.5 text-sm leading-4 md:flex-row md:justify-between md:gap-4 md:text-base">
+        <Typography variant="subtitle" className="font-medium">
+          {company}
+        </Typography>
+        <Typography variant="subtitle">
           {startDate} - {endDate}
-        </SubTitle>
+        </Typography>
       </div>
     </header>
   );

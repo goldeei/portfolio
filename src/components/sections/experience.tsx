@@ -1,6 +1,6 @@
 import { EXPERIENCE_ITEMS, SiteSections } from '@/constants';
 import { useIsMobile } from '@/hooks';
-import { ExperienceBody, ExperienceHeader } from '../experience';
+import { ExperienceBody, ExperienceHeader, ExperienceSkills } from '../experience';
 import { ResumeDialog } from '../resume-dialog';
 import { ResumeTrigger } from '../resume-trigger';
 import { Section } from '../section';
@@ -14,7 +14,10 @@ export const Experience = () => {
         {EXPERIENCE_ITEMS.map((item, index) => (
           <div key={index}>
             <ExperienceHeader {...item} />
-            <ExperienceBody description={item.description} skills={item.skills} />
+            <ExperienceBody description={item.description} />
+            <div className="mt-6 flex justify-center gap-4">
+              <ExperienceSkills skills={item.skills} />
+            </div>
           </div>
         ))}
         {isMobile ? (
