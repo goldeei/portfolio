@@ -7,6 +7,8 @@ import { getScrollContainer } from '@/lib/scroll-utils';
 import { useIntersection } from '@mantine/hooks';
 import { AboutMe, Experience, LetsConnect } from './sections';
 
+const SCROLL_THRESHOLD = 0.25;
+
 export const Main = () => {
   const isMobile = useIsMobile();
 
@@ -14,17 +16,17 @@ export const Main = () => {
 
   const { ref: aboutMeRef, entry: aboutMeEntry } = useIntersection({
     root: scrollContainer,
-    threshold: 0.25,
+    threshold: SCROLL_THRESHOLD,
   });
 
   const { ref: experienceRef, entry: experienceEntry } = useIntersection({
     root: scrollContainer,
-    threshold: 0.25,
+    threshold: SCROLL_THRESHOLD,
   });
 
   const { ref: letsConnectRef, entry: letsConnectEntry } = useIntersection({
     root: scrollContainer,
-    threshold: 0.25,
+    threshold: SCROLL_THRESHOLD,
   });
   useActiveSectionTracking({ isMobile, sectionEntries: [aboutMeEntry, experienceEntry, letsConnectEntry] });
 
