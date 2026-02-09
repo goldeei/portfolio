@@ -11,16 +11,11 @@ export default function Home() {
   const isMobile = useIsMobile();
   return (
     <ActiveSectionProvider>
-      <div className="site-container">
-        <Header />
-        <div
-          className="mt-(--header-height) grid grid-cols-1 py-8 sm:grid-cols-[300px_auto] sm:grid-rows-[auto_1fr] sm:gap-x-12"
-          style={{ height: 'calc(100dvh - var(--header-height))' }}
-        >
-          <Hero />
-          <Main />
-          {!isMobile && <Nav />}
-        </div>
+      <Header />
+      <div className="site-container grid h-screen grid-cols-1 overflow-y-auto pt-(--header-height) sm:grid-cols-[300px_auto] sm:grid-rows-[auto_1fr] sm:gap-x-12 sm:pt-[calc(var(--header-height)+2rem)]">
+        <Hero />
+        <Main key={isMobile ? 'mobile' : 'desktop'} />
+        {!isMobile && <Nav variant="desktop" />}
       </div>
     </ActiveSectionProvider>
   );
