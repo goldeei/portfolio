@@ -8,8 +8,7 @@ export const Header = () => {
 
   const handleBrandClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    window.history.pushState(null, '', window.location.pathname);
-    scrollToTop();
+    scrollToTop(isMobile);
   };
 
   return (
