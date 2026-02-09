@@ -12,9 +12,15 @@ const BlurbSection = () => {
   );
 };
 
-export const LetsConnect = () => {
+export const LetsConnect = ({ ref }: { ref?: React.Ref<HTMLElement> }) => {
   return (
-    <Section id={SiteSections.LETS_CONNECT} className="flex flex-col items-center" header="Let's Connect">
+    <Section
+      id={SiteSections.LETS_CONNECT}
+      variant="fullHeight"
+      className="flex flex-col items-center justify-center"
+      header="Let's Connect"
+      ref={ref}
+    >
       <BlurbSection />
       <ContactCard />
     </Section>

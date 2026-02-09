@@ -5,11 +5,11 @@ import { ResumeDialog } from '../resume-dialog';
 import { ResumeTrigger } from '../resume-trigger';
 import { Section } from '../section';
 
-export const Experience = () => {
+export const Experience = ({ ref }: { ref?: React.Ref<HTMLElement> }) => {
   const isMobile = useIsMobile();
 
   return (
-    <Section id={SiteSections.EXPERIENCE} header="Experience">
+    <Section id={SiteSections.EXPERIENCE} header="Experience" ref={ref}>
       <div className="flex flex-col gap-12 sm:pe-12">
         {EXPERIENCE_ITEMS.map((item, index) => (
           <div key={index}>

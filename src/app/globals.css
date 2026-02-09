@@ -55,9 +55,7 @@
   --sidebar-accent-foreground: #f9fafb;
   --sidebar-border: #27272a;
   --sidebar-ring: #6366f1;
-
-  /** Magic numbers */
-  --header-height: 106px;
+  --header-height: theme(spacing.20);
 }
 
 @theme inline {
@@ -131,6 +129,9 @@ html {
 }
 
 @layer components {
+  .site-container {
+    @apply mx-auto max-w-6xl px-6 sm:px-8;
+  }
   .interactive-element {
     @apply text-text-muted hover:bg-background-secondary focus:bg-background-secondary inline-block rounded-md p-1.5 p-2 transition-colors;
   }
@@ -139,6 +140,12 @@ html {
   }
   .bg-overlay {
     @apply bg-background/95 backdrop-blur-sm;
+  }
+  section {
+    @apply mb-12 h-fit;
+    &.full-height {
+      @apply mb-0 flex h-svh flex-col;
+    }
   }
 }
 
@@ -160,6 +167,10 @@ html {
 @layer base {
   * {
     @apply border-border outline-ring/50;
+  }
+  html,
+  body {
+    @apply h-screen overflow-hidden;
   }
   body {
     @apply bg-background text-foreground font-sans antialiased;
