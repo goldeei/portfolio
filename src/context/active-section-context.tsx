@@ -1,8 +1,7 @@
 'use client';
 
 import { SiteSections } from '@/constants';
-import { useHash } from '@mantine/hooks';
-import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
+import { createContext, ReactNode, useContext, useState } from 'react';
 
 type ActiveSectionContextType = {
   activeSectionId: SiteSections | null;
@@ -13,17 +12,6 @@ const ActiveSectionContext = createContext<ActiveSectionContextType | undefined>
 
 export function ActiveSectionProvider({ children }: { children: ReactNode }) {
   const [activeSectionId, setActiveSectionId] = useState<SiteSections | null>(null);
-  const [hash] = useHash();
-
-  // Handle initial hash navigation only once on mount
-  useEffect(() => {
-    if (hash && Object.values(SiteSections).includes(hash as SiteSections)) {
-      const sectionElement = document.getElementById(hash);
-      if (sectionElement) {
-        sectionElement.scrollIntoView({ behavior: 'auto' });
-      }
-    }
-  }, []);
 
   return (
     <ActiveSectionContext.Provider value={{ activeSectionId, setActiveSectionId }}>

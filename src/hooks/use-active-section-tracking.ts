@@ -2,49 +2,37 @@
 
 import { SiteSections } from '@/constants';
 import { useActiveSection } from '@/context';
-import { useDebouncedValue } from '@mantine/hooks';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 
 interface UseSectionTrackingOptions {
   isMobile: boolean;
   sectionEntries: (IntersectionObserverEntry | null)[];
-  debounceDelay?: number;
 }
 
-/**
- * Hook to track active section via intersection observers and update URL hash
- * Returns refs to attach to each section component
- */
-export function useActiveSectionTracking({ isMobile, sectionEntries, debounceDelay = 250 }: UseSectionTrackingOptions) {
-  const { setActiveSectionId, activeSectionId } = useActiveSection();
+export function useActiveSectionTracking({ sectionEntries }: UseSectionTrackingOptions) {
+  const { setActiveSectionId } = useActiveSection();
+  // Get current active section from intersections
+  const activeSection = useMemo(() => {
+    const validSectionEntries = sectionEntries.filter((i) => i !== null);
+    const activeIndex = validSectionEntries.findIndex((i) => i.isIntersecting);
+    const sectionId =
+      activeIndex !== -1 && validSectionEntries[activeIndex].target.id
+        ? validSectionEntries[activeIndex].target.id
+        : null;
 
-  // Intersection observers for each section
-
-  // Debounce the active section for hash updates (225ms delay)
-  const [debouncedActiveSection] = useDebouncedValue(activeSectionId, debounceDelay);
-
-  // Update active section state immediately based on intersection
-  useEffect(() => {
-    let newSection: SiteSections | null = null;
-
-    for (const entry of sectionEntries) {
-      if (entry?.isIntersecting) {
-        newSection = entry.target.id as SiteSections;
-        break;
-      }
+    if (sectionId && Object.values(SiteSections).includes(sectionId as SiteSections)) {
+      return sectionId as SiteSections;
     }
+    return null;
+  }, [sectionEntries]);
 
-    if (newSection && newSection !== activeSectionId) {
-      setActiveSectionId(newSection);
-    }
-  }, [sectionEntries, activeSectionId, setActiveSectionId, isMobile]);
-
+  // Update active section when it changes
   useEffect(() => {
-    if (debouncedActiveSection) {
-      window.history.replaceState(null, '', `#${debouncedActiveSection}`);
+    setActiveSectionId(activeSection);
+    if (activeSection) {
+      window.history.replaceState(null, '', `${window.location.pathname}#${activeSection}`);
     } else {
-      // Clear hash when no section is active (hero on mobile)
       window.history.replaceState(null, '', window.location.pathname);
     }
-  }, [debouncedActiveSection]);
+  }, [activeSection, setActiveSectionId]);
 }

@@ -32,21 +32,22 @@ export const NavItem = ({
 }: NavItemProps & { isActive: boolean; onClick: () => void; variant?: 'desktop' | 'mobile' }) => {
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    
+
     const sectionElement = document.getElementById(id);
     if (!sectionElement) return;
-    
-    const scrollContainer = getScrollContainer();
+
+    const isMobile = variant === 'mobile';
+    const scrollContainer = getScrollContainer(isMobile);
     if (!scrollContainer) return;
-    
+
     // Calculate position relative to scroll container
     const containerTop = scrollContainer.getBoundingClientRect().top;
     const sectionTop = sectionElement.getBoundingClientRect().top;
     const targetScroll = scrollContainer.scrollTop + (sectionTop - containerTop);
-    
+
     // Smooth scroll to target
     scrollContainer.scrollTo({ top: targetScroll, behavior: 'smooth' });
-    
+
     // Call the onClick callback (for mobile menu closing)
     onClick();
   };
@@ -54,10 +55,10 @@ export const NavItem = ({
   return (
     <li className={cn(navItemVariants({ variant }))}>
       {isActive && (
-        <motion.div 
+        <motion.div
           layoutId={`side-nav-item-active-indicator-${variant || 'desktop'}`}
           initial={false}
-          className={cn(activeIndicatorVariants({ variant }))} 
+          className={cn(activeIndicatorVariants({ variant }))}
         />
       )}
       <a
