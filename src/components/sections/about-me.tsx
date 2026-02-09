@@ -2,9 +2,9 @@ import { SiteSections } from '@/constants';
 import { Section } from '../section';
 import { Typography } from '../typography';
 
-export const AboutMe = () => {
+export const AboutMe = ({ ref }: { ref?: React.Ref<HTMLElement> }) => {
   return (
-    <Section id={SiteSections.ABOUT_ME} className="overflow-visible" header="About Me">
+    <Section id={SiteSections.ABOUT_ME} className="overflow-visible" header="About Me" ref={ref}>
       <Typography>
         I work across design and development - translating ideas in Figma into React components, finding creative ways
         to display complex data, and building the infrastructure that makes both feel seamless. Good software shouldn't

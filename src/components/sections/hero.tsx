@@ -6,7 +6,8 @@ export const Hero = ({ className }: { className?: string }) => {
   return (
     <Section
       id="hero"
-      className={cn('flex h-svh max-w-[400px] flex-col justify-center gap-2 sm:h-fit sm:max-w-full', className)}
+      className={cn('max-w-[400px] justify-center gap-2 sm:max-w-full', className)}
+      variant="fullHeight"
     >
       <Typography variant="h1">
         Frontend
