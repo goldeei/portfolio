@@ -8,7 +8,7 @@ export const ContactLinks = () => {
         const Icon = link.icon;
         return (
           <li key={link.label} className="flex items-center">
-            <IconLink href={link.href} icon={<Icon className="size-6" />} label={link.label} />
+            <IconLink href={link.href} icon={<Icon className="size-6 sm:size-5" />} label={link.label} />
           </li>
         );
       })}
