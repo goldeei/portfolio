@@ -1,10 +1,10 @@
 'use client';
 
-import { CONTACT_LINKS } from '@/constants';
 import { cn } from '@/lib/utils';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Menu } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
+import { ContactLinks } from '../contact-links';
 import { Nav } from '../nav';
 
 export const MobileHeader = ({ className }: { className?: string }) => {
@@ -68,22 +68,7 @@ export const MobileHeader = ({ className }: { className?: string }) => {
             className="bg-overlay border-border fixed top-(--header-height) right-0 left-0 z-40 overflow-hidden border-b shadow-2xl sm:hidden"
           >
             <Nav variant="mobile" onNavigate={handleNavClick} />
-            <div className="border-border flex justify-around border-t py-2">
-              {CONTACT_LINKS.map((link) => {
-                const Icon = link.icon;
-                return (
-                  <a
-                    key={link.label}
-                    href={link.href.toString()}
-                    className="hover:text-secondary flex items-center justify-center rounded px-8 py-2 transition-colors"
-                    aria-label={link.label}
-                    onClick={() => console.log(link.href)}
-                  >
-                    <Icon className="size-5" />
-                  </a>
-                );
-              })}
-            </div>
+            <ContactLinks className="border-border border-t py-2" />
           </motion.div>
         )}
       </AnimatePresence>
