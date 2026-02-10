@@ -1,14 +1,25 @@
 import { CONTACT_LINKS } from '@/constants';
-import { IconLink } from './icon-link';
+import { cn } from '@/lib/utils';
+import { Button } from './ui/button';
 
-export const ContactLinks = () => {
+export const ContactLinks = ({ className }: { className?: string }) => {
   return (
-    <ul className="flex gap-8">
-      {CONTACT_LINKS.map((link) => {
-        const Icon = link.icon;
+    <ul role="list" aria-label="Contact links" className={cn('flex gap-2 px-2 sm:gap-4', className)}>
+      {CONTACT_LINKS.map(({ icon: Icon, label, displayText, href, target, rel }) => {
         return (
-          <li key={link.label} className="flex items-center">
-            <IconLink href={link.href} icon={<Icon className="size-6 sm:size-5" />} label={link.label} />
+          <li key={label} className="flex flex-1 items-center">
+            <Button
+              type="anchor"
+              href={href.toString()}
+              size="icon"
+              variant="interactive"
+              className="w-full sm:w-12"
+              aria-label={displayText ? `${label}: ${displayText}` : label}
+              {...(target && { target })}
+              {...(rel && { rel })}
+            >
+              <Icon className="size-5" />
+            </Button>
           </li>
         );
       })}
