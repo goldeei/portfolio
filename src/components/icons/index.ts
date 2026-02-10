@@ -1,4 +1,5 @@
 import { AdobeIcon } from './adobe';
+import { BrandIcon } from './brand';
 import { DjangoIcon } from './django';
 import { FigmaIcon } from './figma';
 import { HtmlIcon } from './html';
@@ -15,6 +16,7 @@ import { ViteIcon } from './vite';
 
 export {
   AdobeIcon,
+  BrandIcon,
   DjangoIcon,
   FigmaIcon,
   HtmlIcon,
