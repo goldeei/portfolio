@@ -9,16 +9,19 @@ export const ContactLinks = ({ className }: { className?: string }) => {
         return (
           <li key={label} className="flex flex-1 items-center">
             <Button
-              type="anchor"
-              href={href.toString()}
-              size="icon"
               variant="interactive"
+              size="icon"
               className="w-full sm:w-12"
               aria-label={displayText ? `${label}: ${displayText}` : label}
-              {...(target && { target })}
-              {...(rel && { rel })}
+              asChild
             >
-              <Icon className="size-5" />
+              <a
+                href={href.toString()}
+                {...(target && { target })}
+                {...(rel && { rel })}
+              >
+                <Icon className="size-5" />
+              </a>
             </Button>
           </li>
         );
