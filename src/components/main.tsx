@@ -33,7 +33,7 @@ export const Main = () => {
   return (
     <main
       data-scroll-container={SCROLL_CONTAINER_TYPES.DESKTOP}
-      className="sm:row-span-2 sm:max-h-svh sm:overflow-y-auto"
+      className="py-.0 sm:row-span-2 sm:max-h-svh sm:overflow-y-auto"
     >
       <AboutMe ref={aboutMeRef} />
       <Experience ref={experienceRef} />
