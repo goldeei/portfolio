@@ -7,13 +7,7 @@ import { Menu } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { Nav } from '../nav';
 
-export const MobileHeader = ({
-  className,
-  handleBrandClick,
-}: {
-  className?: string;
-  handleBrandClick: (e: React.MouseEvent<HTMLAnchorElement>) => void;
-}) => {
+export const MobileHeader = ({ className }: { className?: string }) => {
   const [isOpen, setIsOpen] = useState(false);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
