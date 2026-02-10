@@ -1,11 +1,11 @@
 'use client';
 
-import { cn } from '@/lib/utils';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Menu } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { ContactLinks } from '../contact-links';
 import { Nav } from '../nav';
+import { Button } from '../ui/button';
 
 export const MobileHeader = ({ className }: { className?: string }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -43,20 +43,15 @@ export const MobileHeader = ({ className }: { className?: string }) => {
 
   return (
     <>
-      <div className={className}>
-        <button
-          ref={triggerRef}
-          onClick={() => setIsOpen(!isOpen)}
-          className={cn(
-            'text-foreground hover:text-secondary interactive-element transition-colors',
-            isOpen && 'text-secondary',
-          )}
-          aria-label="Toggle menu"
-          aria-expanded={isOpen}
-        >
-          <Menu className="size-6" />
-        </button>
-      </div>
+      <Button
+        ref={triggerRef}
+        onClick={() => setIsOpen(!isOpen)}
+        aria-label="Toggle menu"
+        aria-expanded={isOpen}
+        variant="interactive"
+      >
+        <Menu className="size-5" />
+      </Button>
       <AnimatePresence>
         {isOpen && (
           <motion.div
