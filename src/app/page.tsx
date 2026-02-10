@@ -4,7 +4,7 @@ import { Header } from '@/components';
 import { Main } from '@/components/main';
 import { Nav } from '@/components/nav';
 import { Hero } from '@/components/sections';
-import { SCROLL_CONTAINER_ATTR, SCROLL_CONTAINER_TYPES } from '@/constants';
+import { SCROLL_CONTAINER_TYPES } from '@/constants';
 import { ActiveSectionProvider } from '@/context';
 import { useIsMobile } from '@/hooks/use-mobile';
 
@@ -13,9 +13,9 @@ export default function Home() {
   return (
     <ActiveSectionProvider>
       <Header />
-      <div 
+      <div
         data-scroll-container={SCROLL_CONTAINER_TYPES.MOBILE}
-        className="site-container grid h-screen grid-cols-1 overflow-y-auto pt-(--header-height) sm:grid-cols-[300px_auto] sm:grid-rows-[auto_1fr] sm:gap-x-12 sm:pt-[calc(var(--header-height)+2rem)]"
+        className="site-container grid h-screen grid-cols-1 overflow-y-auto pt-(--header-height) sm:grid-cols-[300px_auto] sm:grid-rows-[auto_1fr] sm:gap-x-12 sm:pt-[calc(var(--header-height)+2rem)] sm:pb-8"
       >
         <Hero />
         <Main key={isMobile ? 'mobile' : 'desktop'} />
