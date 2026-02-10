@@ -19,6 +19,9 @@
 
   --border: #27272a;
 
+  /* Scrollbar */
+  --scrollbar-thickness: 10px;
+
   /* TODO rename to background-gradient */
   --gradient-bg: radial-gradient(
     ellipse 300% 200% at top center,
@@ -114,7 +117,7 @@ html {
 
 @layer base {
   * {
-    @apply border-border;
+    @apply border-border outline-ring/50;
   }
 
   /* Custom focus styles using your theme */
@@ -126,11 +129,67 @@ html {
     outline: 2px solid var(--ring);
     outline-offset: 2px;
   }
+
+  /* Firefox scrollbar */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+
+  /* Webkit scrollbar (Chrome, Safari, Edge) */
+  *::-webkit-scrollbar {
+    width: var(--scrollbar-thickness);
+    height: var(--scrollbar-thickness);
+  }
+
+  *::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    @apply bg-border rounded-full;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    @apply bg-border/80;
+  }
+
+  /* Devices with hover capability (desktop/laptop): hide by default, show on hover */
+  @media (hover: hover) {
+    * {
+      scrollbar-color: transparent transparent;
+    }
+
+    *:hover {
+      scrollbar-color: var(--border) transparent;
+    }
+
+    *::-webkit-scrollbar-thumb {
+      @apply bg-transparent;
+    }
+
+    *:hover::-webkit-scrollbar-thumb {
+      @apply bg-border;
+    }
+
+    *:hover::-webkit-scrollbar-thumb:hover {
+      @apply bg-border/80;
+    }
+  }
+
+  html,
+  body {
+    @apply h-screen overflow-hidden;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
 }
 
 @layer components {
   .site-container {
-    @apply mx-auto max-w-6xl px-6 sm:px-8;
+    @apply mx-auto max-w-6xl px-6 sm:px-8 sm:pb-8;
   }
   .interactive-element {
     @apply text-text-muted hover:bg-background-secondary focus:bg-background-secondary inline-block rounded-md p-1.5 p-2 transition-colors;
@@ -149,8 +208,6 @@ html {
   }
 }
 
-/*---break--- */
-
 .dark {
   --sidebar: hsl(240 5.9% 10%);
   --sidebar-foreground: hsl(240 4.8% 95.9%);
@@ -160,19 +217,4 @@ html {
   --sidebar-accent-foreground: hsl(240 4.8% 95.9%);
   --sidebar-border: hsl(240 3.7% 15.9%);
   --sidebar-ring: hsl(217.2 91.2% 59.8%);
-}
-
-/*---break--- */
-
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  html,
-  body {
-    @apply h-screen overflow-hidden;
-  }
-  body {
-    @apply bg-background text-foreground font-sans antialiased;
-  }
 }
