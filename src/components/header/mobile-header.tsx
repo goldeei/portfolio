@@ -4,7 +4,7 @@ import { CONTACT_LINKS } from '@/constants';
 import { cn } from '@/lib/utils';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Menu } from 'lucide-react';
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Nav } from '../nav';
 
 export const MobileHeader = ({
@@ -24,15 +24,12 @@ export const MobileHeader = ({
 
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as Node;
-      
+
       // Don't close if clicking the trigger button or inside the menu
-      if (
-        triggerRef.current?.contains(target) ||
-        menuRef.current?.contains(target)
-      ) {
+      if (triggerRef.current?.contains(target) || menuRef.current?.contains(target)) {
         return;
       }
-      
+
       setIsOpen(false);
     };
 
@@ -53,13 +50,6 @@ export const MobileHeader = ({
   return (
     <>
       <div className={className}>
-        <a
-          href="#"
-          onClick={handleBrandClick}
-          className="text-text-muted hover:text-secondary text-xl transition-colors"
-        >
-          JG
-        </a>
         <button
           ref={triggerRef}
           onClick={() => setIsOpen(!isOpen)}
