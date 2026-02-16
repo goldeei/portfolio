@@ -17,12 +17,14 @@ export const LetsConnect = ({ ref }: { ref?: React.Ref<HTMLElement> }) => {
     <Section
       id={SiteSections.LETS_CONNECT}
       variant="fullHeight"
-      className="mb-0 flex flex-col items-center justify-center [&>h2]:text-center"
+      className="mb-0 [&>h2]:text-center"
       header="Let's Connect"
       ref={ref}
     >
-      <BlurbSection />
-      <ContactCard />
+      <div className="flex flex-col items-center justify-center">
+        <BlurbSection />
+        <ContactCard />
+      </div>
     </Section>
   );
 };
