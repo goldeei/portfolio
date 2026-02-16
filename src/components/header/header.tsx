@@ -16,9 +16,14 @@ export const Header = () => {
   return (
     <nav className="fixed top-0 right-0 left-0 z-50 h-(--header-height)">
       <div className="border-border bg-overlay site-container flex h-full items-center justify-between border-b shadow-2xl">
-        <Button variant="ghost" size="icon" className="p-0" asChild>
+        <Button
+          variant="ghost"
+          size="icon"
+          className="text-primary hover:text-primary-hover size-8 rounded-full transition-colors hover:bg-transparent"
+          asChild
+        >
           <a href="/" onClick={handleBrandClick}>
-            <BrandIcon className="text-primary size-10 transition-transform hover:scale-105" />
+            <BrandIcon className="size-full" />
           </a>
         </Button>
         {isMobile ? <MobileHeader className="flex items-center justify-between" /> : <ContactLinks />}
