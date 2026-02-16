@@ -6,7 +6,7 @@
 :root {
   /* Background colors */
   --background: #070b15;
-  --background-secondary: #25203b;
+  --background-secondary: #322b52;
 
   /* Foreground colors */
   --foreground: theme(colors.slate.50);
@@ -26,8 +26,8 @@
   --gradient-bg: radial-gradient(
     ellipse 300% 200% at top center,
     var(--background) 25%,
-    var(--background-secondary) 90%,
-    var(--background-secondary) 100%
+    var(--background-secondary) 95%,
+    #ffffff 100%
   );
 
   --radius: 0.625rem;
