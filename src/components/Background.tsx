@@ -12,15 +12,15 @@ export const Background = () => {
   const { scrollY } = useScroll({
     container: scrollContainer,
   });
-  const y = useTransform(scrollY, (y) => y * -0.1);
+  const y = useTransform(scrollY, [0, 1000], [0, -100]);
 
   return (
     <motion.div
       style={{
         background: 'var(--gradient-bg)',
         y,
-        top: '-25vh',
-        bottom: '-25vh',
+        top: '-50vh',
+        bottom: '-50vh',
       }}
       className="fixed right-0 left-0 -z-10"
     />
