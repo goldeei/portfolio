@@ -63,7 +63,10 @@ export const NavItem = ({
       )}
       <a
         href={href}
-        className={cn('text-muted hover:text-gray-700', isActive && 'hover:text-text-primary/90 text-text-primary')}
+        className={cn(
+          'text-foreground-tertiary hover:text-foreground-secondary transition-colors',
+          isActive && 'text-foreground-primary hover:text-foreground-secondary',
+        )}
         onClick={handleClick}
       >
         <motion.div initial={false} animate={{ scale: isActive ? 1.1 : 1 }} style={{ originX: 0, originY: 0.5 }}>
