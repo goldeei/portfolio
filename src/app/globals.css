@@ -6,7 +6,7 @@
 :root {
   /* Background colors */
   --background: #070b15;
-  --background-secondary: #25203b;
+  --background-secondary: color-mix(in srgb, var(--background) 75%, var(--primary) 25%);
 
   /* Foreground colors */
   --foreground: theme(colors.slate.50);
@@ -25,10 +25,10 @@
 
   /* TODO rename to background-gradient */
   --gradient-bg: radial-gradient(
-    ellipse 300% 200% at top center,
-    var(--background) 25%,
-    var(--background-secondary) 90%,
-    var(--background-secondary) 100%
+    ellipse 200% 100% at top center,
+    var(--background) 0%,
+    var(--background) 70%,
+    var(--background-secondary) 90%
   );
 
   --radius: 0.625rem;

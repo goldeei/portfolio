@@ -5,9 +5,9 @@ import { Typography } from '../typography';
 
 const BlurbSection = () => {
   return (
-    <Typography className="mb-4 max-w-xl text-center leading-loose text-balance">
-      I'm looking for frontend engineering work where I can solve real problems and learn new things. If you're building
-      something interesting, let's see where I might fit in.
+    <Typography className="mb-4 max-w-xl text-center text-balance">
+      I'm looking for frontend engineering work where I can solve real problems, feel my impact, and learn new things.
+      If you're building something interesting, let's see where I might fit in.
     </Typography>
   );
 };
@@ -21,8 +21,10 @@ export const LetsConnect = ({ ref }: { ref?: React.Ref<HTMLElement> }) => {
       header="Let's Connect"
       ref={ref}
     >
-      <BlurbSection />
-      <ContactCard />
+      <div className="flex flex-col items-center justify-center">
+        <BlurbSection />
+        <ContactCard />
+      </div>
     </Section>
   );
 };

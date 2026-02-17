@@ -11,8 +11,7 @@ export const EXPERIENCE_ITEMS: ExperienceItem[] = [
     company: 'CompoSecure',
     title: 'Senior Frontend Engineer',
     description: [
-      'Architected a TypeScript monorepo with Turborepo that eliminated infrastructure duplication across all internal manufacturing apps. Teams now ship features faster with shared auth, validation, and API clients built once and reused everywhere.',
-      'Built a type-safe data layer with 80+ Zod schemas and finite state machines for complex production workflows. Transformed unreliable API responses into validated, indexed structures before they reach components.',
+      'Architected a TypeScript monorepo with Turborepo to eliminate rebuilding auth, validation, and API logic in every internal app. Built shared packages for authentication, API clients, and a type-safe data layer with Zod schemas where raw responses get validated and transformed before hitting components. Bad data gets caught before it breaks anything, and patterns get imported instead of rewritten.',
     ],
     startDate: 'Jan 2026',
     endDate: 'Present',
@@ -22,8 +21,8 @@ export const EXPERIENCE_ITEMS: ExperienceItem[] = [
     company: 'CompoSecure',
     title: 'Frontend Engineer',
     description: [
-      'Built a production floor management system used daily by 700+ manufacturing employees across 80+ touchscreen kiosks and desktop stations. Designed accessible touch interfaces and forms with real-time validation to prevent costly inventory and labor reporting errors.',
-      'Created a component library published to npm with full Storybook documentation and visual regression testing. Collaborated with manufacturing ops and backend teams to deliver features that directly improved shop floor efficiency.',
+      'Built a production floor management system for 700+ manufacturing employees across kiosk and desktop stations, using context-aware validation to catch errors before they affect downstream inventory counts, finances, and labor reporting.',
+      'Created a component library for the production floor interfaces with touch-friendly designs built for factory floor conditions. Shipped with Storybook documentation and visual regression testing. Published to npm for use across internal apps.',
     ],
     startDate: 'Apr 2023',
     endDate: 'Jan 2026',
@@ -33,7 +32,7 @@ export const EXPERIENCE_ITEMS: ExperienceItem[] = [
     company: 'Rutgers University',
     title: 'Web Developer',
     description: [
-      'Developed responsive inventory management and ticketing dashboards with full cross-browser and mobile support. Translated stakeholder requirements into technical specifications and created mockups to secure project approval.',
+      'Built responsive inventory management and ticketing dashboards with cross-browser and mobile support. Created mockups and translated stakeholder requirements into technical specifications to move projects forward.',
     ],
     startDate: 'Sep 2021',
     endDate: 'Apr 2023',

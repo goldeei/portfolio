@@ -1,24 +1,27 @@
 import { SiteSections } from '@/constants';
 import { Section } from '../section';
 import { Typography } from '../typography';
+import { TypographyGroup } from '../typography-group';
 
 export const AboutMe = ({ ref }: { ref?: React.Ref<HTMLElement> }) => {
   return (
     <Section id={SiteSections.ABOUT_ME} className="overflow-visible" header="About Me" ref={ref}>
-      <Typography>
-        I work across design and development - translating ideas in Figma into React components, finding creative ways
-        to display complex data, and building the infrastructure that makes both feel seamless. Good software shouldn't
-        just work, it should feel intuitive to use and straightforward to extend.
-        <br />
-        <br />
-        I like creating component libraries that other engineers want to use, designing interfaces that make complicated
-        workflows clear, and building foundations once so teams don't rebuild them every project. I work with React,
-        TypeScript, Tailwind, and modern tooling to create systems where the foundation gets stronger as you build on
-        it. Small teams need infrastructure that enables speed, not slows it down. That's what I focus on building.
-        <br />
-        <br />I enjoy wearing multiple hats, but I'm just as happy going deep on the engineering side - building design
-        systems, developer tooling, or infrastructure that makes shipping reliable software faster.{' '}
-      </Typography>
+      <TypographyGroup>
+        <Typography>
+          I work across design and development because the best solutions come from understanding both sides. I find
+          ways to make complex data feel clear and build the shared infrastructure that makes all of it work together.
+        </Typography>
+        <Typography>
+          I'd rather spend eight hours building a tool that eliminates a repetitive task than do that task manually for
+          the rest of my career. I like building component libraries, creating interfaces that make complicated
+          workflows straightforward, and setting up infrastructure that other people can build on.
+        </Typography>
+        <Typography>
+          I enjoy the engineering work - design systems, tooling, automation, infrastructure - but I'm just as
+          comfortable working on design and going deep on how things should look and feel. What matters is that the work
+          solves real problems and makes the next project easier than the last.
+        </Typography>
+      </TypographyGroup>
     </Section>
   );
 };
