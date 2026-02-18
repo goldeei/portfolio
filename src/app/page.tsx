@@ -15,7 +15,7 @@ export default function Home() {
       <Header />
       <div
         data-scroll-container={SCROLL_CONTAINER_TYPES.MOBILE}
-        className="site-container grid h-svh grid-cols-1 overflow-y-auto pt-(--header-height) sm:grid-cols-[300px_auto] sm:grid-rows-[auto_1fr] sm:gap-x-4 sm:pt-[calc(var(--header-height)+2rem)] md:gap-x-8"
+        className="site-container grid h-dvh grid-cols-1 overflow-y-auto pt-(--header-height) sm:grid-cols-[300px_auto] sm:grid-rows-[auto_1fr] sm:gap-x-4 sm:pt-[calc(var(--header-height)+2rem)] md:gap-x-8"
       >
         <Hero />
         <Main key={isMobile ? 'mobile' : 'desktop'} />
