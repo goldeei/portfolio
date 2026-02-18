@@ -43,7 +43,7 @@ export const DownloadVCardButton = ({
 }) => {
   return (
     <Button onClick={downloadVCard} className={className} variant={variant} size={size}>
-      <DownloadIcon className="size-4" />
+      <DownloadIcon />
     </Button>
   );
 };

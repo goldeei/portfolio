@@ -1,13 +1,15 @@
-import { ExternalLink } from 'lucide-react';
-import { ResumeTrigger } from './resume-trigger';
+import { ExternalLink, FileUser } from 'lucide-react';
 import { Button } from './ui/button';
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from './ui/dialog';
 
 export const ResumeDialog = () => {
   return (
     <Dialog>
-      <DialogTrigger className="sm:w-fit" asChild>
-        <ResumeTrigger />
+      <DialogTrigger className="w-full md:w-96" asChild>
+        <Button>
+          <FileUser />
+          View Full Resume
+        </Button>
       </DialogTrigger>
       <DialogContent className="bg-overlay flex h-[95vh] max-w-[95vw] flex-col gap-0 p-0 pt-8 **:data-[slot='dialog-close']:top-2 **:data-[slot='dialog-close']:right-2">
         <DialogHeader className="sr-only">

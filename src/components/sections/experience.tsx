@@ -1,9 +1,10 @@
 import { EXPERIENCE_ITEMS, SiteSections } from '@/constants';
 import { useIsMobile } from '@/hooks';
+import { FileUser } from 'lucide-react';
 import { ExperienceBody, ExperienceHeader, ExperienceSkills } from '../experience';
 import { ResumeDialog } from '../resume-dialog';
-import { ResumeTrigger } from '../resume-trigger';
 import { Section } from '../section';
+import { Button } from '../ui/button';
 
 export const Experience = ({ ref }: { ref?: React.Ref<HTMLElement> }) => {
   const isMobile = useIsMobile();
@@ -20,10 +21,15 @@ export const Experience = ({ ref }: { ref?: React.Ref<HTMLElement> }) => {
             </div>
           </div>
         ))}
+      </div>
+      <div className="mt-8 flex justify-center">
         {isMobile ? (
-          <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
-            <ResumeTrigger className="w-full" />
-          </a>
+          <Button variant="outline" asChild>
+            <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+              <FileUser />
+              View Full Resume
+            </a>
+          </Button>
         ) : (
           <ResumeDialog />
         )}
