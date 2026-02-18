@@ -11,7 +11,7 @@ export const Experience = ({ ref }: { ref?: React.Ref<HTMLElement> }) => {
 
   return (
     <Section id={SiteSections.EXPERIENCE} header="Experience" ref={ref}>
-      <div className="flex flex-col gap-12 sm:pe-12">
+      <div className="flex flex-col gap-12">
         {EXPERIENCE_ITEMS.map((item, index) => (
           <div key={index}>
             <ExperienceHeader {...item} />
