@@ -1,8 +1,8 @@
 'use client';
 
 import { CONTACT_LINKS } from '@/constants';
-import { User } from 'lucide-react';
 import Link from 'next/link';
+import { BrandIcon } from '../icons';
 import { Typography } from '../typography';
 import { Button } from '../ui/button';
 import { DownloadVCardButton } from './v-card';
@@ -31,13 +31,12 @@ export const ContactCard = () => {
       <DownloadVCardButton variant="ghost" size="icon-minimal" className="absolute right-2 bottom-2 rounded-full" />
       <div className="flex h-full flex-col items-center justify-center border-b pb-4 md:mr-8 md:border-r md:border-b-0 md:pr-8 md:pb-0">
         <div className="mb-4 flex size-20 items-center justify-center rounded-full border border-black bg-black/40 shadow">
-          <User size={64} className="text-primary" />
+          <BrandIcon className="text-primary size-full" />
         </div>
         <div className="text-primary text-xl font-medium">Jake Goldfarb</div>
         <Typography variant="subtitle" className="text-center text-sm">
           Frontend Engineer
         </Typography>
-        {/* TODO replace with logo/image/something */}
       </div>
       <div className="flex flex-col justify-center gap-4 pt-4 md:py-2">
         <ContactInfoSection />
