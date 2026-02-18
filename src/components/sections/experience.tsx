@@ -21,6 +21,8 @@ export const Experience = ({ ref }: { ref?: React.Ref<HTMLElement> }) => {
             </div>
           </div>
         ))}
+      </div>
+      <div className="mt-8 flex justify-center">
         {isMobile ? (
           <Button variant="outline" asChild>
             <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
