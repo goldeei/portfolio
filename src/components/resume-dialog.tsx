@@ -5,8 +5,8 @@ import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogT
 export const ResumeDialog = () => {
   return (
     <Dialog>
-      <DialogTrigger className="sm:w-fit" asChild>
-        <Button variant="outline">
+      <DialogTrigger className="w-full md:w-96" asChild>
+        <Button>
           <FileUser />
           View Full Resume
         </Button>
