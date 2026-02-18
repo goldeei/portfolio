@@ -48,7 +48,6 @@ export const MobileHeader = ({ className }: { className?: string }) => {
         onClick={() => setIsOpen(!isOpen)}
         aria-label="Toggle menu"
         aria-expanded={isOpen}
-        variant="interactive"
         className="aria-expanded:text-secondary"
       >
         <Menu className="size-5" />
