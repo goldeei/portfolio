@@ -3,6 +3,7 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { Menu } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
+import { BodyPortal } from '../body-portal';
 import { ContactLinks } from '../contact-links';
 import { Nav } from '../nav';
 import { Button } from '../ui/button';
@@ -52,21 +53,23 @@ export const MobileHeader = ({ className }: { className?: string }) => {
       >
         <Menu className="size-5" />
       </Button>
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            ref={menuRef}
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.2, ease: 'easeOut' }}
-            className="bg-overlay border-border fixed top-(--header-height) right-0 left-0 z-40 overflow-hidden border-b shadow-2xl sm:hidden"
-          >
-            <Nav variant="mobile" onNavigate={handleNavClick} />
-            <ContactLinks className="border-border border-t py-2" />
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <BodyPortal>
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              ref={menuRef}
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.2, ease: 'easeOut' }}
+              className="border-border bg-overlay fixed top-(--header-height) right-0 left-0 z-40 overflow-hidden border-b shadow-2xl sm:hidden"
+            >
+              <Nav variant="mobile" onNavigate={handleNavClick} />
+              <ContactLinks className="border-border border-t bg-black/20 py-2" />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </BodyPortal>
     </>
   );
 };
