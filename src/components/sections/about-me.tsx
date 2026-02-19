@@ -5,7 +5,7 @@ import { TypographyGroup } from '../typography-group';
 
 export const AboutMe = ({ ref }: { ref?: React.Ref<HTMLElement> }) => {
   return (
-    <Section id={SiteSections.ABOUT_ME} className="overflow-visible" header="About Me" ref={ref}>
+    <Section id={SiteSections.ABOUT_ME} header="About Me" ref={ref}>
       <TypographyGroup>
         <Typography>
           I work across design and development because the best solutions come from understanding both sides. I find
