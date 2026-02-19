@@ -30,7 +30,7 @@ export const ResumeDialog = () => {
             </p>
           </iframe>
         </div>
-        <DialogFooter className="flex items-center border-t p-4" showCloseButton>
+        <DialogFooter className="flex items-center border-t p-4">
           <Button variant="ghost" size="sm" asChild>
             <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
               <ExternalLink className="mr-2 h-4 w-4" />
