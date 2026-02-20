@@ -19,7 +19,7 @@ export default function Home() {
       >
         <Hero />
         <Main key={isMobile ? 'mobile' : 'desktop'} />
-        <Nav variant="desktop" />
+        {!isMobile && <Nav variant="desktop" />}
       </div>
     </ActiveSectionProvider>
   );
