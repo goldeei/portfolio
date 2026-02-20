@@ -43,7 +43,7 @@ export const MobileHeader = ({ className }: { className?: string }) => {
   };
 
   return (
-    <div className="contents sm:hidden">
+    <div className="flex sm:hidden">
       <Button
         ref={triggerRef}
         onClick={() => setIsOpen(!isOpen)}

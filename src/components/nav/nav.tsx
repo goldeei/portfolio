@@ -5,11 +5,19 @@ import { NAV_ITEMS } from './constants';
 import { NavItem } from './nav-item';
 import { NavList } from './nav-list';
 
-export const Nav = ({ variant, onNavigate }: { variant: 'desktop' | 'mobile'; onNavigate?: () => void }) => {
+export const Nav = ({
+  variant,
+  onNavigate,
+  className,
+}: {
+  variant: 'desktop' | 'mobile';
+  onNavigate?: () => void;
+  className?: string;
+}) => {
   const { activeSectionId } = useActiveSection();
 
   return (
-    <NavList variant={variant}>
+    <NavList variant={variant} className={className}>
       {NAV_ITEMS.map((item) => (
         <NavItem
           key={item.id}
