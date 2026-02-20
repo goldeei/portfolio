@@ -26,7 +26,8 @@ export const Header = () => {
             <BrandIcon className="size-full" />
           </a>
         </Button>
-        {isMobile ? <MobileHeader className="flex items-center justify-between" /> : <ContactLinks />}
+        <MobileHeader className="flex items-center justify-between sm:hidden" />
+        <ContactLinks className="hidden sm:flex" />
       </div>
     </nav>
   );

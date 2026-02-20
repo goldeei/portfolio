@@ -43,7 +43,7 @@ export const MobileHeader = ({ className }: { className?: string }) => {
   };
 
   return (
-    <>
+    <div className="contents sm:hidden">
       <Button
         ref={triggerRef}
         onClick={() => setIsOpen(!isOpen)}
@@ -70,6 +70,6 @@ export const MobileHeader = ({ className }: { className?: string }) => {
           )}
         </AnimatePresence>
       </BodyPortal>
-    </>
+    </div>
   );
 };
