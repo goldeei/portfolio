@@ -27,9 +27,9 @@ const ContactInfoSection = () => {
 
 export const ContactCard = () => {
   return (
-    <div className="relative flex w-fit flex-col justify-center rounded border border-black bg-black/10 p-8 shadow-2xl md:flex-row md:items-center">
+    <div className="relative flex w-fit flex-col justify-center rounded border border-black bg-black/10 p-8 shadow-2xl lg:flex-row lg:items-center">
       <DownloadVCardButton variant="ghost" size="icon-minimal" className="absolute right-1 bottom-1 rounded-full" />
-      <div className="flex h-full flex-col items-center justify-center border-b pb-4 md:mr-8 md:border-r md:border-b-0 md:pr-8 md:pb-0">
+      <div className="flex h-full flex-col items-center justify-center border-b pb-4 lg:mr-8 lg:border-r lg:border-b-0 lg:pr-8 lg:pb-0">
         <div className="mb-4 flex size-20 items-center justify-center rounded-full border border-black bg-black/40 shadow">
           <BrandIcon className="text-primary size-full" />
         </div>
@@ -38,7 +38,7 @@ export const ContactCard = () => {
           Frontend Engineer
         </Typography>
       </div>
-      <div className="flex flex-col justify-center gap-4 pt-4 md:py-2">
+      <div className="flex flex-col justify-center gap-4 pt-4 lg:py-2">
         <ContactInfoSection />
       </div>
     </div>
