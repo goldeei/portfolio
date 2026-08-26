@@ -2,37 +2,90 @@
 
 import { SiteSections } from '@/constants';
 import { useActiveSection } from '@/context';
-import { useEffect, useMemo } from 'react';
+import { getScrollContainer } from '@/lib/scroll-utils';
+import { RefObject, useEffect } from 'react';
+
+const HEADER_OFFSET_PX = 8;
+
+interface SectionRef {
+  id: SiteSections;
+  ref: RefObject<HTMLElement | null>;
+}
 
 interface UseSectionTrackingOptions {
   isMobile: boolean;
-  sectionEntries: (IntersectionObserverEntry | null)[];
+  sections: SectionRef[];
+  bottomSentinelRef: RefObject<HTMLElement | null>;
 }
 
-export function useActiveSectionTracking({ sectionEntries }: UseSectionTrackingOptions) {
+function getActiveSectionId(container: HTMLElement, sections: SectionRef[], isAtBottom: boolean): SiteSections | null {
+  if (sections.length === 0) return null;
+
+  if (isAtBottom) return sections[sections.length - 1].id;
+
+  const offsetLine = container.getBoundingClientRect().top + HEADER_OFFSET_PX;
+
+  let activeId: SiteSections | null = null;
+  let bestTop = -Infinity;
+
+  for (const { id, ref } of sections) {
+    const el = ref.current;
+    if (!el) continue;
+
+    const top = el.getBoundingClientRect().top;
+    if (top <= offsetLine && top > bestTop) {
+      bestTop = top;
+      activeId = id;
+    }
+  }
+
+  return activeId;
+}
+
+export function useActiveSectionTracking({ isMobile, sections, bottomSentinelRef }: UseSectionTrackingOptions) {
   const { setActiveSectionId } = useActiveSection();
-  // Get current active section from intersections
-  const activeSection = useMemo(() => {
-    const validSectionEntries = sectionEntries.filter((i) => i !== null);
-    const activeIndex = validSectionEntries.findIndex((i) => i.isIntersecting);
-    const sectionId =
-      activeIndex !== -1 && validSectionEntries[activeIndex].target.id
-        ? validSectionEntries[activeIndex].target.id
-        : null;
 
-    if (sectionId && Object.values(SiteSections).includes(sectionId as SiteSections)) {
-      return sectionId as SiteSections;
-    }
-    return null;
-  }, [sectionEntries]);
-
-  // Update active section when it changes
   useEffect(() => {
-    setActiveSectionId(activeSection);
-    if (activeSection) {
-      window.history.replaceState(null, '', `${window.location.pathname}#${activeSection}`);
-    } else {
-      window.history.replaceState(null, '', window.location.pathname);
-    }
-  }, [activeSection, setActiveSectionId]);
+    const container = getScrollContainer(isMobile);
+    const sentinel = bottomSentinelRef.current;
+    if (!container || !sentinel) return;
+
+    let rafId: number | null = null;
+    let isAtBottom = false;
+
+    const update = () => {
+      rafId = null;
+      const activeId = getActiveSectionId(container, sections, isAtBottom);
+      setActiveSectionId(activeId);
+      if (activeId) {
+        window.history.replaceState(null, '', `${window.location.pathname}#${activeId}`);
+      } else {
+        window.history.replaceState(null, '', window.location.pathname);
+      }
+    };
+
+    const scheduleUpdate = () => {
+      if (rafId !== null) return;
+      rafId = requestAnimationFrame(update);
+    };
+
+    const bottomObserver = new IntersectionObserver(
+      ([sentinelEntry]) => {
+        isAtBottom = sentinelEntry.isIntersecting;
+        scheduleUpdate();
+      },
+      { root: container, threshold: 0 },
+    );
+    bottomObserver.observe(sentinel);
+
+    container.addEventListener('scroll', scheduleUpdate, { passive: true });
+    window.addEventListener('resize', scheduleUpdate);
+
+    return () => {
+      if (rafId !== null) cancelAnimationFrame(rafId);
+      bottomObserver.disconnect();
+      container.removeEventListener('scroll', scheduleUpdate);
+      window.removeEventListener('resize', scheduleUpdate);
+    };
+  }, [isMobile, sections, bottomSentinelRef, setActiveSectionId]);
 }
