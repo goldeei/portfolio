@@ -1,34 +1,29 @@
 'use client';
 
-import { SCROLL_CONTAINER_TYPES } from '@/constants';
+import { SCROLL_CONTAINER_TYPES, SiteSections } from '@/constants';
 import { useActiveSectionTracking } from '@/hooks/use-active-section-tracking';
 import { useIsMobile } from '@/hooks/use-mobile';
-import { getScrollContainer } from '@/lib/scroll-utils';
-import { useIntersection } from '@mantine/hooks';
+import { useMemo, useRef } from 'react';
 import { AboutMe, Experience, LetsConnect } from './sections';
-
-const SCROLL_THRESHOLD = 0.25;
 
 export const Main = () => {
   const isMobile = useIsMobile();
 
-  const scrollContainer = getScrollContainer(isMobile);
+  const aboutMeRef = useRef<HTMLElement>(null);
+  const experienceRef = useRef<HTMLElement>(null);
+  const letsConnectRef = useRef<HTMLElement>(null);
+  const bottomSentinelRef = useRef<HTMLDivElement>(null);
 
-  const { ref: aboutMeRef, entry: aboutMeEntry } = useIntersection({
-    root: scrollContainer,
-    threshold: SCROLL_THRESHOLD,
-  });
+  const sections = useMemo(
+    () => [
+      { id: SiteSections.ABOUT_ME, ref: aboutMeRef },
+      { id: SiteSections.EXPERIENCE, ref: experienceRef },
+      { id: SiteSections.LETS_CONNECT, ref: letsConnectRef },
+    ],
+    [],
+  );
 
-  const { ref: experienceRef, entry: experienceEntry } = useIntersection({
-    root: scrollContainer,
-    threshold: SCROLL_THRESHOLD,
-  });
-
-  const { ref: letsConnectRef, entry: letsConnectEntry } = useIntersection({
-    root: scrollContainer,
-    threshold: SCROLL_THRESHOLD,
-  });
-  useActiveSectionTracking({ isMobile, sectionEntries: [aboutMeEntry, experienceEntry, letsConnectEntry] });
+  useActiveSectionTracking({ isMobile, sections, bottomSentinelRef });
 
   return (
     <main
@@ -38,6 +33,7 @@ export const Main = () => {
       <AboutMe ref={aboutMeRef} />
       <Experience ref={experienceRef} />
       <LetsConnect ref={letsConnectRef} />
+      <div ref={bottomSentinelRef} aria-hidden className="h-px" />
     </main>
   );
 };
